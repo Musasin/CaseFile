@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     YukariOptionController optionController1;
     YukariOptionController optionController2;
     YukariOptionController optionController3;
+    Text windowText;
 
     private struct ScenarioData
     {
@@ -65,8 +66,10 @@ public class GameController : MonoBehaviour
         optionController1 = GameObject.Find("Option1").GetComponent<YukariOptionController>();
         optionController2 = GameObject.Find("Option2").GetComponent<YukariOptionController>();
         optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
+        windowText = GameObject.Find("WindowText").GetComponent<Text>();
 
-        csvFile = Resources.Load("scenario") as TextAsset;
+        csvFile = Resources.Load("sabun_check") as TextAsset;
+        //csvFile = Resources.Load("scenario") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -96,7 +99,7 @@ public class GameController : MonoBehaviour
             optionController1.SetSprite(csvDatas[nowId].option1);
             optionController2.SetSprite(csvDatas[nowId].option2);
             optionController3.SetSprite(csvDatas[nowId].option3);
-
+            windowText.text = csvDatas[nowId].words;
 
             if (csvDatas[nowId].jump_id1 != 0)
             {

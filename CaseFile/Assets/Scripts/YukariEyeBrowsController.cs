@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class YukariEyeBrowsController : MonoBehaviour
 {
-
+    public Sprite anger;
+    public Sprite doya;
     public Sprite normal;
+    public Sprite sad;
+
     // Use this for initialization
     void Start()
     {
@@ -23,8 +26,17 @@ public class YukariEyeBrowsController : MonoBehaviour
     {
         switch (spriteName)
         {
+            case "anger":
+                GetComponent<Image>().sprite = anger;
+                break;
+            case "doya":
+                GetComponent<Image>().sprite = doya;
+                break;
             case "normal":
                 GetComponent<Image>().sprite = normal;
+                break;
+            case "sad":
+                GetComponent<Image>().sprite = sad;
                 break;
             default:
                 break;
