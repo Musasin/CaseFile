@@ -28,6 +28,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1212797854508988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224709037645017008}
+  - component: {fileID: 222010901905189038}
+  - component: {fileID: 114112806436092206}
+  - component: {fileID: 114933307127601704}
+  m_Layer: 5
+  m_Name: Option1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1238391332294808
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,24 +82,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1522126562940500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 224934322524379566}
-  - component: {fileID: 222762445441731066}
-  - component: {fileID: 114074310041677888}
-  - component: {fileID: 114687062650248834}
-  m_Layer: 5
-  m_Name: Option3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1530232964021852
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,17 +100,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1683754481945606
+--- !u!1 &1953488663109584
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224721867801158992}
-  - component: {fileID: 222048611240940848}
-  - component: {fileID: 114492470513237994}
-  - component: {fileID: 114475955539019650}
+  - component: {fileID: 224113523271001962}
+  - component: {fileID: 222118652719859464}
+  - component: {fileID: 114760162978689960}
+  - component: {fileID: 114482935466304384}
   m_Layer: 5
   m_Name: Option2
   m_TagString: Untagged
@@ -118,30 +118,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1729799922832718
+--- !u!1 &1967721722680196
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224056156294478638}
-  - component: {fileID: 222818239020679170}
-  - component: {fileID: 114582120190099562}
-  - component: {fileID: 114987920832755548}
+  - component: {fileID: 224190927366312528}
+  - component: {fileID: 222685132100042426}
+  - component: {fileID: 114558119001969244}
+  - component: {fileID: 114318766700908510}
   m_Layer: 5
-  m_Name: Option1
+  m_Name: Option3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114074310041677888
+--- !u!114 &114112806436092206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522126562940500}
+  m_GameObject: {fileID: 1212797854508988}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -216,17 +216,18 @@ MonoBehaviour:
   smile_2: {fileID: 21300000, guid: 2f83d6d7aeb0a45dbaf72d2be83493ef, type: 3}
   tongue: {fileID: 21300000, guid: 55d03c7592d994bf5876c7cbb45018b4, type: 3}
   waxtu: {fileID: 21300000, guid: b106627b293f947f2be0a8f0aa79de54, type: 3}
---- !u!114 &114475955539019650
+--- !u!114 &114318766700908510
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1683754481945606}
+  m_GameObject: {fileID: 1967721722680196}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 045ce483b9fb8474c93799460f83a95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nothing: {fileID: 21300000, guid: 241c4a5d82db644b8aa589bbb1dbad8e, type: 3}
   exclamation: {fileID: 21300000, guid: 6f8305e0b923944349d39f09f9ca34de, type: 3}
   ex_question: {fileID: 21300000, guid: 80622db1297844cf0a054c41c71587f4, type: 3}
   question: {fileID: 21300000, guid: 346c3e9724b2942bfae498e51a8c6eeb, type: 3}
@@ -245,7 +246,7 @@ MonoBehaviour:
   flash_2: {fileID: 21300000, guid: 4ac6b7b0a577545e6a9fe559eea983dd, type: 3}
   kega: {fileID: 21300000, guid: c256edf6c681444e59bf110678e07c9c, type: 3}
   knife: {fileID: 21300000, guid: 097faeea9300749c6bca835835591393, type: 3}
-  knife_blood: {fileID: 21300000, guid: 8e9283ce278044772962a3779b041c61, type: 3}
+  knife_blood: {fileID: 21300000, guid: 5f5e2c794184e428c9420b6b45a497be, type: 3}
   laugh: {fileID: 21300000, guid: 6867a70d49093402fb451033696b7073, type: 3}
   megane: {fileID: 21300000, guid: abbd8c2c2e98a49dd8ae5dd375575f0a, type: 3}
   muka: {fileID: 21300000, guid: 9357e5b44ab0a47a39b057e9c98f80dc, type: 3}
@@ -258,39 +259,55 @@ MonoBehaviour:
   sweat_3: {fileID: 21300000, guid: b3b06d4830b8a473b9a6e36a8cde8301, type: 3}
   sweat_4: {fileID: 21300000, guid: 8e6b943388f214a3a9dda224499c5637, type: 3}
   zokuzoku: {fileID: 21300000, guid: 8c2cbdfa267964479a2a95e8c37f0aca, type: 3}
---- !u!114 &114492470513237994
+--- !u!114 &114482935466304384
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1683754481945606}
+  m_GameObject: {fileID: 1953488663109584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 045ce483b9fb8474c93799460f83a95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 241c4a5d82db644b8aa589bbb1dbad8e, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!114 &114582120190099562
+  nothing: {fileID: 21300000, guid: 241c4a5d82db644b8aa589bbb1dbad8e, type: 3}
+  exclamation: {fileID: 21300000, guid: 6f8305e0b923944349d39f09f9ca34de, type: 3}
+  ex_question: {fileID: 21300000, guid: 80622db1297844cf0a054c41c71587f4, type: 3}
+  question: {fileID: 21300000, guid: 346c3e9724b2942bfae498e51a8c6eeb, type: 3}
+  blunder: {fileID: 21300000, guid: 135d0059080d04692a70f9448e8f3205, type: 3}
+  blusher: {fileID: 21300000, guid: 8749a8f5f1aa6440f80a1a821641ac2d, type: 3}
+  blusher_2: {fileID: 21300000, guid: 5c50240b31fd74973bc927d6c2550dc8, type: 3}
+  breath: {fileID: 21300000, guid: cf3bf327057c346e2b3c94f3f0591f72, type: 3}
+  bright_red: {fileID: 21300000, guid: 17fdc6e7bb7c74e06bb98bc3ae0a9268, type: 3}
+  bubble: {fileID: 21300000, guid: b826a8448bc754cf88a7fbbadfba2896, type: 3}
+  buruburu: {fileID: 21300000, guid: 2342b896b5feb4a31ae08670ee0ffedc, type: 3}
+  chill: {fileID: 21300000, guid: 352e416344985490abf997e065864c8d, type: 3}
+  close_eyes_tears: {fileID: 21300000, guid: db6b5c645625b4313998c64aea9f24a0, type: 3}
+  dark: {fileID: 21300000, guid: 86d9e5a6ad88e4000b6b4b4c28671ea5, type: 3}
+  dark_2: {fileID: 21300000, guid: 6525a9c2bcf054699a00de16ac586f12, type: 3}
+  flash: {fileID: 21300000, guid: fb3c3ac3be2514c92a68fd4a86489816, type: 3}
+  flash_2: {fileID: 21300000, guid: 4ac6b7b0a577545e6a9fe559eea983dd, type: 3}
+  kega: {fileID: 21300000, guid: c256edf6c681444e59bf110678e07c9c, type: 3}
+  knife: {fileID: 21300000, guid: 097faeea9300749c6bca835835591393, type: 3}
+  knife_blood: {fileID: 21300000, guid: 5f5e2c794184e428c9420b6b45a497be, type: 3}
+  laugh: {fileID: 21300000, guid: 6867a70d49093402fb451033696b7073, type: 3}
+  megane: {fileID: 21300000, guid: abbd8c2c2e98a49dd8ae5dd375575f0a, type: 3}
+  muka: {fileID: 21300000, guid: 9357e5b44ab0a47a39b057e9c98f80dc, type: 3}
+  open_eye_tears: {fileID: 21300000, guid: 2aed0764887c6429dbae9a2d233ccd22, type: 3}
+  oxtu: {fileID: 21300000, guid: d673e20fb3b994121a9dc71861dad2d1, type: 3}
+  star: {fileID: 21300000, guid: 474f5e75aa4f442688ff299e452d7222, type: 3}
+  star_2: {fileID: 21300000, guid: 147277096a48f40ec97946f2f876fb3d, type: 3}
+  sweat: {fileID: 21300000, guid: 8d3e2a62f56044d108fd8c05d77b0bbc, type: 3}
+  sweat_2: {fileID: 21300000, guid: c7768016fabec41bea89b0431ef7fad1, type: 3}
+  sweat_3: {fileID: 21300000, guid: b3b06d4830b8a473b9a6e36a8cde8301, type: 3}
+  sweat_4: {fileID: 21300000, guid: 8e6b943388f214a3a9dda224499c5637, type: 3}
+  zokuzoku: {fileID: 21300000, guid: 8c2cbdfa267964479a2a95e8c37f0aca, type: 3}
+--- !u!114 &114558119001969244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1729799922832718}
+  m_GameObject: {fileID: 1967721722680196}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -339,48 +356,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114687062650248834
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522126562940500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045ce483b9fb8474c93799460f83a95b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exclamation: {fileID: 21300000, guid: 6f8305e0b923944349d39f09f9ca34de, type: 3}
-  ex_question: {fileID: 21300000, guid: 80622db1297844cf0a054c41c71587f4, type: 3}
-  question: {fileID: 21300000, guid: 346c3e9724b2942bfae498e51a8c6eeb, type: 3}
-  blunder: {fileID: 21300000, guid: 135d0059080d04692a70f9448e8f3205, type: 3}
-  blusher: {fileID: 21300000, guid: 8749a8f5f1aa6440f80a1a821641ac2d, type: 3}
-  blusher_2: {fileID: 21300000, guid: 5c50240b31fd74973bc927d6c2550dc8, type: 3}
-  breath: {fileID: 21300000, guid: cf3bf327057c346e2b3c94f3f0591f72, type: 3}
-  bright_red: {fileID: 21300000, guid: 17fdc6e7bb7c74e06bb98bc3ae0a9268, type: 3}
-  bubble: {fileID: 21300000, guid: b826a8448bc754cf88a7fbbadfba2896, type: 3}
-  buruburu: {fileID: 21300000, guid: 2342b896b5feb4a31ae08670ee0ffedc, type: 3}
-  chill: {fileID: 21300000, guid: 352e416344985490abf997e065864c8d, type: 3}
-  close_eyes_tears: {fileID: 21300000, guid: db6b5c645625b4313998c64aea9f24a0, type: 3}
-  dark: {fileID: 21300000, guid: 86d9e5a6ad88e4000b6b4b4c28671ea5, type: 3}
-  dark_2: {fileID: 21300000, guid: 6525a9c2bcf054699a00de16ac586f12, type: 3}
-  flash: {fileID: 21300000, guid: fb3c3ac3be2514c92a68fd4a86489816, type: 3}
-  flash_2: {fileID: 21300000, guid: 4ac6b7b0a577545e6a9fe559eea983dd, type: 3}
-  kega: {fileID: 21300000, guid: c256edf6c681444e59bf110678e07c9c, type: 3}
-  knife: {fileID: 21300000, guid: 097faeea9300749c6bca835835591393, type: 3}
-  knife_blood: {fileID: 21300000, guid: 8e9283ce278044772962a3779b041c61, type: 3}
-  laugh: {fileID: 21300000, guid: 6867a70d49093402fb451033696b7073, type: 3}
-  megane: {fileID: 21300000, guid: abbd8c2c2e98a49dd8ae5dd375575f0a, type: 3}
-  muka: {fileID: 21300000, guid: 9357e5b44ab0a47a39b057e9c98f80dc, type: 3}
-  open_eye_tears: {fileID: 21300000, guid: 2aed0764887c6429dbae9a2d233ccd22, type: 3}
-  oxtu: {fileID: 21300000, guid: d673e20fb3b994121a9dc71861dad2d1, type: 3}
-  star: {fileID: 21300000, guid: 474f5e75aa4f442688ff299e452d7222, type: 3}
-  star_2: {fileID: 21300000, guid: 147277096a48f40ec97946f2f876fb3d, type: 3}
-  sweat: {fileID: 21300000, guid: 8d3e2a62f56044d108fd8c05d77b0bbc, type: 3}
-  sweat_2: {fileID: 21300000, guid: c7768016fabec41bea89b0431ef7fad1, type: 3}
-  sweat_3: {fileID: 21300000, guid: b3b06d4830b8a473b9a6e36a8cde8301, type: 3}
-  sweat_4: {fileID: 21300000, guid: 8e6b943388f214a3a9dda224499c5637, type: 3}
-  zokuzoku: {fileID: 21300000, guid: 8c2cbdfa267964479a2a95e8c37f0aca, type: 3}
 --- !u!114 &114715524880537258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -410,6 +385,33 @@ MonoBehaviour:
   surprise: {fileID: 21300000, guid: bb4ba8fecaf0546b3aded814fc107927, type: 3}
   white_eyes: {fileID: 21300000, guid: 336f02ef01b964d339c2cc2e22a81acd, type: 3}
   white_eyes_tears: {fileID: 21300000, guid: ae38b9f1b0a924cdb8ab81fd3e827491, type: 3}
+--- !u!114 &114760162978689960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953488663109584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 241c4a5d82db644b8aa589bbb1dbad8e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114931821127680414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,32 +439,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114946836901756412
+--- !u!114 &114933307127601704
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1479004723028520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a01edae91ad14f76896fe6b078772da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anger: {fileID: 21300000, guid: ca79f1bd44b694a8c8769f5b045f0b14, type: 3}
-  doya: {fileID: 21300000, guid: 9824e8e4b8ddd4289b5375eb516f3a9a, type: 3}
-  normal: {fileID: 21300000, guid: 92ac6276628a84063ae87e643197dd9b, type: 3}
-  sad: {fileID: 21300000, guid: d217ec8a1d9104b799fae545bb5f7f47, type: 3}
---- !u!114 &114987920832755548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1729799922832718}
+  m_GameObject: {fileID: 1212797854508988}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 045ce483b9fb8474c93799460f83a95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nothing: {fileID: 21300000, guid: 241c4a5d82db644b8aa589bbb1dbad8e, type: 3}
   exclamation: {fileID: 21300000, guid: 6f8305e0b923944349d39f09f9ca34de, type: 3}
   ex_question: {fileID: 21300000, guid: 80622db1297844cf0a054c41c71587f4, type: 3}
   question: {fileID: 21300000, guid: 346c3e9724b2942bfae498e51a8c6eeb, type: 3}
@@ -481,7 +469,7 @@ MonoBehaviour:
   flash_2: {fileID: 21300000, guid: 4ac6b7b0a577545e6a9fe559eea983dd, type: 3}
   kega: {fileID: 21300000, guid: c256edf6c681444e59bf110678e07c9c, type: 3}
   knife: {fileID: 21300000, guid: 097faeea9300749c6bca835835591393, type: 3}
-  knife_blood: {fileID: 21300000, guid: 8e9283ce278044772962a3779b041c61, type: 3}
+  knife_blood: {fileID: 21300000, guid: 5f5e2c794184e428c9420b6b45a497be, type: 3}
   laugh: {fileID: 21300000, guid: 6867a70d49093402fb451033696b7073, type: 3}
   megane: {fileID: 21300000, guid: abbd8c2c2e98a49dd8ae5dd375575f0a, type: 3}
   muka: {fileID: 21300000, guid: 9357e5b44ab0a47a39b057e9c98f80dc, type: 3}
@@ -494,6 +482,21 @@ MonoBehaviour:
   sweat_3: {fileID: 21300000, guid: b3b06d4830b8a473b9a6e36a8cde8301, type: 3}
   sweat_4: {fileID: 21300000, guid: 8e6b943388f214a3a9dda224499c5637, type: 3}
   zokuzoku: {fileID: 21300000, guid: 8c2cbdfa267964479a2a95e8c37f0aca, type: 3}
+--- !u!114 &114946836901756412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1479004723028520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a01edae91ad14f76896fe6b078772da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anger: {fileID: 21300000, guid: ca79f1bd44b694a8c8769f5b045f0b14, type: 3}
+  doya: {fileID: 21300000, guid: 9824e8e4b8ddd4289b5375eb516f3a9a, type: 3}
+  normal: {fileID: 21300000, guid: 92ac6276628a84063ae87e643197dd9b, type: 3}
+  sad: {fileID: 21300000, guid: d217ec8a1d9104b799fae545bb5f7f47, type: 3}
 --- !u!114 &114992579053104202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -521,12 +524,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222048611240940848
+--- !u!222 &222010901905189038
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1683754481945606}
+  m_GameObject: {fileID: 1212797854508988}
+  m_CullTransparentMesh: 0
+--- !u!222 &222118652719859464
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953488663109584}
   m_CullTransparentMesh: 0
 --- !u!222 &222369877228413656
 CanvasRenderer:
@@ -549,12 +559,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063967252218848}
   m_CullTransparentMesh: 0
---- !u!222 &222762445441731066
+--- !u!222 &222685132100042426
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522126562940500}
+  m_GameObject: {fileID: 1967721722680196}
   m_CullTransparentMesh: 0
 --- !u!222 &222801460364774828
 CanvasRenderer:
@@ -563,31 +573,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479004723028520}
   m_CullTransparentMesh: 0
---- !u!222 &222818239020679170
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1729799922832718}
-  m_CullTransparentMesh: 0
---- !u!224 &224056156294478638
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1729799922832718}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224237424935541722}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
-  m_SizeDelta: {x: 800, y: 1273}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224075216871901616
 RectTransform:
   m_ObjectHideFlags: 1
@@ -624,6 +609,42 @@ RectTransform:
   m_AnchoredPosition: {x: -0, y: 0}
   m_SizeDelta: {x: 800, y: 1273}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224113523271001962
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953488663109584}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224237424935541722}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00017438615, y: 0.000021798269}
+  m_SizeDelta: {x: 800, y: 1273}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224190927366312528
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967721722680196}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224237424935541722}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
+  m_SizeDelta: {x: 800, y: 1273}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224237424935541722
 RectTransform:
   m_ObjectHideFlags: 1
@@ -634,12 +655,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -0.7, y: 0.7, z: 1}
   m_Children:
-  - {fileID: 224056156294478638}
+  - {fileID: 224709037645017008}
   - {fileID: 224083742262943740}
   - {fileID: 224075216871901616}
   - {fileID: 224574441115604590}
-  - {fileID: 224721867801158992}
-  - {fileID: 224934322524379566}
+  - {fileID: 224113523271001962}
+  - {fileID: 224190927366312528}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,39 +687,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 1273}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224721867801158992
+--- !u!224 &224709037645017008
 RectTransform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1683754481945606}
+  m_GameObject: {fileID: 1212797854508988}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 224237424935541722}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: 0.000015258789}
-  m_SizeDelta: {x: 800, y: 1273}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224934322524379566
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1522126562940500}
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224237424935541722}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0.000030517578}
   m_SizeDelta: {x: 800, y: 1273}
   m_Pivot: {x: 0.5, y: 0.5}

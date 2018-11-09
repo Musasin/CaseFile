@@ -16,9 +16,14 @@ public class GameController : MonoBehaviour
     YukariOptionController optionController2;
     YukariOptionController optionController3;
     Text windowText;
+    Text nameText;
     GameObject choicesObject;
     Text choicesText1;
     Text choicesText2;
+    GameObject masterObject;
+
+
+    Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
     private struct ScenarioData
     {
@@ -73,10 +78,13 @@ public class GameController : MonoBehaviour
         optionController2 = GameObject.Find("Option2").GetComponent<YukariOptionController>();
         optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
+        nameText = GameObject.Find("NameText").GetComponent<Text>();
         choicesObject = GameObject.Find("Choices");
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesObject.SetActive(false);
+
+        masterObject = GameObject.Find("Master");
 
         //csvFile = Resources.Load("sabun_check") as TextAsset;
         csvFile = Resources.Load("scenario") as TextAsset;
@@ -112,6 +120,20 @@ public class GameController : MonoBehaviour
         switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
         {
             case Types.Appearance:
+
+                // ここはそのうちなんとかする
+                switch (csvDatas[nowId].character)
+                {
+                    case "yukari":
+                        break;
+                    case "master":
+                        masterObject.GetComponent<Image>().enabled = true;
+                        break;
+                    default:
+                        nameText.text = "";
+                        break;
+                }
+
                 ChangeFacial();
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
@@ -131,23 +153,28 @@ public class GameController : MonoBehaviour
                 choicesObject.SetActive(true); // 選択肢を表示して、選ばれるまでIDはそのまま
                 break;
             case Types.FlagCheck:
-                nowId++;
+                Debug.Log("flag check: " + csvDatas[nowId].target_flag);
+                if (flags.ContainsKey(csvDatas[nowId].target_flag) && flags[csvDatas[nowId].target_flag])
+                {
+                    Debug.Log("true. jump to " + csvDatas[nowId].jump_id1);
+                    nowId = csvDatas[nowId].jump_id1;
+                }
+                else
+                {
+                    Debug.Log("false. jump to " + csvDatas[nowId].jump_id1);
+                    nowId = csvDatas[nowId].jump_id2;
+                }
+                PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
             case Types.FlagUpdate:
+                Debug.Log("flag update: " + csvDatas[nowId].target_flag);
+                flags.Add(csvDatas[nowId].target_flag, true);
                 nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
             default:
                 break;
         }
-
-        //if (csvDatas[nowId].jump_id1 != 0)
-        //{
-        //    nowId = csvDatas[nowId].jump_id1;
-        //}
-        //else
-        //{
-        //    nowId++;
-        //}
     }
 
     void ChangeFacial()
@@ -168,6 +195,21 @@ public class GameController : MonoBehaviour
             AudioManager.Instance.StopSE();
             AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
         }
+
+        // ここはそのうちなんとかする
+        switch (csvDatas[nowId].character)
+        {
+            case "yukari":
+                nameText.text = "【ゆかり】";
+                break;
+            case "master":
+                nameText.text = "【館の主人】";
+                break;
+            default:
+                nameText.text = "";
+                break;
+        }
+
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
     }
 
@@ -175,10 +217,12 @@ public class GameController : MonoBehaviour
     {
         nowId = csvDatas[nowId].jump_id1;
         choicesObject.SetActive(false);
+        PlayScenario();
     }
     public void SelectChoices2()
     {
         nowId = csvDatas[nowId].jump_id2;
         choicesObject.SetActive(false);
+        PlayScenario();
     }
 }
