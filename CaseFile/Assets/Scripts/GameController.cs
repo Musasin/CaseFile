@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
@@ -224,5 +226,10 @@ public class GameController : MonoBehaviour
         nowId = csvDatas[nowId].jump_id2;
         choicesObject.SetActive(false);
         PlayScenario();
+    }
+
+    public void DebugResetButton()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
