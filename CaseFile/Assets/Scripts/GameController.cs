@@ -68,8 +68,8 @@ public class GameController : MonoBehaviour
         optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
 
-        csvFile = Resources.Load("sabun_check") as TextAsset;
-        //csvFile = Resources.Load("scenario") as TextAsset;
+        //csvFile = Resources.Load("sabun_check") as TextAsset;
+        csvFile = Resources.Load("scenario") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -91,7 +91,14 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(csvDatas[nowId].id);
+            Debug.Log("ID: " + csvDatas[nowId].id);
+
+            Debug.Log("voice: " + csvDatas[nowId].voice);
+            if (csvDatas[nowId].voice != "")
+            {
+                AudioManager.Instance.StopSE();
+                AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
+            }
 
             eyeController.SetSprite(csvDatas[nowId].eye);
             mouseController.SetSprite(csvDatas[nowId].mouse);
