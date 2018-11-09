@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 
 public class GameController : MonoBehaviour
 {
+    enum Types { Appearance = 1, Talk = 2, Jump = 3, Choice = 4, FlagCheck = 5, FlagUpdate = 6 };
+    private char lf = (char)10;
     YukariEyeController eyeController;
     YukariMouseController mouseController;
     YukariEyeBrowsController eyeBrowsController;
@@ -13,6 +16,9 @@ public class GameController : MonoBehaviour
     YukariOptionController optionController2;
     YukariOptionController optionController3;
     Text windowText;
+    GameObject choicesObject;
+    Text choicesText1;
+    Text choicesText2;
 
     private struct ScenarioData
     {
@@ -67,6 +73,10 @@ public class GameController : MonoBehaviour
         optionController2 = GameObject.Find("Option2").GetComponent<YukariOptionController>();
         optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
+        choicesObject = GameObject.Find("Choices");
+        choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
+        choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
+        choicesObject.SetActive(false);
 
         //csvFile = Resources.Load("sabun_check") as TextAsset;
         csvFile = Resources.Load("scenario") as TextAsset;
@@ -91,31 +101,84 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("ID: " + csvDatas[nowId].id);
-
-            Debug.Log("voice: " + csvDatas[nowId].voice);
-            if (csvDatas[nowId].voice != "")
-            {
-                AudioManager.Instance.StopSE();
-                AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
-            }
-
-            eyeController.SetSprite(csvDatas[nowId].eye);
-            mouseController.SetSprite(csvDatas[nowId].mouse);
-            eyeBrowsController.SetSprite(csvDatas[nowId].eye_brows);
-            optionController1.SetSprite(csvDatas[nowId].option1);
-            optionController2.SetSprite(csvDatas[nowId].option2);
-            optionController3.SetSprite(csvDatas[nowId].option3);
-            windowText.text = csvDatas[nowId].words;
-
-            if (csvDatas[nowId].jump_id1 != 0)
-            {
-                nowId = csvDatas[nowId].jump_id1;
-            }
-            else
-            {
-                nowId++;
-            }
+            PlayScenario();
         }
+    }
+
+    void PlayScenario()
+    {
+        Debug.Log("ID: " + csvDatas[nowId].id);
+
+        switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
+        {
+            case Types.Appearance:
+                ChangeFacial();
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+            case Types.Talk:
+                ChangeFacial();
+                Talk();
+                nowId++;
+                break;
+            case Types.Jump:
+                nowId = csvDatas[nowId].jump_id1;
+                PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
+                break;
+            case Types.Choice:
+                choicesText1.text = csvDatas[nowId].choise1;
+                choicesText2.text = csvDatas[nowId].choise2;
+                choicesObject.SetActive(true); // 選択肢を表示して、選ばれるまでIDはそのまま
+                break;
+            case Types.FlagCheck:
+                nowId++;
+                break;
+            case Types.FlagUpdate:
+                nowId++;
+                break;
+            default:
+                break;
+        }
+
+        //if (csvDatas[nowId].jump_id1 != 0)
+        //{
+        //    nowId = csvDatas[nowId].jump_id1;
+        //}
+        //else
+        //{
+        //    nowId++;
+        //}
+    }
+
+    void ChangeFacial()
+    {
+        eyeController.SetSprite(csvDatas[nowId].eye);
+        mouseController.SetSprite(csvDatas[nowId].mouse);
+        eyeBrowsController.SetSprite(csvDatas[nowId].eye_brows);
+        optionController1.SetSprite(csvDatas[nowId].option1);
+        optionController2.SetSprite(csvDatas[nowId].option2);
+        optionController3.SetSprite(csvDatas[nowId].option3);
+    }
+
+    void Talk()
+    {
+        if (csvDatas[nowId].voice != "")
+        {
+            Debug.Log("SE: " + csvDatas[nowId].voice);
+            AudioManager.Instance.StopSE();
+            AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
+        }
+        windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
+    }
+
+    public void SelectChoices1()
+    {
+        nowId = csvDatas[nowId].jump_id1;
+        choicesObject.SetActive(false);
+    }
+    public void SelectChoices2()
+    {
+        nowId = csvDatas[nowId].jump_id2;
+        choicesObject.SetActive(false);
     }
 }
