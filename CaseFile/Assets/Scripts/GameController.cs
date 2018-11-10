@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    enum Types { Appearance = 1, Talk = 2, Jump = 3, Choice = 4, FlagCheck = 5, FlagUpdate = 6 };
+    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
     private char lf = (char)10;
     YukariEyeController eyeController;
     YukariMouseController mouseController;
@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour
     Text choicesText1;
     Text choicesText2;
     GameObject masterObject;
+    GameObject maidObject;
+    GameObject butlerObject;
+    GameObject detectiveObject;
 
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
@@ -91,9 +94,13 @@ public class GameController : MonoBehaviour
         choicesObject.SetActive(false);
 
         masterObject = GameObject.Find("Master");
+        maidObject = GameObject.Find("Maid");
+        butlerObject = GameObject.Find("Butler");
+        detectiveObject = GameObject.Find("Detective");
 
         //csvFile = Resources.Load("sabun_check") as TextAsset;
-        csvFile = Resources.Load("scenario") as TextAsset;
+        csvFile = Resources.Load("npc_check") as TextAsset;
+        //csvFile = Resources.Load("scenario") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -123,31 +130,29 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("ID: " + csvDatas[nowId].id);
 
+        GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
         switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
         {
             case Types.Appearance:
-
-                // ここはそのうちなんとかする
-                switch (csvDatas[nowId].character)
+                if (targetObject != null)
                 {
-                    case "yukari":
-                        break;
-                    case "master":
-                        if (csvDatas[nowId].posX != 0 || csvDatas[nowId].posY != 0)
-                        {
-                            masterObject.transform.position = new Vector3(csvDatas[nowId].posX, csvDatas[nowId].posY);
-                        }
-                        masterObject.GetComponent<Image>().enabled = true;
-                        break;
-                    default:
-                        nameText.text = "";
-                        break;
+                    SetNpcPosition(targetObject, csvDatas[nowId].posX, csvDatas[nowId].posY);
+                    targetObject.GetComponent<Image>().enabled = true;
                 }
 
                 ChangeFacial();
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case Types.Out:
+                if (targetObject != null)
+                {
+                    targetObject.GetComponent<Image>().enabled = false;
+                }
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+
             case Types.Talk:
                 ChangeFacial();
                 Talk();
@@ -206,25 +211,74 @@ public class GameController : MonoBehaviour
             AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
         }
 
-        // ここはそのうちなんとかする
-        switch (csvDatas[nowId].character)
+        GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
+        if (targetObject != null)
         {
-            case "yukari":
-                nameText.text = "【ゆかり】";
-                break;
-            case "master":
-                nameText.text = "【館の主人】";
-                if (csvDatas[nowId].posX != 0 || csvDatas[nowId].posY != 0)
-                {
-                    masterObject.transform.position = new Vector3(csvDatas[nowId].posX, csvDatas[nowId].posY);
-                }
-                break;
-            default:
-                nameText.text = "";
-                break;
+            SetNpcPosition(targetObject, csvDatas[nowId].posX, csvDatas[nowId].posY);
+
+            SetAllCharacterDarken();
+            SetClearCharacter(targetObject);
         }
 
+        nameText.text = GetCharacterName(csvDatas[nowId].character);
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
+    }
+
+    string GetCharacterName(string character)
+    {
+        switch (character)
+        {
+            case "yukari":
+                return "【ゆかり】";
+            case "master":
+                return "【館の主人】";
+            case "maid":
+                return "【メイド】";
+            case "butler":
+                return "【執事】";
+            case "detective":
+                return "【刑事】";
+            default:
+                return "";
+        }
+    }
+
+    GameObject GetTargetObject(string character)
+    {
+        switch (character)
+        {
+            case "master":
+                return masterObject;
+            case "maid":
+                return maidObject;
+            case "butler":
+                return butlerObject;
+            case "detective":
+                return detectiveObject;
+            default:
+                return null;
+        }
+    }
+
+    void SetAllCharacterDarken()
+    {
+        masterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        detectiveObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+    }
+
+    void SetClearCharacter(GameObject characterObject)
+    {
+        characterObject.GetComponent<Image>().color = new Color(100, 100, 100);
+    }
+
+    void SetNpcPosition(GameObject npcObject, int posX, int posY)
+    {
+        if (posX != 0 || posY != 0)
+        {
+            npcObject.transform.position = new Vector3(posX, posY);
+        }
     }
 
     public void SelectChoices1()
