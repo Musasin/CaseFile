@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
         public int id;
         public int type;
         public string character;
+        public int posX;
+        public int posY;
         public string eye;
         public string eye_brows;
         public string mouse;
@@ -46,11 +48,13 @@ public class GameController : MonoBehaviour
         public int jump_id1;
         public int jump_id2;
 
-        public ScenarioData(string id, string type, string character, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
+        public ScenarioData(string id, string type, string character, string posX, string posY, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
         {
             this.id = int.Parse(id);
             this.type = int.Parse(type);
             this.character = character;
+            this.posX = (posX == "" ? 0 : int.Parse(posX));
+            this.posY = (posY == "" ? 0 : int.Parse(posY));
             this.eye = eye;
             this.eye_brows = eye_brows;
             this.mouse = mouse;
@@ -102,7 +106,7 @@ public class GameController : MonoBehaviour
                 continue;
             }
             int id = int.Parse(datas[0]);
-            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15]);
+            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17]);
             csvDatas.Add(id, scenarioData);
         }
     }
@@ -129,6 +133,10 @@ public class GameController : MonoBehaviour
                     case "yukari":
                         break;
                     case "master":
+                        if (csvDatas[nowId].posX != 0 || csvDatas[nowId].posY != 0)
+                        {
+                            masterObject.transform.position = new Vector3(csvDatas[nowId].posX, csvDatas[nowId].posY);
+                        }
                         masterObject.GetComponent<Image>().enabled = true;
                         break;
                     default:
@@ -206,6 +214,10 @@ public class GameController : MonoBehaviour
                 break;
             case "master":
                 nameText.text = "【館の主人】";
+                if (csvDatas[nowId].posX != 0 || csvDatas[nowId].posY != 0)
+                {
+                    masterObject.transform.position = new Vector3(csvDatas[nowId].posX, csvDatas[nowId].posY);
+                }
                 break;
             default:
                 nameText.text = "";
