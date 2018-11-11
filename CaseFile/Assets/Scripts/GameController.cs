@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     GameObject menuObject;
     Text backLogText;
     GameObject choicesObject;
+    GameObject choices1Object;
+    GameObject choices2Object;
     Text choicesText1;
     Text choicesText2;
     GameObject masterObject;
@@ -36,8 +38,9 @@ public class GameController : MonoBehaviour
         public int id;
         public int type;
         public string character;
-        public int posX;
-        public int posY;
+        public int pos_x;
+        public int pos_y;
+        public float scale;
         public string eye;
         public string eye_brows;
         public string mouse;
@@ -45,6 +48,7 @@ public class GameController : MonoBehaviour
         public string option2;
         public string option3;
         public string voice;
+        public int font_size;
         public string words;
         public string choise1;
         public string choise2;
@@ -52,13 +56,14 @@ public class GameController : MonoBehaviour
         public int jump_id1;
         public int jump_id2;
 
-        public ScenarioData(string id, string type, string character, string posX, string posY, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
+        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string font_size, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
         {
             this.id = int.Parse(id);
             this.type = int.Parse(type);
             this.character = character;
-            this.posX = (posX == "" ? 0 : int.Parse(posX));
-            this.posY = (posY == "" ? 0 : int.Parse(posY));
+            this.pos_x = (pos_x == "" ? 0 : int.Parse(pos_x));
+            this.pos_y = (pos_y == "" ? 0 : int.Parse(pos_y));
+            this.scale = (scale == "" ? 0.7f : float.Parse(scale));
             this.eye = eye;
             this.eye_brows = eye_brows;
             this.mouse = mouse;
@@ -66,6 +71,7 @@ public class GameController : MonoBehaviour
             this.option2 = option2;
             this.option3 = option3;
             this.voice = voice;
+            this.font_size = (font_size == "" ? 30 : int.Parse(font_size));
             this.words = words;
             this.choise1 = choise1;
             this.choise2 = choise2;
@@ -93,6 +99,8 @@ public class GameController : MonoBehaviour
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
         menuObject.SetActive(false);
         choicesObject = GameObject.Find("Choices");
+        choices1Object = GameObject.Find("Choices1");
+        choices2Object = GameObject.Find("Choices2");
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesObject.SetActive(false);
@@ -103,8 +111,8 @@ public class GameController : MonoBehaviour
         detectiveObject = GameObject.Find("Detective");
 
         //csvFile = Resources.Load("sabun_check") as TextAsset;
-        csvFile = Resources.Load("npc_check") as TextAsset;
-        //csvFile = Resources.Load("scenario") as TextAsset;
+        //csvFile = Resources.Load("npc_check") as TextAsset;
+        csvFile = Resources.Load("scenario_test") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -117,7 +125,7 @@ public class GameController : MonoBehaviour
                 continue;
             }
             int id = int.Parse(datas[0]);
-            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17]);
+            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17], datas[18], datas[19]);
             csvDatas.Add(id, scenarioData);
         }
     }
@@ -145,7 +153,8 @@ public class GameController : MonoBehaviour
             case Types.Appearance:
                 if (targetObject != null)
                 {
-                    SetNpcPosition(targetObject, csvDatas[nowId].posX, csvDatas[nowId].posY);
+                    SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+                    SetNpcScale(targetObject, csvDatas[nowId].scale);
                     targetObject.GetComponent<Image>().enabled = true;
                 }
 
@@ -172,8 +181,21 @@ public class GameController : MonoBehaviour
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
             case Types.Choice:
-                choicesText1.text = csvDatas[nowId].choise1;
-                choicesText2.text = csvDatas[nowId].choise2;
+
+                // 選択肢が一つの場合は、一つ目を中央に表示する
+                if (csvDatas[nowId].choise2 == "")
+                {
+                    choices1Object.transform.position = new Vector3(512, 384, 0);
+                    choices2Object.SetActive(false);
+                }
+                else
+                {
+                    choices1Object.transform.position = new Vector3(512, 484, 0);
+                    choices2Object.SetActive(true);
+                }
+
+                choicesText1.text = csvDatas[nowId].choise1.Replace("\\n", lf.ToString());
+                choicesText2.text = csvDatas[nowId].choise2.Replace("\\n", lf.ToString());
                 choicesObject.SetActive(true); // 選択肢を表示して、選ばれるまでIDはそのまま
                 break;
             case Types.FlagCheck:
@@ -223,13 +245,15 @@ public class GameController : MonoBehaviour
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
         if (targetObject != null)
         {
-            SetNpcPosition(targetObject, csvDatas[nowId].posX, csvDatas[nowId].posY);
+            SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+            SetNpcScale(targetObject, csvDatas[nowId].scale);
 
             SetAllCharacterDarken();
             SetClearCharacter(targetObject);
         }
 
         nameText.text = GetCharacterName(csvDatas[nowId].character);
+        windowText.fontSize = csvDatas[nowId].font_size;
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
         backLogText.text += lf.ToString() + windowText.text;
@@ -241,15 +265,15 @@ public class GameController : MonoBehaviour
         switch (character)
         {
             case "yukari":
-                return "【ゆかり】";
+                return "ゆかり";
             case "master":
-                return "【館の主人】";
+                return "館の主人";
             case "maid":
-                return "【メイド】";
+                return "メイド";
             case "butler":
-                return "【執事】";
+                return "執事";
             case "detective":
-                return "【刑事】";
+                return "高城刑事";
             default:
                 return "";
         }
@@ -285,12 +309,17 @@ public class GameController : MonoBehaviour
         characterObject.GetComponent<Image>().color = new Color(100, 100, 100);
     }
 
-    void SetNpcPosition(GameObject npcObject, int posX, int posY)
+    void SetNpcPosition(GameObject npcObject, int pos_x, int pos_y)
     {
-        if (posX != 0 || posY != 0)
+        if (pos_x != 0 || pos_y != 0)
         {
-            npcObject.transform.position = new Vector3(posX, posY);
+            npcObject.transform.position = new Vector3(pos_x, pos_y);
         }
+    }
+
+    void SetNpcScale(GameObject npcObject, float scale)
+    {
+        npcObject.transform.localScale = new Vector2(scale, scale);
     }
 
     public void SelectChoices1()
