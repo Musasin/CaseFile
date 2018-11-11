@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     YukariOptionController optionController3;
     Text windowText;
     Text nameText;
+    GameObject menuObject;
+    Text backLogText;
     GameObject choicesObject;
     Text choicesText1;
     Text choicesText2;
@@ -26,7 +28,6 @@ public class GameController : MonoBehaviour
     GameObject maidObject;
     GameObject butlerObject;
     GameObject detectiveObject;
-
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
@@ -88,6 +89,9 @@ public class GameController : MonoBehaviour
         optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
+        menuObject = GameObject.Find("Menu");
+        backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
+        menuObject.SetActive(false);
         choicesObject = GameObject.Find("Choices");
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
@@ -123,6 +127,11 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             PlayScenario();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            menuObject.SetActive(!menuObject.activeSelf);
         }
     }
 
@@ -222,6 +231,9 @@ public class GameController : MonoBehaviour
 
         nameText.text = GetCharacterName(csvDatas[nowId].character);
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
+        backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
+        backLogText.text += lf.ToString() + windowText.text;
+        backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight);
     }
 
     string GetCharacterName(string character)
