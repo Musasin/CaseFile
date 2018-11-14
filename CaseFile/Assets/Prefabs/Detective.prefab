@@ -9,31 +9,31 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1121260591630288}
+  m_RootGameObject: {fileID: 1711193729574938}
   m_IsPrefabAsset: 1
---- !u!1 &1121260591630288
+--- !u!1 &1711193729574938
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 224274989781807208}
-  - component: {fileID: 222237861081551088}
-  - component: {fileID: 114931870939094248}
+  - component: {fileID: 224229452042774014}
+  - component: {fileID: 222851714483388180}
+  - component: {fileID: 114920275874598156}
   m_Layer: 5
-  m_Name: Master
+  m_Name: Detective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114931870939094248
+--- !u!114 &114920275874598156
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121260591630288}
+  m_GameObject: {fileID: 1711193729574938}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -47,7 +47,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3d8f032cfb47b48f3817f23f77a49972, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef528ffa6c3994a89b7cd0a43af70732, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -55,20 +55,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222237861081551088
+--- !u!222 &222851714483388180
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121260591630288}
+  m_GameObject: {fileID: 1711193729574938}
   m_CullTransparentMesh: 0
---- !u!224 &224274989781807208
+--- !u!224 &224229452042774014
 RectTransform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121260591630288}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1711193729574938}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
@@ -78,5 +78,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 580, y: 800}
+  m_SizeDelta: {x: 478, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}

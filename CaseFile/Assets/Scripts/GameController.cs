@@ -29,7 +29,10 @@ public class GameController : MonoBehaviour
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
-    GameObject detectiveObject;
+    GameObject takagiObject;
+
+    const float DEFAULT_CHARACTER_SCALE = 0.7f;
+    const int DEFAULT_FONT_SIZE = 30;
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
@@ -63,7 +66,7 @@ public class GameController : MonoBehaviour
             this.character = character;
             this.pos_x = (pos_x == "" ? 0 : int.Parse(pos_x));
             this.pos_y = (pos_y == "" ? 0 : int.Parse(pos_y));
-            this.scale = (scale == "" ? 0.7f : float.Parse(scale));
+            this.scale = (scale == "" ? DEFAULT_CHARACTER_SCALE : float.Parse(scale));
             this.eye = eye;
             this.eye_brows = eye_brows;
             this.mouse = mouse;
@@ -71,7 +74,7 @@ public class GameController : MonoBehaviour
             this.option2 = option2;
             this.option3 = option3;
             this.voice = voice;
-            this.font_size = (font_size == "" ? 30 : int.Parse(font_size));
+            this.font_size = (font_size == "" ? DEFAULT_FONT_SIZE : int.Parse(font_size));
             this.words = words;
             this.choise1 = choise1;
             this.choise2 = choise2;
@@ -108,11 +111,12 @@ public class GameController : MonoBehaviour
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
-        detectiveObject = GameObject.Find("Detective");
+        takagiObject = GameObject.Find("Takagi");
 
         //csvFile = Resources.Load("sabun_check") as TextAsset;
         //csvFile = Resources.Load("npc_check") as TextAsset;
-        csvFile = Resources.Load("scenario_test") as TextAsset;
+        //csvFile = Resources.Load("scenario_test") as TextAsset;
+        csvFile = Resources.Load("day0_train") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -214,7 +218,16 @@ public class GameController : MonoBehaviour
                 break;
             case Types.FlagUpdate:
                 Debug.Log("flag update: " + csvDatas[nowId].target_flag);
-                flags.Add(csvDatas[nowId].target_flag, true);
+
+                if (flags.ContainsKey(csvDatas[nowId].target_flag))
+                {
+                    flags[csvDatas[nowId].target_flag] = true;
+                }
+                else
+                {
+                    flags.Add(csvDatas[nowId].target_flag, true);
+                }
+
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
@@ -272,7 +285,7 @@ public class GameController : MonoBehaviour
                 return "メイド";
             case "butler":
                 return "執事";
-            case "detective":
+            case "takagi":
                 return "高城刑事";
             default:
                 return "";
@@ -289,8 +302,8 @@ public class GameController : MonoBehaviour
                 return maidObject;
             case "butler":
                 return butlerObject;
-            case "detective":
-                return detectiveObject;
+            case "takagi":
+                return takagiObject;
             default:
                 return null;
         }
@@ -301,7 +314,7 @@ public class GameController : MonoBehaviour
         masterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        detectiveObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
     }
 
     void SetClearCharacter(GameObject characterObject)
