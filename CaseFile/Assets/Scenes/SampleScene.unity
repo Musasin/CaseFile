@@ -423,6 +423,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1711193729574938, guid: 8da6ae1cf7f8d49b4898f02c62583f66, type: 2}
+      propertyPath: m_Name
+      value: Takagi
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8da6ae1cf7f8d49b4898f02c62583f66, type: 2}
   m_IsPrefabAsset: 0
