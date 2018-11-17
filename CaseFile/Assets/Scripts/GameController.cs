@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 {
     enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
     private char lf = (char)10;
+    GameObject yukariOverObject;
     YukariEyeController eyeController;
     YukariMouseController mouseController;
     YukariEyeBrowsController eyeBrowsController;
@@ -90,6 +91,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        yukariOverObject = GameObject.Find("YukariOver");
         eyeController = GameObject.Find("Eye").GetComponent<YukariEyeController>();
         mouseController = GameObject.Find("Mouse").GetComponent<YukariMouseController>();
         eyeBrowsController = GameObject.Find("EyeBrows").GetComponent<YukariEyeBrowsController>();
@@ -155,7 +157,7 @@ public class GameController : MonoBehaviour
         switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
         {
             case Types.Appearance:
-                if (targetObject != null)
+                if (targetObject != null && targetObject != yukariOverObject)
                 {
                     SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
                     SetNpcScale(targetObject, csvDatas[nowId].scale);
@@ -258,8 +260,11 @@ public class GameController : MonoBehaviour
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
         if (targetObject != null)
         {
-            SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
-            SetNpcScale(targetObject, csvDatas[nowId].scale);
+            if (targetObject != yukariOverObject)
+            {
+                SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+                SetNpcScale(targetObject, csvDatas[nowId].scale);
+            }
 
             SetAllCharacterDarken();
             SetClearCharacter(targetObject);
@@ -304,6 +309,8 @@ public class GameController : MonoBehaviour
                 return butlerObject;
             case "takagi":
                 return takagiObject;
+            case "yukari":
+                return yukariOverObject;
             default:
                 return null;
         }
@@ -315,11 +322,19 @@ public class GameController : MonoBehaviour
         maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
     }
 
     void SetClearCharacter(GameObject characterObject)
     {
-        characterObject.GetComponent<Image>().color = new Color(100, 100, 100);
+        if (characterObject == yukariOverObject)
+        {
+            yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.0f);
+        }
+        else
+        {
+            characterObject.GetComponent<Image>().color = new Color(100, 100, 100);
+        }
     }
 
     void SetNpcPosition(GameObject npcObject, int pos_x, int pos_y)
