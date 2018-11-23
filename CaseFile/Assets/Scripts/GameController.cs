@@ -9,15 +9,18 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
+    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7, ViewImage = 8 };
     private char lf = (char)10;
+    GameObject yukkuriOverObject;
+    GraphicController yukkuriEyeController;
+    GraphicController yukkuriMouseController;
     GameObject yukariOverObject;
-    YukariEyeController eyeController;
-    YukariMouseController mouseController;
-    YukariEyeBrowsController eyeBrowsController;
-    YukariOptionController optionController1;
-    YukariOptionController optionController2;
-    YukariOptionController optionController3;
+    GraphicController eyeController;
+    GraphicController mouseController;
+    GraphicController eyeBrowsController;
+    GraphicController optionController1;
+    GraphicController optionController2;
+    GraphicController optionController3;
     Text windowText;
     Text nameText;
     GameObject menuObject;
@@ -31,6 +34,7 @@ public class GameController : MonoBehaviour
     GameObject maidObject;
     GameObject butlerObject;
     GameObject takagiObject;
+    GameObject imageObject;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
     const int DEFAULT_FONT_SIZE = 30;
@@ -91,13 +95,16 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        yukkuriOverObject = GameObject.Find("YukkuriOver");
+        yukkuriEyeController = GameObject.Find("YukkuriEye").GetComponent<GraphicController>();
+        yukkuriMouseController = GameObject.Find("YukkuriMouse").GetComponent<GraphicController>();
         yukariOverObject = GameObject.Find("YukariOver");
-        eyeController = GameObject.Find("Eye").GetComponent<YukariEyeController>();
-        mouseController = GameObject.Find("Mouse").GetComponent<YukariMouseController>();
-        eyeBrowsController = GameObject.Find("EyeBrows").GetComponent<YukariEyeBrowsController>();
-        optionController1 = GameObject.Find("Option1").GetComponent<YukariOptionController>();
-        optionController2 = GameObject.Find("Option2").GetComponent<YukariOptionController>();
-        optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
+        eyeController = GameObject.Find("Eye").GetComponent<GraphicController>();
+        mouseController = GameObject.Find("Mouse").GetComponent<GraphicController>();
+        eyeBrowsController = GameObject.Find("EyeBrows").GetComponent<GraphicController>();
+        optionController1 = GameObject.Find("Option1").GetComponent<GraphicController>();
+        optionController2 = GameObject.Find("Option2").GetComponent<GraphicController>();
+        optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         menuObject = GameObject.Find("Menu");
@@ -109,6 +116,8 @@ public class GameController : MonoBehaviour
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesObject.SetActive(false);
+        imageObject = GameObject.Find("Image");
+        imageObject.SetActive(false);
 
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
@@ -118,7 +127,8 @@ public class GameController : MonoBehaviour
         //csvFile = Resources.Load("sabun_check") as TextAsset;
         //csvFile = Resources.Load("npc_check") as TextAsset;
         //csvFile = Resources.Load("scenario_test") as TextAsset;
-        csvFile = Resources.Load("day0_train") as TextAsset;
+        //csvFile = Resources.Load("day0_train") as TextAsset;
+        csvFile = Resources.Load("yukkuri") as TextAsset;
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
@@ -157,7 +167,7 @@ public class GameController : MonoBehaviour
         switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
         {
             case Types.Appearance:
-                if (targetObject != null && targetObject != yukariOverObject)
+                if (targetObject != null && targetObject != yukariOverObject && targetObject != yukkuriOverObject)
                 {
                     SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
                     SetNpcScale(targetObject, csvDatas[nowId].scale);
@@ -233,6 +243,16 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case Types.ViewImage:
+                Sprite sprite = Resources.Load<Sprite>("Images/" + csvDatas[nowId].character);
+                imageObject.GetComponent<Image>().sprite = sprite;
+                imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(sprite.bounds.size.x, sprite.bounds.size.y);
+                imageObject.transform.position = new Vector2(csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+                imageObject.transform.localScale = new Vector2(csvDatas[nowId].scale, csvDatas[nowId].scale);
+                imageObject.SetActive(true);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
             default:
                 break;
         }
@@ -240,12 +260,20 @@ public class GameController : MonoBehaviour
 
     void ChangeFacial()
     {
-        eyeController.SetSprite(csvDatas[nowId].eye);
-        mouseController.SetSprite(csvDatas[nowId].mouse);
-        eyeBrowsController.SetSprite(csvDatas[nowId].eye_brows);
-        optionController1.SetSprite(csvDatas[nowId].option1);
-        optionController2.SetSprite(csvDatas[nowId].option2);
-        optionController3.SetSprite(csvDatas[nowId].option3);
+        if (csvDatas[nowId].character == "yukkuri")
+        {
+            yukkuriEyeController.SetSprite(csvDatas[nowId].eye);
+            yukkuriMouseController.SetSprite(csvDatas[nowId].mouse);
+        }
+        else
+        {
+            eyeController.SetSprite(csvDatas[nowId].eye);
+            mouseController.SetSprite(csvDatas[nowId].mouse);
+            eyeBrowsController.SetSprite(csvDatas[nowId].eye_brows);
+            optionController1.SetSprite(csvDatas[nowId].option1);
+            optionController2.SetSprite(csvDatas[nowId].option2);
+            optionController3.SetSprite(csvDatas[nowId].option3);
+        }
     }
 
     void Talk()
@@ -260,7 +288,7 @@ public class GameController : MonoBehaviour
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
         if (targetObject != null)
         {
-            if (targetObject != yukariOverObject)
+            if (targetObject != yukariOverObject && targetObject != yukkuriOverObject)
             {
                 SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
                 SetNpcScale(targetObject, csvDatas[nowId].scale);
@@ -292,6 +320,8 @@ public class GameController : MonoBehaviour
                 return "執事";
             case "takagi":
                 return "高城刑事";
+            case "yukkuri":
+                return "ゆっくり";
             default:
                 return "";
         }
@@ -311,6 +341,8 @@ public class GameController : MonoBehaviour
                 return takagiObject;
             case "yukari":
                 return yukariOverObject;
+            case "yukkuri":
+                return yukkuriOverObject;
             default:
                 return null;
         }
@@ -323,6 +355,7 @@ public class GameController : MonoBehaviour
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
+        yukkuriOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
     }
 
     void SetClearCharacter(GameObject characterObject)
@@ -330,6 +363,10 @@ public class GameController : MonoBehaviour
         if (characterObject == yukariOverObject)
         {
             yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.0f);
+        }
+        else if (characterObject == yukkuriOverObject)
+        {
+            yukkuriOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.0f);
         }
         else
         {
