@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     GameObject maidObject;
     GameObject butlerObject;
     GameObject takagiObject;
+    public string csvFileName;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
     const int DEFAULT_FONT_SIZE = 30;
@@ -115,10 +116,16 @@ public class GameController : MonoBehaviour
         butlerObject = GameObject.Find("Butler");
         takagiObject = GameObject.Find("Takagi");
 
+
+
         //csvFile = Resources.Load("sabun_check") as TextAsset;
         //csvFile = Resources.Load("npc_check") as TextAsset;
         //csvFile = Resources.Load("scenario_test") as TextAsset;
-        csvFile = Resources.Load("day0_train") as TextAsset;
+        //csvFile = Resources.Load("day0_train") as TextAsset;
+        csvFile = Resources.Load(csvFileName) as TextAsset;
+
+
+
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
         while (reader.Peek() > -1)
