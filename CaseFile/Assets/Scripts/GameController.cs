@@ -12,12 +12,12 @@ public class GameController : MonoBehaviour
     enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
     private char lf = (char)10;
     GameObject yukariOverObject;
-    YukariEyeController eyeController;
-    YukariMouseController mouseController;
-    YukariEyeBrowsController eyeBrowsController;
-    YukariOptionController optionController1;
-    YukariOptionController optionController2;
-    YukariOptionController optionController3;
+    GraphicController eyeController;
+    GraphicController mouseController;
+    GraphicController eyeBrowsController;
+    GraphicController optionController1;
+    GraphicController optionController2;
+    GraphicController optionController3;
     Text windowText;
     Text nameText;
     GameObject menuObject;
@@ -93,12 +93,12 @@ public class GameController : MonoBehaviour
     void Start()
     {
         yukariOverObject = GameObject.Find("YukariOver");
-        eyeController = GameObject.Find("Eye").GetComponent<YukariEyeController>();
-        mouseController = GameObject.Find("Mouse").GetComponent<YukariMouseController>();
-        eyeBrowsController = GameObject.Find("EyeBrows").GetComponent<YukariEyeBrowsController>();
-        optionController1 = GameObject.Find("Option1").GetComponent<YukariOptionController>();
-        optionController2 = GameObject.Find("Option2").GetComponent<YukariOptionController>();
-        optionController3 = GameObject.Find("Option3").GetComponent<YukariOptionController>();
+        eyeController = GameObject.Find("Eye").GetComponent<GraphicController>();
+        mouseController = GameObject.Find("Mouse").GetComponent<GraphicController>();
+        eyeBrowsController = GameObject.Find("EyeBrows").GetComponent<GraphicController>();
+        optionController1 = GameObject.Find("Option1").GetComponent<GraphicController>();
+        optionController2 = GameObject.Find("Option2").GetComponent<GraphicController>();
+        optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         menuObject = GameObject.Find("Menu");
