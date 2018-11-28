@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject menuPrefab;
+    public GameObject choicesPrefab;
+
     enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
     private char lf = (char)10;
     GameObject yukariOverObject;
@@ -90,6 +93,15 @@ public class GameController : MonoBehaviour
     private Dictionary<int, ScenarioData> csvDatas = new Dictionary<int, ScenarioData>();
     int nowId = 1001001;
 
+    private void Awake()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        menuObject = (GameObject)Instantiate(menuPrefab, canvas.transform.position, Quaternion.identity);
+        choicesObject = (GameObject)Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
+        menuObject.transform.parent = canvas.transform;
+        choicesObject.transform.parent = canvas.transform;
+    }
+
     void Start()
     {
         yukariOverObject = GameObject.Find("YukariOver");
@@ -101,10 +113,8 @@ public class GameController : MonoBehaviour
         optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
-        menuObject = GameObject.Find("Menu");
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
         menuObject.SetActive(false);
-        choicesObject = GameObject.Find("Choices");
         choices1Object = GameObject.Find("Choices1");
         choices2Object = GameObject.Find("Choices2");
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
@@ -116,15 +126,7 @@ public class GameController : MonoBehaviour
         butlerObject = GameObject.Find("Butler");
         takagiObject = GameObject.Find("Takagi");
 
-
-
-        //csvFile = Resources.Load("sabun_check") as TextAsset;
-        //csvFile = Resources.Load("npc_check") as TextAsset;
-        //csvFile = Resources.Load("scenario_test") as TextAsset;
-        //csvFile = Resources.Load("day0_train") as TextAsset;
         csvFile = Resources.Load(csvFileName) as TextAsset;
-
-
 
         StringReader reader = new StringReader(csvFile.text);
         int i = 0;
@@ -360,13 +362,11 @@ public class GameController : MonoBehaviour
     public void SelectChoices1()
     {
         nowId = csvDatas[nowId].jump_id1;
-        choicesObject.SetActive(false);
         PlayScenario();
     }
     public void SelectChoices2()
     {
         nowId = csvDatas[nowId].jump_id2;
-        choicesObject.SetActive(false);
         PlayScenario();
     }
 
