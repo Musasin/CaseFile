@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject menuPrefab;
     public GameObject choicesPrefab;
 
-    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7 };
+    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7, FadeOut = 8, FadeIn = 9, ChangeBackGround = 10 };
     private char lf = (char)10;
     GameObject yukariOverObject;
     GraphicController eyeController;
@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     GraphicController optionController1;
     GraphicController optionController2;
     GraphicController optionController3;
+    FadePanelController fadePanelController;
     Text windowText;
     Text nameText;
     GameObject menuObject;
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
     GameObject choices2Object;
     Text choicesText1;
     Text choicesText2;
+    GraphicController backGroundController;
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
     const int DEFAULT_FONT_SIZE = 30;
+    private bool isFading = false;
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
 
@@ -96,9 +99,9 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        menuObject = (GameObject)Instantiate(menuPrefab, canvas.transform.position, Quaternion.identity);
-        choicesObject = (GameObject)Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
+        menuObject = Instantiate(menuPrefab, canvas.transform.position, Quaternion.identity);
         menuObject.transform.parent = canvas.transform;
+        choicesObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
         choicesObject.transform.parent = canvas.transform;
     }
 
@@ -111,6 +114,7 @@ public class GameController : MonoBehaviour
         optionController1 = GameObject.Find("Option1").GetComponent<GraphicController>();
         optionController2 = GameObject.Find("Option2").GetComponent<GraphicController>();
         optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
+        backGroundController = GameObject.Find("BackGround").GetComponent<GraphicController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
@@ -120,6 +124,7 @@ public class GameController : MonoBehaviour
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesObject.SetActive(false);
+        fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
 
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
@@ -147,8 +152,9 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || (isFading && !fadePanelController.IsFading()))
         {
+            isFading = false;
             PlayScenario();
         }
 
@@ -242,6 +248,21 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case Types.FadeOut:
+                fadePanelController.FadeOut();
+                isFading = true;
+                nowId++;
+                break;
+            case Types.FadeIn:
+                fadePanelController.FadeIn();
+                isFading = true;
+                nowId++;
+                break;
+            case Types.ChangeBackGround:
+                backGroundController.SetSprite(csvDatas[nowId].character);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
             default:
                 break;
         }
@@ -252,9 +273,9 @@ public class GameController : MonoBehaviour
         eyeController.SetSprite(csvDatas[nowId].eye);
         mouseController.SetSprite(csvDatas[nowId].mouse);
         eyeBrowsController.SetSprite(csvDatas[nowId].eye_brows);
-        optionController1.SetSprite(csvDatas[nowId].option1);
-        optionController2.SetSprite(csvDatas[nowId].option2);
-        optionController3.SetSprite(csvDatas[nowId].option3);
+        optionController1.SetSprite(csvDatas[nowId].option1 == "" ? "nothing" : csvDatas[nowId].option1);
+        optionController2.SetSprite(csvDatas[nowId].option2 == "" ? "nothing" : csvDatas[nowId].option2);
+        optionController3.SetSprite(csvDatas[nowId].option3 == "" ? "nothing" : csvDatas[nowId].option3);
     }
 
     void Talk()
