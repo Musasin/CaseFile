@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     public GameObject menuPrefab;
     public GameObject choicesPrefab;
 
-    enum Types { Appearance = 1, Out = 2, Talk = 3, Jump = 4, Choice = 5, FlagCheck = 6, FlagUpdate = 7, FadeOut = 8, FadeIn = 9, ChangeBackGround = 10 };
     private char lf = (char)10;
     GameObject yukariOverObject;
     GraphicController eyeController;
@@ -47,7 +46,7 @@ public class GameController : MonoBehaviour
     private struct ScenarioData
     {
         public int id;
-        public int type;
+        public string type;
         public string character;
         public int pos_x;
         public int pos_y;
@@ -70,7 +69,7 @@ public class GameController : MonoBehaviour
         public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string font_size, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
         {
             this.id = int.Parse(id);
-            this.type = int.Parse(type);
+            this.type = type;
             this.character = character;
             this.pos_x = (pos_x == "" ? 0 : int.Parse(pos_x));
             this.pos_y = (pos_y == "" ? 0 : int.Parse(pos_y));
@@ -169,9 +168,9 @@ public class GameController : MonoBehaviour
         Debug.Log("ID: " + csvDatas[nowId].id);
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
-        switch ((Types)Enum.ToObject(typeof(Types), csvDatas[nowId].type))
+        switch (csvDatas[nowId].type)
         {
-            case Types.Appearance:
+            case "appear":
                 if (targetObject != null && targetObject != yukariOverObject)
                 {
                     SetNpcPosition(targetObject, csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
@@ -183,7 +182,7 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
-            case Types.Out:
+            case "out":
                 if (targetObject != null)
                 {
                     targetObject.GetComponent<Image>().enabled = false;
@@ -192,16 +191,16 @@ public class GameController : MonoBehaviour
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
 
-            case Types.Talk:
+            case "talk":
                 ChangeFacial();
                 Talk();
                 nowId++;
                 break;
-            case Types.Jump:
+            case "jump":
                 nowId = csvDatas[nowId].jump_id1;
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
-            case Types.Choice:
+            case "choice":
 
                 // 選択肢が一つの場合は、一つ目を中央に表示する
                 if (csvDatas[nowId].choise2 == "")
@@ -219,7 +218,7 @@ public class GameController : MonoBehaviour
                 choicesText2.text = csvDatas[nowId].choise2.Replace("\\n", lf.ToString());
                 choicesObject.SetActive(true); // 選択肢を表示して、選ばれるまでIDはそのまま
                 break;
-            case Types.FlagCheck:
+            case "flag_check":
                 Debug.Log("flag check: " + csvDatas[nowId].target_flag);
                 if (flags.ContainsKey(csvDatas[nowId].target_flag) && flags[csvDatas[nowId].target_flag])
                 {
@@ -233,7 +232,7 @@ public class GameController : MonoBehaviour
                 }
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
-            case Types.FlagUpdate:
+            case "flag_update":
                 Debug.Log("flag update: " + csvDatas[nowId].target_flag);
 
                 if (flags.ContainsKey(csvDatas[nowId].target_flag))
@@ -248,17 +247,17 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
-            case Types.FadeOut:
+            case "fade_out":
                 fadePanelController.FadeOut();
                 isFading = true;
                 nowId++;
                 break;
-            case Types.FadeIn:
+            case "fade_in":
                 fadePanelController.FadeIn();
                 isFading = true;
                 nowId++;
                 break;
-            case Types.ChangeBackGround:
+            case "change_background":
                 backGroundController.SetSprite(csvDatas[nowId].character);
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
