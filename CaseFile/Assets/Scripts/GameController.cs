@@ -30,11 +30,12 @@ public class GameController : MonoBehaviour
     GameObject choices2Object;
     Text choicesText1;
     Text choicesText2;
-    GraphicController backGroundController;
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
     GameObject takagiObject;
+    GameObject imageObject;
+    GameObject backGroundObject;
     public string csvFileName;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
@@ -113,7 +114,6 @@ public class GameController : MonoBehaviour
         optionController1 = GameObject.Find("Option1").GetComponent<GraphicController>();
         optionController2 = GameObject.Find("Option2").GetComponent<GraphicController>();
         optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
-        backGroundController = GameObject.Find("BackGround").GetComponent<GraphicController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
@@ -123,6 +123,9 @@ public class GameController : MonoBehaviour
         choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesObject.SetActive(false);
+        imageObject = GameObject.Find("Image");
+        backGroundObject = GameObject.Find("BackGround");
+        imageObject.SetActive(false);
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
 
         masterObject = GameObject.Find("Master");
@@ -258,7 +261,29 @@ public class GameController : MonoBehaviour
                 nowId++;
                 break;
             case "change_background":
-                backGroundController.SetSprite(csvDatas[nowId].character);
+                Sprite backGroundSprite = Resources.Load<Sprite>("BackGround/" + csvDatas[nowId].character);
+                backGroundObject.GetComponent<Image>().sprite = backGroundSprite;
+                backGroundObject.GetComponent<RectTransform>().sizeDelta = new Vector2(backGroundSprite.bounds.size.x, backGroundSprite.bounds.size.y);
+                backGroundObject.transform.position = new Vector2(csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+                backGroundObject.transform.localScale = new Vector2(csvDatas[nowId].scale, csvDatas[nowId].scale);
+                backGroundObject.SetActive(true);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+            case "view_image":
+                if (csvDatas[nowId].character == "")
+                {
+                    imageObject.SetActive(false);
+                }
+                else
+                {
+                    Sprite sprite = Resources.Load<Sprite>("Images/" + csvDatas[nowId].character);
+                    imageObject.GetComponent<Image>().sprite = sprite;
+                    imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(sprite.bounds.size.x, sprite.bounds.size.y);
+                    imageObject.transform.position = new Vector2(csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
+                    imageObject.transform.localScale = new Vector2(csvDatas[nowId].scale, csvDatas[nowId].scale);
+                    imageObject.SetActive(true);
+                }
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
