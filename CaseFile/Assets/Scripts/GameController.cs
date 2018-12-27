@@ -25,11 +25,9 @@ public class GameController : MonoBehaviour
     Text nameText;
     GameObject menuObject;
     Text backLogText;
-    GameObject choicesObject;
-    GameObject choices1Object;
-    GameObject choices2Object;
-    Text choicesText1;
-    Text choicesText2;
+    GameObject choiceObject;
+    GameObject[] choicesObjects = new GameObject[7];
+    Text[] choicesText = new Text[7];
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
@@ -61,13 +59,11 @@ public class GameController : MonoBehaviour
         public string voice;
         public int font_size;
         public string words;
-        public string choise1;
-        public string choise2;
+        public string[] choices;
         public string target_flag;
-        public int jump_id1;
-        public int jump_id2;
+        public string[] jump_ids;
 
-        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string font_size, string words, string choise1, string choise2, string target_flag, string jump_id1, string jump_id2)
+        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string font_size, string words, string choices, string target_flag, string jump_ids)
         {
             this.id = int.Parse(id);
             this.type = type;
@@ -84,11 +80,9 @@ public class GameController : MonoBehaviour
             this.voice = voice;
             this.font_size = (font_size == "" ? DEFAULT_FONT_SIZE : int.Parse(font_size));
             this.words = words;
-            this.choise1 = choise1;
-            this.choise2 = choise2;
+            this.choices = (choices == "" ? new string[] { } : choices.Split('/'));
             this.target_flag = target_flag;
-            this.jump_id1 = (jump_id1 == "" ? 0 : int.Parse(jump_id1));
-            this.jump_id2 = (jump_id2 == "" ? 0 : int.Parse(jump_id2));
+            this.jump_ids = (jump_ids == "" ? new string[] { } : jump_ids.Split('/'));
         }
     }
 
@@ -101,8 +95,8 @@ public class GameController : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         menuObject = Instantiate(menuPrefab, canvas.transform.position, Quaternion.identity);
         menuObject.transform.parent = canvas.transform;
-        choicesObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
-        choicesObject.transform.parent = canvas.transform;
+        choiceObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
+        choiceObject.transform.parent = canvas.transform;
     }
 
     void Start()
@@ -118,11 +112,21 @@ public class GameController : MonoBehaviour
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
         menuObject.SetActive(false);
-        choices1Object = GameObject.Find("Choices1");
-        choices2Object = GameObject.Find("Choices2");
-        choicesText1 = GameObject.Find("ChoicesText1").GetComponent<Text>();
-        choicesText2 = GameObject.Find("ChoicesText2").GetComponent<Text>();
-        choicesObject.SetActive(false);
+        choicesObjects[0] = GameObject.Find("Choices1");
+        choicesObjects[1] = GameObject.Find("Choices2");
+        choicesObjects[2] = GameObject.Find("Choices3");
+        choicesObjects[3] = GameObject.Find("Choices4");
+        choicesObjects[4] = GameObject.Find("Choices5");
+        choicesObjects[5] = GameObject.Find("Choices6");
+        choicesObjects[6] = GameObject.Find("Choices7");
+        choicesText[0] = GameObject.Find("ChoicesText1").GetComponent<Text>();
+        choicesText[1] = GameObject.Find("ChoicesText2").GetComponent<Text>();
+        choicesText[2] = GameObject.Find("ChoicesText3").GetComponent<Text>();
+        choicesText[3] = GameObject.Find("ChoicesText4").GetComponent<Text>();
+        choicesText[4] = GameObject.Find("ChoicesText5").GetComponent<Text>();
+        choicesText[5] = GameObject.Find("ChoicesText6").GetComponent<Text>();
+        choicesText[6] = GameObject.Find("ChoicesText7").GetComponent<Text>();
+        choiceObject.SetActive(false);
         imageObject = GameObject.Find("Image");
         backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
@@ -147,7 +151,7 @@ public class GameController : MonoBehaviour
                 continue;
             }
             int id = int.Parse(datas[0]);
-            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17], datas[18], datas[19]);
+            var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17]);
             csvDatas.Add(id, scenarioData);
         }
     }
@@ -200,38 +204,41 @@ public class GameController : MonoBehaviour
                 nowId++;
                 break;
             case "jump":
-                nowId = csvDatas[nowId].jump_id1;
+                nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
             case "choice":
 
-                // 選択肢が一つの場合は、一つ目を中央に表示する
-                if (csvDatas[nowId].choise2 == "")
-                {
-                    choices1Object.transform.position = new Vector3(512, 384, 0);
-                    choices2Object.SetActive(false);
-                }
-                else
-                {
-                    choices1Object.transform.position = new Vector3(512, 484, 0);
-                    choices2Object.SetActive(true);
-                }
+                Debug.Log("choices count" + csvDatas[nowId].choices.Length);
 
-                choicesText1.text = csvDatas[nowId].choise1.Replace("\\n", lf.ToString());
-                choicesText2.text = csvDatas[nowId].choise2.Replace("\\n", lf.ToString());
-                choicesObject.SetActive(true); // 選択肢を表示して、選ばれるまでIDはそのまま
+                int length = csvDatas[nowId].choices.Length;
+                choiceObject.SetActive(true);
+                choiceObject.transform.localPosition = new Vector3(0, (length - 1) * 50, 0);
+
+                for (int i = 0; i < 7; i++)
+                {
+                    if (i < length)
+                    {
+                        choicesText[i].text = csvDatas[nowId].choices[i];
+                        choicesObjects[i].SetActive(true);
+                    }
+                    else
+                    {
+                        choicesObjects[i].SetActive(false);
+                    }
+                }
                 break;
             case "flag_check":
                 Debug.Log("flag check: " + csvDatas[nowId].target_flag);
                 if (flags.ContainsKey(csvDatas[nowId].target_flag) && flags[csvDatas[nowId].target_flag])
                 {
-                    Debug.Log("true. jump to " + csvDatas[nowId].jump_id1);
-                    nowId = csvDatas[nowId].jump_id1;
+                    Debug.Log("true. jump to " + csvDatas[nowId].jump_ids[0]);
+                    nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
                 }
                 else
                 {
-                    Debug.Log("false. jump to " + csvDatas[nowId].jump_id1);
-                    nowId = csvDatas[nowId].jump_id2;
+                    Debug.Log("false. jump to " + csvDatas[nowId].jump_ids[1]);
+                    nowId = int.Parse(csvDatas[nowId].jump_ids[1]);
                 }
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
@@ -404,14 +411,9 @@ public class GameController : MonoBehaviour
         npcObject.transform.localScale = new Vector2(scale, scale);
     }
 
-    public void SelectChoices1()
+    public void SelectChoices(int choiceNumber)
     {
-        nowId = csvDatas[nowId].jump_id1;
-        PlayScenario();
-    }
-    public void SelectChoices2()
-    {
-        nowId = csvDatas[nowId].jump_id2;
+        nowId = int.Parse(csvDatas[nowId].jump_ids[choiceNumber - 1]);
         PlayScenario();
     }
 

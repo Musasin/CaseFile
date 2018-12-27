@@ -19,15 +19,9 @@ public class ChoicesController : MonoBehaviour
 
     }
 
-    public void SelectChoices1()
+    public void SelectChoices(int choiceNumber)
     {
-        gameController.SelectChoices1();
+        gameController.SelectChoices(choiceNumber);
         this.gameObject.SetActive(false);
     }
-    public void SelectChoices2()
-    {
-        gameController.SelectChoices2();
-        this.gameObject.SetActive(false);
-    }
-
 }
