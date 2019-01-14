@@ -22,6 +22,5 @@ public class ChoicesController : MonoBehaviour
     public void SelectChoices(int choiceNumber)
     {
         gameController.SelectChoices(choiceNumber);
-        this.gameObject.SetActive(false);
     }
 }

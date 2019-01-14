@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     Text nameText;
     GameObject menuObject;
     Text backLogText;
+    Text debugFlagText;
     GameObject choiceObject;
     GameObject[] choicesObjects = new GameObject[7];
     Text[] choicesText = new Text[7];
@@ -34,6 +35,13 @@ public class GameController : MonoBehaviour
     GameObject takagiObject;
     GameObject imageObject;
     GameObject backGroundObject;
+    GameObject cousinFirstSonObject;
+    GameObject cousinSecondWifeObject;
+    GameObject cousinFirstWifeObject;
+    GameObject cousinFirstHusObject;
+    GameObject cousinSecondHusObject;
+    GameObject cousinSecondDaughterObject;
+    GameObject sectetChildObject;
     public string csvFileName;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
@@ -41,6 +49,7 @@ public class GameController : MonoBehaviour
     private bool isFading = false;
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
+    string lastUpdateFlag = "";
 
     private struct ScenarioData
     {
@@ -111,6 +120,7 @@ public class GameController : MonoBehaviour
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
+        debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
         menuObject.SetActive(false);
         choicesObjects[0] = GameObject.Find("Choices1");
         choicesObjects[1] = GameObject.Find("Choices2");
@@ -136,6 +146,13 @@ public class GameController : MonoBehaviour
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
         takagiObject = GameObject.Find("Takagi");
+        cousinFirstSonObject = GameObject.Find("CousinFirstSon");
+        cousinSecondWifeObject = GameObject.Find("CousinSecondWife");
+        cousinFirstWifeObject = GameObject.Find("CousinFirstWife");
+        cousinFirstHusObject = GameObject.Find("CousinFirstHus");
+        cousinSecondHusObject = GameObject.Find("CousinSecondHus");
+        cousinSecondDaughterObject = GameObject.Find("CousinSecondDaughter");
+        sectetChildObject = GameObject.Find("SectetChild");
 
         csvFile = Resources.Load(csvFileName) as TextAsset;
 
@@ -173,6 +190,12 @@ public class GameController : MonoBehaviour
     void PlayScenario()
     {
         Debug.Log("ID: " + csvDatas[nowId].id);
+        debugFlagText.text = "last_update_flag : " + lastUpdateFlag + "\n";
+        foreach (KeyValuePair<string, bool> flag in flags)
+        {
+            debugFlagText.text += flag.Key + ",";
+        }
+
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
         switch (csvDatas[nowId].type)
@@ -215,12 +238,22 @@ public class GameController : MonoBehaviour
                 choiceObject.SetActive(true);
                 choiceObject.transform.localPosition = new Vector3(0, (length - 1) * 50, 0);
 
+                string[] targetFlags = csvDatas[nowId].target_flag.Split('/');
                 for (int i = 0; i < 7; i++)
                 {
                     if (i < length)
                     {
                         choicesText[i].text = csvDatas[nowId].choices[i];
                         choicesObjects[i].SetActive(true);
+
+                        // すでに選択済みの選択肢を消すため、target_flagsを満たしたものは非表示にする
+                        if (targetFlags.Length > i)
+                        {
+                            if (flags.ContainsKey(targetFlags[i]) && flags[targetFlags[i]])
+                            {
+                                choicesObjects[i].SetActive(false);
+                            }
+                        }
                     }
                     else
                     {
@@ -231,6 +264,20 @@ public class GameController : MonoBehaviour
             case "flag_check":
                 Debug.Log("flag check: " + csvDatas[nowId].target_flag);
                 if (flags.ContainsKey(csvDatas[nowId].target_flag) && flags[csvDatas[nowId].target_flag])
+                {
+                    Debug.Log("true. jump to " + csvDatas[nowId].jump_ids[0]);
+                    nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
+                }
+                else
+                {
+                    Debug.Log("false. jump to " + csvDatas[nowId].jump_ids[1]);
+                    nowId = int.Parse(csvDatas[nowId].jump_ids[1]);
+                }
+                PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
+                break;
+            case "last_update_flag_check":
+                Debug.Log("last_update_flag check: " + csvDatas[nowId].target_flag);
+                if (lastUpdateFlag == csvDatas[nowId].target_flag)
                 {
                     Debug.Log("true. jump to " + csvDatas[nowId].jump_ids[0]);
                     nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
@@ -253,6 +300,7 @@ public class GameController : MonoBehaviour
                 {
                     flags.Add(csvDatas[nowId].target_flag, true);
                 }
+                lastUpdateFlag = csvDatas[nowId].target_flag;
 
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
@@ -346,13 +394,27 @@ public class GameController : MonoBehaviour
             case "yukari":
                 return "ゆかり";
             case "master":
-                return "館の主人";
+                return "相馬　胤朋";
             case "maid":
-                return "メイド";
+                return "早瀬　さゆり";
             case "butler":
                 return "執事";
             case "takagi":
                 return "高城刑事";
+            case "cousin_first_son":
+                return "相馬　亮";
+            case "cousin_second_wife":
+                return "相馬　理恵";
+            case "cousin_first_wife":
+                return "相馬　陽子";
+            case "cousin_first_hus":
+                return "相馬　康彦";
+            case "cousin_second_hus":
+                return "相馬　孝二";
+            case "cousin_second_daughter":
+                return "相馬　綾";
+            case "secret_child":
+                return "三船　和人";
             default:
                 return "";
         }
@@ -372,6 +434,20 @@ public class GameController : MonoBehaviour
                 return takagiObject;
             case "yukari":
                 return yukariOverObject;
+            case "cousin_first_son":
+                return cousinFirstSonObject;
+            case "cousin_second_wife":
+                return cousinSecondWifeObject;
+            case "cousin_first_wife":
+                return cousinFirstWifeObject;
+            case "cousin_first_hus":
+                return cousinFirstHusObject;
+            case "cousin_second_hus":
+                return cousinSecondHusObject;
+            case "cousin_second_daughter":
+                return cousinSecondDaughterObject;
+            case "secret_child":
+                return sectetChildObject;
             default:
                 return null;
         }
@@ -383,6 +459,13 @@ public class GameController : MonoBehaviour
         maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinFirstSonObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinSecondWifeObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinFirstWifeObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinFirstHusObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinSecondHusObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        cousinSecondDaughterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        sectetChildObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
     }
 
@@ -414,6 +497,7 @@ public class GameController : MonoBehaviour
     public void SelectChoices(int choiceNumber)
     {
         nowId = int.Parse(csvDatas[nowId].jump_ids[choiceNumber - 1]);
+        choiceObject.SetActive(false);
         PlayScenario();
     }
 
