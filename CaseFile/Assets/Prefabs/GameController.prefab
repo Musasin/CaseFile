@@ -41,9 +41,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPrefab: {fileID: 1281006316773344, guid: 945f6a741e4e847b6966f070e09af7f8, type: 2}
+  skipDialogPrefab: {fileID: 1615163990842944, guid: bdf5febaa62264511b6f5b6bfc6c84fd,
+    type: 2}
   choicesPrefab: {fileID: 1121673294995766, guid: 5223dbdc63d24491586998ac694ff150,
     type: 2}
-  csvFileName: scenario_test
+  csvFileName: "\u5165\u7A3F\u7528\u30B7\u30FC\u30C8 - 1\u65E5\u76EE"
 --- !u!114 &114975459028173602
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject menuPrefab;
+    public GameObject skipDialogPrefab;
     public GameObject choicesPrefab;
 
     private char lf = (char)10;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     GameObject menuObject;
     Text backLogText;
     Text debugFlagText;
+    GameObject skipDialogObject;
     GameObject choiceObject;
     GameObject[] choicesObjects = new GameObject[7];
     Text[] choicesText = new Text[7];
@@ -106,6 +108,8 @@ public class GameController : MonoBehaviour
         menuObject.transform.parent = canvas.transform;
         choiceObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
         choiceObject.transform.parent = canvas.transform;
+        skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
+        skipDialogObject.transform.parent = canvas.transform;
     }
 
     void Start()
@@ -122,6 +126,8 @@ public class GameController : MonoBehaviour
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
         debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
         menuObject.SetActive(false);
+        skipDialogObject.SetActive(false);
+        skipDialogObject.name = "SkipDialog";
         choicesObjects[0] = GameObject.Find("Choices1");
         choicesObjects[1] = GameObject.Find("Choices2");
         choicesObjects[2] = GameObject.Find("Choices3");
@@ -175,7 +181,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || (isFading && !fadePanelController.IsFading()))
+        if (isFading && !fadePanelController.IsFading())
         {
             isFading = false;
             PlayScenario();
@@ -187,7 +193,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void PlayScenario()
+    public void PlayScenario(bool isSkip = false)
     {
         Debug.Log("ID: " + csvDatas[nowId].id);
         debugFlagText.text = "last_update_flag : " + lastUpdateFlag + "\n";
@@ -223,7 +229,7 @@ public class GameController : MonoBehaviour
 
             case "talk":
                 ChangeFacial();
-                Talk();
+                Talk(isSkip);
                 nowId++;
                 break;
             case "jump":
@@ -357,9 +363,9 @@ public class GameController : MonoBehaviour
         optionController3.SetSprite(csvDatas[nowId].option3 == "" ? "nothing" : csvDatas[nowId].option3);
     }
 
-    void Talk()
+    void Talk(bool isSkip)
     {
-        if (csvDatas[nowId].voice != "")
+        if (csvDatas[nowId].voice != "" && !isSkip)
         {
             Debug.Log("SE: " + csvDatas[nowId].voice);
             AudioManager.Instance.StopSE();
@@ -504,5 +510,28 @@ public class GameController : MonoBehaviour
     public void DebugResetButton()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void OpenSkipDialog()
+    {
+        skipDialogObject.SetActive(true);
+    }
+
+    public void SkipScenario()
+    {
+        Debug.Log("a");
+        while (true)
+        {
+            Debug.Log("b");
+            if (csvDatas[nowId].type == "choice")
+            {
+                PlayScenario();
+                break;
+            }
+            else
+            {
+                PlayScenario(true);
+            }
+        }
     }
 }
