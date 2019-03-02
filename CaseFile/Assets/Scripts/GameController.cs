@@ -9,9 +9,14 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public enum State { Playing, SkipDialog, ItemList, BackLog, Config };
+    State state;
+
     public GameObject menuPrefab;
     public GameObject skipDialogPrefab;
     public GameObject choicesPrefab;
+    public GameObject itemListPrefab;
+    public GameObject backLogPrefab;
 
     private char lf = (char)10;
     GameObject yukariOverObject;
@@ -29,6 +34,8 @@ public class GameController : MonoBehaviour
     Text debugFlagText;
     GameObject skipDialogObject;
     GameObject choiceObject;
+    GameObject itemListObject;
+    GameObject backLogObject;
     GameObject[] choicesObjects = new GameObject[7];
     Text[] choicesText = new Text[7];
     GameObject masterObject;
@@ -110,10 +117,15 @@ public class GameController : MonoBehaviour
         choiceObject.transform.parent = canvas.transform;
         skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
         skipDialogObject.transform.parent = canvas.transform;
+        itemListObject = Instantiate(itemListPrefab, canvas.transform.position, Quaternion.identity);
+        itemListObject.transform.parent = canvas.transform;
+        backLogObject = Instantiate(backLogPrefab, canvas.transform.position, Quaternion.identity);
+        backLogObject.transform.parent = canvas.transform;
     }
 
     void Start()
     {
+        state = State.Playing;
         yukariOverObject = GameObject.Find("YukariOver");
         eyeController = GameObject.Find("Eye").GetComponent<GraphicController>();
         mouseController = GameObject.Find("Mouse").GetComponent<GraphicController>();
@@ -143,6 +155,8 @@ public class GameController : MonoBehaviour
         choicesText[5] = GameObject.Find("ChoicesText6").GetComponent<Text>();
         choicesText[6] = GameObject.Find("ChoicesText7").GetComponent<Text>();
         choiceObject.SetActive(false);
+        itemListObject.SetActive(false);
+        backLogObject.SetActive(false);
         imageObject = GameObject.Find("Image");
         backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
@@ -187,9 +201,27 @@ public class GameController : MonoBehaviour
             PlayScenario();
         }
 
+        // 右クリック
         if (Input.GetMouseButtonDown(1))
         {
-            menuObject.SetActive(!menuObject.activeSelf);
+            //menuObject.SetActive(!menuObject.activeSelf);
+            switch (state)
+            {
+                case State.Playing:
+                    OpenItemList();
+                    break;
+                case State.SkipDialog:
+                    CloseSkipDialog();
+                    break;
+                case State.ItemList:
+                    CloseItemList();
+                    break;
+                case State.BackLog:
+                    CloseBackLog();
+                    break;
+                case State.Config:
+                    break;
+            }
         }
     }
 
@@ -514,7 +546,38 @@ public class GameController : MonoBehaviour
 
     public void OpenSkipDialog()
     {
+        state = State.SkipDialog;
         skipDialogObject.SetActive(true);
+    }
+
+    public void CloseSkipDialog()
+    {
+        state = State.Playing;
+        skipDialogObject.SetActive(false);
+    }
+
+    public void OpenItemList()
+    {
+        state = State.ItemList;
+        itemListObject.SetActive(true);
+    }
+
+    public void CloseItemList()
+    {
+        state = State.Playing;
+        itemListObject.SetActive(false);
+    }
+
+    public void OpenBackLog()
+    {
+        state = State.BackLog;
+        backLogObject.SetActive(true);
+    }
+
+    public void CloseBackLog()
+    {
+        state = State.Playing;
+        backLogObject.SetActive(false);
     }
 
     public void SkipScenario()

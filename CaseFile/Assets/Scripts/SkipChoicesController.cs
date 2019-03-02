@@ -20,15 +20,10 @@ public class SkipChoicesController : MonoBehaviour
 
     public void SelectChoices(int choiceNumber)
     {
-        Debug.Log(choiceNumber);
         if (choiceNumber == 1)
         {
             gameController.SkipScenario();
-            GameObject.Find("SkipDialog").SetActive(false);
         }
-        else
-        {
-            GameObject.Find("SkipDialog").SetActive(false);
-        }
+        gameController.CloseSkipDialog();
     }
 }
