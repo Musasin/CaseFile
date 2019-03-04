@@ -17,4 +17,9 @@ public class ItemListController : MonoBehaviour
     {
 
     }
+
+    public void CloseItemList()
+    {
+        gameController.CloseItemList();
+    }
 }
