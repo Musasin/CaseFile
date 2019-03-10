@@ -12,7 +12,6 @@ public class GameController : MonoBehaviour
     public enum State { Playing, SkipDialog, ItemList, BackLog, Config };
     State state;
 
-    public GameObject menuPrefab;
     public GameObject skipDialogPrefab;
     public GameObject choicesPrefab;
     public GameObject itemListPrefab;
@@ -29,7 +28,6 @@ public class GameController : MonoBehaviour
     FadePanelController fadePanelController;
     Text windowText;
     Text nameText;
-    GameObject menuObject;
     Text backLogText;
     Text debugFlagText;
     GameObject skipDialogObject;
@@ -111,8 +109,6 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         GameObject canvas = GameObject.Find("Canvas");
-        menuObject = Instantiate(menuPrefab, canvas.transform.position, Quaternion.identity);
-        menuObject.transform.parent = canvas.transform;
         choiceObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
         choiceObject.transform.parent = canvas.transform;
         skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
@@ -137,7 +133,6 @@ public class GameController : MonoBehaviour
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
         debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
-        menuObject.SetActive(false);
         skipDialogObject.SetActive(false);
         skipDialogObject.name = "SkipDialog";
         choicesObjects[0] = GameObject.Find("Choices1");
@@ -204,7 +199,6 @@ public class GameController : MonoBehaviour
         // 右クリック
         if (Input.GetMouseButtonDown(1))
         {
-            //menuObject.SetActive(!menuObject.activeSelf);
             switch (state)
             {
                 case State.Playing:
@@ -217,11 +211,20 @@ public class GameController : MonoBehaviour
                     CloseItemList();
                     break;
                 case State.BackLog:
+                    backLogText.GetComponent<BackLogController>().ResetPosition();
                     CloseBackLog();
                     break;
                 case State.Config:
                     break;
             }
+        }
+
+        // ホイール
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        Debug.Log(scroll);
+        if (scroll > 0 && state == State.Playing)
+        {
+            OpenBackLog();
         }
     }
 
