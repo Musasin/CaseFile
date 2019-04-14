@@ -425,7 +425,7 @@ public class GameController : MonoBehaviour
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
         backLogText.text += lf.ToString() + windowText.text;
-        backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight);
+        backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight + 100);
     }
 
     string GetCharacterName(string character)
