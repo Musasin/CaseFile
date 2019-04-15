@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     GraphicController optionController2;
     GraphicController optionController3;
     FadePanelController fadePanelController;
+    FadePanelController overFadePanelController;
     Text windowText;
     Text nameText;
     Text backLogText;
@@ -156,6 +157,7 @@ public class GameController : MonoBehaviour
         backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
+        overFadePanelController = GameObject.Find("OverFadePanel").GetComponent<FadePanelController>();
 
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
@@ -186,11 +188,13 @@ public class GameController : MonoBehaviour
             var scenarioData = new ScenarioData(datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9], datas[10], datas[11], datas[12], datas[13], datas[14], datas[15], datas[16], datas[17]);
             csvDatas.Add(id, scenarioData);
         }
+        overFadePanelController.FadeIn();
+        isFading = true;
     }
 
     void Update()
     {
-        if (isFading && !fadePanelController.IsFading())
+        if (isFading && !fadePanelController.IsFading() && !overFadePanelController.IsFading())
         {
             isFading = false;
             PlayScenario();
@@ -221,7 +225,6 @@ public class GameController : MonoBehaviour
 
         // ホイール
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log(scroll);
         if (scroll > 0 && state == State.Playing)
         {
             OpenBackLog();
@@ -383,6 +386,13 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "play_bgm":
+                Debug.Log("BGM: " + csvDatas[nowId].voice);
+
+                AudioManager.Instance.PlayBGM(csvDatas[nowId].voice, 0.05f, true);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
             default:
                 break;
         }
@@ -404,7 +414,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("SE: " + csvDatas[nowId].voice);
             AudioManager.Instance.StopSE();
-            AudioManager.Instance.PlaySE(csvDatas[nowId].voice);
+            AudioManager.Instance.PlaySE(csvDatas[nowId].voice, 1.0f);
         }
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
@@ -544,7 +554,7 @@ public class GameController : MonoBehaviour
 
     public void DebugResetButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OpenSkipDialog()
@@ -585,10 +595,8 @@ public class GameController : MonoBehaviour
 
     public void SkipScenario()
     {
-        Debug.Log("a");
         while (true)
         {
-            Debug.Log("b");
             if (csvDatas[nowId].type == "choice")
             {
                 PlayScenario();
