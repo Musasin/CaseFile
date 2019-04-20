@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    GameController gameController;
+
     public string itemName;
     public string description;
 
@@ -19,6 +21,7 @@ public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointer
         itemNameText = GameObject.Find("ItemName").GetComponent<Text>();
         descriptionText = GameObject.Find("Description").GetComponent<Text>();
         itemImage = GameObject.Find("WindowItemImage").GetComponent<Image>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -34,6 +37,14 @@ public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointer
 
         // 子要素で持っている画像をアイテムウィンドウに上書き
         itemImage.sprite = transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (itemName != "")
+        {
+            gameController.SelectChoiceItems(itemName);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

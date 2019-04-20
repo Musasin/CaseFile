@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public enum State { Playing, SkipDialog, ItemList, BackLog, Config };
+    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config };
     State state;
 
     public GameObject skipDialogPrefab;
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     Text nameText;
     Text backLogText;
     Text debugFlagText;
+    GameObject sepiaPanelObject;
     GameObject skipDialogObject;
     GameObject choiceObject;
     GameObject itemListObject;
@@ -156,9 +157,12 @@ public class GameController : MonoBehaviour
         imageObject = GameObject.Find("Image");
         backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
+
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
         overFadePanelController = GameObject.Find("OverFadePanel").GetComponent<FadePanelController>();
 
+        sepiaPanelObject = GameObject.Find("SepiaPanel");
+        sepiaPanelObject.SetActive(false);
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
@@ -393,6 +397,22 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "back_effect":
+                switch (csvDatas[nowId].character)
+                {
+                    case "sepia":
+                        sepiaPanelObject.SetActive(true);
+                        break;
+                    default:
+                        sepiaPanelObject.SetActive(false);
+                        break;
+                }
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+            case "choice_item":
+                OpenItemList(true);
+                break;
             default:
                 break;
         }
@@ -552,6 +572,25 @@ public class GameController : MonoBehaviour
         PlayScenario();
     }
 
+    public void SelectChoiceItems(string choiceItem)
+    {
+        if (state == State.ChoiceItemList)
+        {
+            int nextId = nowId + 1;
+            int length = csvDatas[nowId].choices.Length;
+            for (int i = 0; i < csvDatas[nowId].choices.Length; i++)
+            {
+                if (csvDatas[nowId].choices[i] == choiceItem)
+                {
+                    nextId = int.Parse(csvDatas[nowId].jump_ids[i]);
+                }
+            }
+            nowId = nextId;
+            CloseItemList();
+            PlayScenario();
+        }
+    }
+
     public void DebugResetButton()
     {
         SceneManager.LoadScene("MainScene");
@@ -565,19 +604,32 @@ public class GameController : MonoBehaviour
 
     public void CloseSkipDialog()
     {
-        state = State.Playing;
+        if (state == State.SkipDialog)
+        {
+            state = State.Playing;
+        }
         skipDialogObject.SetActive(false);
     }
 
-    public void OpenItemList()
+    public void OpenItemList(bool isChoice = false)
     {
-        state = State.ItemList;
+        if (isChoice)
+        {
+            state = State.ChoiceItemList;
+        }
+        else
+        {
+            state = State.ItemList;
+        }
         itemListObject.SetActive(true);
     }
 
     public void CloseItemList()
     {
-        state = State.Playing;
+        if (state == State.ChoiceItemList)
+        {
+            state = State.Playing;
+        }
         itemListObject.SetActive(false);
     }
 
@@ -589,15 +641,18 @@ public class GameController : MonoBehaviour
 
     public void CloseBackLog()
     {
-        state = State.Playing;
+        if (state == State.BackLog)
+        {
+            state = State.Playing;
+        }
         backLogObject.SetActive(false);
     }
 
     public void SkipScenario()
     {
-        while (true)
+        for (int i = 0; i < 1000; i++)
         {
-            if (csvDatas[nowId].type == "choice")
+            if (csvDatas[nowId].type == "choice" || csvDatas[nowId].type == "choice_item")
             {
                 PlayScenario();
                 break;
