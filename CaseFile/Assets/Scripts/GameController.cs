@@ -22,11 +22,12 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_OPTION2 = 11;
     const int SCENARIO_INDEX_OPTION3 = 12;
     const int SCENARIO_INDEX_VOICE = 13;
-    const int SCENARIO_INDEX_FONT_SIZE = 14;
-    const int SCENARIO_INDEX_WORDS = 15;
-    const int SCENARIO_INDEX_CHOICES = 16;
-    const int SCENARIO_INDEX_TARGET_FLAG = 17;
-    const int SCENARIO_INDEX_JUMP_IDS = 18;
+    const int SCENARIO_INDEX_VOLUME = 14;
+    const int SCENARIO_INDEX_FONT_SIZE = 15;
+    const int SCENARIO_INDEX_WORDS = 16;
+    const int SCENARIO_INDEX_CHOICES = 17;
+    const int SCENARIO_INDEX_TARGET_FLAG = 18;
+    const int SCENARIO_INDEX_JUMP_IDS = 19;
 
     public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config };
     State state;
@@ -78,6 +79,7 @@ public class GameController : MonoBehaviour
     int nowId;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
+    const float DEFAULT_VOLUME = 1.0f;
     const int DEFAULT_FONT_SIZE = 30;
     private bool isFading = false;
 
@@ -99,13 +101,14 @@ public class GameController : MonoBehaviour
         public string option2;
         public string option3;
         public string voice;
+        public float volume;
         public int font_size;
         public string words;
         public string[] choices;
         public string target_flag;
         public string[] jump_ids;
 
-        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string font_size, string words, string choices, string target_flag, string jump_ids)
+        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string volume, string font_size, string words, string choices, string target_flag, string jump_ids)
         {
             this.id = int.Parse(id);
             this.type = type;
@@ -120,6 +123,7 @@ public class GameController : MonoBehaviour
             this.option2 = option2;
             this.option3 = option3;
             this.voice = voice;
+            this.volume = (volume == "" ? DEFAULT_VOLUME : float.Parse(volume));
             this.font_size = (font_size == "" ? DEFAULT_FONT_SIZE : int.Parse(font_size));
             this.words = words;
             this.choices = (choices == "" ? new string[] { } : choices.Split('/'));
@@ -232,6 +236,7 @@ public class GameController : MonoBehaviour
                 datas[SCENARIO_INDEX_OPTION2],
                 datas[SCENARIO_INDEX_OPTION3],
                 datas[SCENARIO_INDEX_VOICE],
+                datas[SCENARIO_INDEX_VOLUME],
                 datas[SCENARIO_INDEX_FONT_SIZE],
                 datas[SCENARIO_INDEX_WORDS],
                 datas[SCENARIO_INDEX_CHOICES],
@@ -497,9 +502,9 @@ public class GameController : MonoBehaviour
     {
         if (csvDatas[nowId].voice != "" && !isSkip)
         {
-            Debug.Log("SE: " + csvDatas[nowId].voice);
+            Debug.Log("SE: " + csvDatas[nowId].voice + ", VOLUME: " + csvDatas[nowId].volume);
             AudioManager.Instance.StopSE();
-            AudioManager.Instance.PlaySE(csvDatas[nowId].voice, 1.0f);
+            AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume);
         }
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
