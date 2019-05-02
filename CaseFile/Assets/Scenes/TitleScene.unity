@@ -2549,8 +2549,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76, y: 105}
-  m_SizeDelta: {x: 463.9, y: 103.7}
+  m_AnchoredPosition: {x: -48.4, y: 108.27}
+  m_SizeDelta: {x: 519.1, y: 97.155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483132807
 MonoBehaviour:
@@ -2584,7 +2584,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u301C \u3044\u3089\u3059\u3068\u9928\u6BBA\u4EBA\u4E8B\u4EF6 \u301C"
+  m_Text: "\u301C \u3044\u3089\u3059\u3068\u5C4B\u6577\u6BBA\u4EBA\u4E8B\u4EF6 \u301C"
 --- !u!222 &1483132808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3597,6 +3597,14 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 1909
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212797854508988, guid: 5cb5edb110d574918b31349e030681b3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530232964021852, guid: 5cb5edb110d574918b31349e030681b3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cb5edb110d574918b31349e030681b3, type: 2}

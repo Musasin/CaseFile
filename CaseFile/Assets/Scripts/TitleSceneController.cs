@@ -32,7 +32,7 @@ public class TitleSceneController : MonoBehaviour
 
         if (yukariObject.transform.position.x > 80 && state == State.FadeIn)
         {
-            AudioManager.Instance.PlaySE("title-coal-2", 1.0f);
+            AudioManager.Instance.PlaySE("title-coal-3", 1.0f);
             state = State.TitleCoal;
         }
 
