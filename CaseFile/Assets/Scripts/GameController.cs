@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_ID = 0;
     const int SCENARIO_INDEX_TYPE = 1;
     const int SCENARIO_INDEX_CHARACTER = 2;
+    const int SCENARIO_INDEX_NAME = 3;
     const int SCENARIO_INDEX_POS_X = 4;
     const int SCENARIO_INDEX_POS_Y = 5;
     const int SCENARIO_INDEX_SCALE = 6;
@@ -91,6 +92,7 @@ public class GameController : MonoBehaviour
         public int id;
         public string type;
         public string character;
+        public string name;
         public int pos_x;
         public int pos_y;
         public float scale;
@@ -108,11 +110,12 @@ public class GameController : MonoBehaviour
         public string target_flag;
         public string[] jump_ids;
 
-        public ScenarioData(string id, string type, string character, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string volume, string font_size, string words, string choices, string target_flag, string jump_ids)
+        public ScenarioData(string id, string type, string character, string name, string pos_x, string pos_y, string scale, string eye, string eye_brows, string mouse, string option1, string option2, string option3, string voice, string volume, string font_size, string words, string choices, string target_flag, string jump_ids)
         {
             this.id = int.Parse(id);
             this.type = type;
             this.character = character;
+            this.name = name;
             this.pos_x = (pos_x == "" ? 0 : int.Parse(pos_x));
             this.pos_y = (pos_y == "" ? 0 : int.Parse(pos_y));
             this.scale = (scale == "" ? DEFAULT_CHARACTER_SCALE : float.Parse(scale));
@@ -226,6 +229,7 @@ public class GameController : MonoBehaviour
                 datas[SCENARIO_INDEX_ID],
                 datas[SCENARIO_INDEX_TYPE],
                 datas[SCENARIO_INDEX_CHARACTER],
+                datas[SCENARIO_INDEX_NAME],
                 datas[SCENARIO_INDEX_POS_X],
                 datas[SCENARIO_INDEX_POS_Y],
                 datas[SCENARIO_INDEX_SCALE],
@@ -520,47 +524,12 @@ public class GameController : MonoBehaviour
             SetClearCharacter(targetObject);
         }
 
-        nameText.text = GetCharacterName(csvDatas[nowId].character);
+        nameText.text = csvDatas[nowId].name;
         windowText.fontSize = csvDatas[nowId].font_size;
         windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
         backLogText.text += lf.ToString() + windowText.text;
         backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight + 100);
-    }
-
-    string GetCharacterName(string character)
-    {
-        switch (character)
-        {
-            case "Y":
-                return "ゆかり";
-            case "S":
-                return "相馬　胤朋";
-            case "M":
-                return "早瀬　さゆり";
-            case "B":
-                return "執事";
-            case "T":
-                return "高城刑事";
-            case "R":
-                return "相馬　亮";
-            case "E":
-                return "相馬　理恵";
-            case "O":
-                return "相馬　陽子";
-            case "H":
-                return "相馬　康彦";
-            case "K":
-                return "相馬　孝二";
-            case "A":
-                return "相馬　綾";
-            case "F":
-                return "三船　和人";
-            case "ALL":
-                return "全員";
-            default:
-                return "";
-        }
     }
 
     GameObject GetTargetObject(string character)
