@@ -26,9 +26,9 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_VOLUME = 14;
     const int SCENARIO_INDEX_FONT_SIZE = 15;
     const int SCENARIO_INDEX_WORDS = 16;
-    const int SCENARIO_INDEX_CHOICES = 17;
-    const int SCENARIO_INDEX_TARGET_FLAG = 18;
-    const int SCENARIO_INDEX_JUMP_IDS = 19;
+    const int SCENARIO_INDEX_CHOICES = 18;
+    const int SCENARIO_INDEX_TARGET_FLAG = 19;
+    const int SCENARIO_INDEX_JUMP_IDS = 20;
 
     public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config };
     State state;
