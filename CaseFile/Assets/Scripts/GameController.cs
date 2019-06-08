@@ -635,9 +635,9 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void DebugResetButton()
+    public void DebugResetButton(string scene)
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(scene);
     }
 
     public void DebugJumpButton(int id)
