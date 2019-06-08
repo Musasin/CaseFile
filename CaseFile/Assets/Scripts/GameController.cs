@@ -640,6 +640,18 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    public void DebugJumpButton(int id)
+    {
+        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F" };
+        foreach (string character in characters)
+        {
+            GameObject targetObject = GetTargetObject(character);
+            targetObject.GetComponent<Image>().enabled = false;
+        }
+        nowId = id;
+        PlayScenario();
+    }
+
     public void OpenSkipDialog()
     {
         state = State.SkipDialog;
