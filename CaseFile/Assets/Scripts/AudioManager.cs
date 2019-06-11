@@ -19,6 +19,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     private Dictionary<string, AudioClip> seDict = null;
 
     private bool isFadeOut = false;
+    private bool isFadeIn = false;
+    private float fadeToVolume = 0.0f;
 
     public void Awake()
     {
@@ -68,6 +70,17 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             if (this.bgmSource.volume < 0.01f)
             {
                 this.StopBGM();
+            }
+        }
+        if (isFadeIn)
+        {
+            if (fadeToVolume >= this.bgmSource.volume)
+            {
+                this.bgmSource.volume += 0.002f;
+            }
+            else
+            {
+                isFadeIn = false;
             }
         }
     }
@@ -131,6 +144,13 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         this.bgmSource.pitch = 1;
         this.bgmSource.Play();
         isFadeOut = false;
+    }
+
+    public void FadeInBGM(string bgmName, float volume = 1.0f, bool loop = true)
+    {
+        PlayBGM(bgmName, 0.0f, loop);
+        fadeToVolume = volume;
+        isFadeIn = true;
     }
 
     public void StopBGM()

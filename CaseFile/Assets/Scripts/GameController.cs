@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
     GraphicController optionController3;
     FadePanelController fadePanelController;
     FadePanelController overFadePanelController;
+    PlaceNameController placeNameController;
     Text windowText;
     Text nameText;
     Text backLogText;
@@ -190,6 +191,7 @@ public class GameController : MonoBehaviour
 
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
         overFadePanelController = GameObject.Find("OverFadePanel").GetComponent<FadePanelController>();
+        placeNameController = GameObject.Find("PlaceName").GetComponent<PlaceNameController>();
 
         sepiaPanelObject = GameObject.Find("SepiaPanel");
         sepiaPanelObject.SetActive(false);
@@ -310,6 +312,7 @@ public class GameController : MonoBehaviour
 
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
+        AudioManager.Instance.StopSE();
         switch (csvDatas[nowId].type)
         {
             case "appear":
@@ -463,7 +466,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    AudioManager.Instance.PlayBGM(csvDatas[nowId].voice, 0.05f, true);
+                    AudioManager.Instance.FadeInBGM(csvDatas[nowId].voice, 0.05f, true);
                 }
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
@@ -486,6 +489,11 @@ public class GameController : MonoBehaviour
                 break;
             case "go_to_title":
                 overFadePanelController.FadeOut("TitleScene");
+                break;
+            case "place_change":
+                placeNameController.ChangePlaceName(csvDatas[nowId].words);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
             default:
                 break;
