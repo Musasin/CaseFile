@@ -30,12 +30,13 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_TARGET_FLAG = 19;
     const int SCENARIO_INDEX_JUMP_IDS = 20;
 
-    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config };
+    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook };
     State state;
 
 
 
     public GameObject skipDialogPrefab;
+    public GameObject noteBookPrefab;
     public GameObject choicesPrefab;
     public GameObject itemListPrefab;
     public GameObject backLogPrefab;
@@ -51,12 +52,15 @@ public class GameController : MonoBehaviour
     FadePanelController fadePanelController;
     FadePanelController overFadePanelController;
     PlaceNameController placeNameController;
+    ItemListController itemListController;
+    NoteBookController noteBookController;
     Text windowText;
     Text nameText;
     Text backLogText;
     Text debugFlagText;
     GameObject sepiaPanelObject;
     GameObject skipDialogObject;
+    GameObject noteBookObject;
     GameObject choiceObject;
     GameObject itemListObject;
     GameObject backLogObject;
@@ -146,6 +150,8 @@ public class GameController : MonoBehaviour
         choiceObject.transform.parent = canvas.transform;
         skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
         skipDialogObject.transform.parent = canvas.transform;
+        noteBookObject = Instantiate(noteBookPrefab, canvas.transform.position, Quaternion.identity);
+        noteBookObject.transform.parent = canvas.transform;
         itemListObject = Instantiate(itemListPrefab, canvas.transform.position, Quaternion.identity);
         itemListObject.transform.parent = canvas.transform;
         backLogObject = Instantiate(backLogPrefab, canvas.transform.position, Quaternion.identity);
@@ -162,6 +168,8 @@ public class GameController : MonoBehaviour
         optionController1 = GameObject.Find("Option1").GetComponent<GraphicController>();
         optionController2 = GameObject.Find("Option2").GetComponent<GraphicController>();
         optionController3 = GameObject.Find("Option3").GetComponent<GraphicController>();
+        itemListController = itemListObject.GetComponent<ItemListController>();
+        noteBookController = noteBookObject.GetComponent<NoteBookController>();
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
@@ -182,6 +190,8 @@ public class GameController : MonoBehaviour
         choicesText[4] = GameObject.Find("ChoicesText5").GetComponent<Text>();
         choicesText[5] = GameObject.Find("ChoicesText6").GetComponent<Text>();
         choicesText[6] = GameObject.Find("ChoicesText7").GetComponent<Text>();
+
+        noteBookObject.SetActive(false);
         choiceObject.SetActive(false);
         itemListObject.SetActive(false);
         backLogObject.SetActive(false);
@@ -280,6 +290,9 @@ public class GameController : MonoBehaviour
                     break;
                 case State.SkipDialog:
                     CloseSkipDialog();
+                    break;
+                case State.NoteBook:
+                    CloseNoteBook();
                     break;
                 case State.ItemList:
                     CloseItemList();
@@ -660,6 +673,22 @@ public class GameController : MonoBehaviour
         PlayScenario();
     }
 
+    public void OpenNoteBook()
+    {
+        state = State.NoteBook;
+        noteBookObject.SetActive(true);
+    }
+
+    public void CloseNoteBook()
+    {
+        if (state == State.NoteBook)
+        {
+            state = State.Playing;
+        }
+        noteBookController.ResetScale();
+        noteBookObject.SetActive(false);
+    }
+
     public void OpenSkipDialog()
     {
         state = State.SkipDialog;
@@ -685,6 +714,8 @@ public class GameController : MonoBehaviour
         {
             state = State.ItemList;
         }
+        AudioManager.Instance.PlaySE("page1");
+
         itemListObject.SetActive(true);
     }
 
@@ -694,6 +725,7 @@ public class GameController : MonoBehaviour
         {
             state = State.Playing;
         }
+        itemListController.ResetScale();
         itemListObject.SetActive(false);
     }
 
