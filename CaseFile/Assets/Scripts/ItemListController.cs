@@ -19,7 +19,7 @@ public class ItemListController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime * 3;
+        time += Time.deltaTime * 5;
         float[] scales = new float[2] { time, 1.0f };
         float scale = Mathf.Min(scales);
         itemListOverallObject.transform.localScale = new Vector3(scale, scale, scale);

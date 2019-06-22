@@ -677,6 +677,7 @@ public class GameController : MonoBehaviour
     {
         state = State.NoteBook;
         noteBookObject.SetActive(true);
+        AudioManager.Instance.PlaySE("page1");
     }
 
     public void CloseNoteBook()
