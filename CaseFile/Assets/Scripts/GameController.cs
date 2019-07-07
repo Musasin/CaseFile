@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
     Text backLogText;
     Text debugFlagText;
     GameObject sepiaPanelObject;
+    GameObject hidePanelObject;
     GameObject skipDialogObject;
     GameObject noteBookObject;
     GameObject choiceObject;
@@ -205,6 +206,8 @@ public class GameController : MonoBehaviour
 
         sepiaPanelObject = GameObject.Find("SepiaPanel");
         sepiaPanelObject.SetActive(false);
+        hidePanelObject = GameObject.Find("HidePanel");
+        hidePanelObject.SetActive(false);
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
@@ -490,8 +493,12 @@ public class GameController : MonoBehaviour
                     case "sepia":
                         sepiaPanelObject.SetActive(true);
                         break;
+                    case "hide":
+                        hidePanelObject.SetActive(true);
+                        break;
                     default:
                         sepiaPanelObject.SetActive(false);
+                        hidePanelObject.SetActive(false);
                         break;
                 }
                 nowId++;

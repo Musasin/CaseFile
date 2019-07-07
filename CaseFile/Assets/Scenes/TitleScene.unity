@@ -3953,11 +3953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aaeadd8d9e541f1a6738b8cd147ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMList:
-  - {fileID: 8300000, guid: d36659486dac9427f90403c86ed4d576, type: 3}
-  SEList:
-  - {fileID: 8300000, guid: d5fe01cdce6be436ebf7c0f617fc2c54, type: 3}
-  - {fileID: 8300000, guid: 0e15e0cd9bfdc47eabed0d1b3dd5e274, type: 3}
+  BGMList: []
+  SEList: []
 --- !u!114 &2124935928
 MonoBehaviour:
   m_ObjectHideFlags: 0
