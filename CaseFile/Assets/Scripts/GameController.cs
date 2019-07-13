@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
 
     private char lf = (char)10;
     GameObject yukariOverObject;
+    WindowTextController windowTextController;
     GraphicController eyeController;
     GraphicController mouseController;
     GraphicController eyeBrowsController;
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
     const float DEFAULT_VOLUME = 1.0f;
     const int DEFAULT_FONT_SIZE = 30;
     private bool isFading = false;
+    private bool isVoiceOn = true;
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
     string lastUpdateFlag = "";
@@ -200,6 +202,7 @@ public class GameController : MonoBehaviour
         backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
 
+        windowTextController = windowText.GetComponent<WindowTextController>();
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
         overFadePanelController = GameObject.Find("OverFadePanel").GetComponent<FadePanelController>();
         placeNameController = GameObject.Find("PlaceName").GetComponent<PlaceNameController>();
@@ -353,9 +356,16 @@ public class GameController : MonoBehaviour
                 break;
 
             case "talk":
-                ChangeFacial();
-                Talk(isSkip);
-                nowId++;
+                if (windowTextController.IsDrawn())
+                {
+                    ChangeFacial();
+                    Talk(isSkip);
+                    nowId++;
+                }
+                else
+                {
+                    windowTextController.AllDrawText();
+                }
                 break;
             case "jump":
                 nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
@@ -536,7 +546,11 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("SE: " + csvDatas[nowId].voice + ", VOLUME: " + csvDatas[nowId].volume);
             AudioManager.Instance.StopSE();
-            AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume);
+
+            if (isVoiceOn || csvDatas[nowId].character != "Y")
+            {
+                AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume);
+            }
         }
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
@@ -554,7 +568,9 @@ public class GameController : MonoBehaviour
 
         nameText.text = csvDatas[nowId].name;
         windowText.fontSize = csvDatas[nowId].font_size;
-        windowText.text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
+        string text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
+        windowTextController.UpdateText(text, isSkip);
+
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
         backLogText.text += lf.ToString() + windowText.text;
         backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight + 100);
@@ -766,5 +782,10 @@ public class GameController : MonoBehaviour
                 PlayScenario(true);
             }
         }
+    }
+
+    public void SetVoiceOnOff(bool isOn)
+    {
+        isVoiceOn = isOn;
     }
 }
