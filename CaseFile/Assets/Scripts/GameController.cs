@@ -390,7 +390,7 @@ public class GameController : MonoBehaviour
                         // すでに選択済みの選択肢を消すため、target_flagsを満たしたものは非表示にする
                         if (targetFlags.Length > i)
                         {
-                            if (flags.ContainsKey(targetFlags[i]) && flags[targetFlags[i]])
+                            if (FlagCheck(targetFlags[i]))
                             {
                                 choicesObjects[i].SetActive(false);
                             }
@@ -404,7 +404,7 @@ public class GameController : MonoBehaviour
                 break;
             case "flag_check":
                 Debug.Log("flag check: " + csvDatas[nowId].target_flag);
-                if (flags.ContainsKey(csvDatas[nowId].target_flag) && flags[csvDatas[nowId].target_flag])
+                if (FlagCheck(csvDatas[nowId].target_flag))
                 {
                     Debug.Log("true. jump to " + csvDatas[nowId].jump_ids[0]);
                     nowId = int.Parse(csvDatas[nowId].jump_ids[0]);
@@ -433,7 +433,7 @@ public class GameController : MonoBehaviour
             case "flag_update":
                 Debug.Log("flag update: " + csvDatas[nowId].target_flag);
 
-                if (flags.ContainsKey(csvDatas[nowId].target_flag))
+                if (FlagCheck(csvDatas[nowId].target_flag))
                 {
                     flags[csvDatas[nowId].target_flag] = true;
                 }
@@ -787,5 +787,10 @@ public class GameController : MonoBehaviour
     public void SetVoiceOnOff(bool isOn)
     {
         isVoiceOn = isOn;
+    }
+
+    public bool FlagCheck(string targetFlag)
+    {
+        return flags.ContainsKey(targetFlag) && flags[targetFlag];
     }
 }
