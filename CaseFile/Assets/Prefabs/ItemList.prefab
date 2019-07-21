@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\u6298\u308C\u305F\u5098"
   description: "\u6A4B\u306E\u8FD1\u304F\u306E\u8302\u307F\u3067\u898B\u3064\u304B\u3063\u305F\u5098\u3002\\n\u57F7\u4E8B\u306E\u85E4\u6728\u656C\u4E09\u3055\u3093\u304C\u884C\u65B9\u4E0D\u660E\u306B\u306A\u3063\u305F\u65E5\u306B\u4F7F\u308F\u308C\u305F\u3082\u306E\u3068\u601D\u308F\u308C\u308B\u3002"
-  targetFlag: kasa
+  targetFlag: oreta_kasa
 --- !u!114 &114330069031009778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1978,7 +1978,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b80278a5e5165466f9b3e29fead08ee6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4955827be0a1f4354add2211ad467f65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2255,12 +2255,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 65dbbb215271447d6aab7d4a2932fdd3, type: 3}
-    m_FontSize: 37
+    m_Font: {fileID: 12800000, guid: a77a4e24c527b4bcf927995bf5ed7424, type: 3}
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2279,9 +2279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733a2ec59c7334f4fbef6b62732399fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
-  targetFlag: 
+  itemName: "\u307C\u308D\u307C\u308D\u306E\u9769\u9774"
+  description: "\u5DDD\u306E\u4E2D\u6D41\u57DF\u3067\u898B\u3064\u304B\u3063\u305F\u3001\u307C\u308D\u307C\u308D\u306E\u9769\u9774\u3002\\n\u884C\u65B9\u4E0D\u660E\u3068\u306A\u3063\u305F\u85E4\u6728\u3055\u3093\u306E\u7269\u3068\u601D\u308F\u308C\u308B\u3002"
+  targetFlag: kawagutsu
 --- !u!114 &114519506590489538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4050,8 +4050,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 182.9, y: 90}
+  m_AnchoredPosition: {x: 0, y: -0.18958986}
+  m_SizeDelta: {x: 390, y: 90.507}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224702954279534970
 RectTransform:
@@ -4117,7 +4117,7 @@ RectTransform:
   m_GameObject: {fileID: 1199263752037794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 224185123367096710}
   m_RootOrder: 0

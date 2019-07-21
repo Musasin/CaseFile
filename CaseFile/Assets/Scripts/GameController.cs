@@ -572,7 +572,13 @@ public class GameController : MonoBehaviour
         windowTextController.UpdateText(text, isSkip);
 
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
-        backLogText.text += lf.ToString() + windowText.text;
+        backLogText.text += lf.ToString() + text;
+
+        // 15000字を超えるとUnityのtextで処理しきれなくなるので、10000字超えたら先頭から1000字消す
+        if (backLogText.text.Length > 10000)
+        {
+            backLogText.text = backLogText.text.Remove(0, 1000);
+        }
         backLogText.rectTransform.sizeDelta = new Vector2(backLogText.rectTransform.sizeDelta.x, backLogText.preferredHeight + 100);
     }
 
