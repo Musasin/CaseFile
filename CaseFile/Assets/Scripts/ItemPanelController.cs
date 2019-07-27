@@ -48,6 +48,7 @@ public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointer
 
         // 子要素で持っている画像をアイテムウィンドウに上書き
         itemImage.sprite = transform.GetChild(0).gameObject.GetComponent<Image>().sprite;
+        itemImage.transform.localScale = transform.GetChild(0).gameObject.transform.localScale;
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -66,12 +66,13 @@ public class GameController : MonoBehaviour
     GameObject choiceObject;
     GameObject itemListObject;
     GameObject backLogObject;
-    GameObject[] choicesObjects = new GameObject[7];
-    Text[] choicesText = new Text[7];
+    GameObject[] choicesObjects = new GameObject[8];
+    Text[] choicesText = new Text[8];
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
     GameObject takagiObject;
+    GameObject takagi2Object;
     GameObject aritaObject;
     GameObject imageObject;
     GameObject backGroundObject;
@@ -186,6 +187,7 @@ public class GameController : MonoBehaviour
         choicesObjects[4] = GameObject.Find("Choices5");
         choicesObjects[5] = GameObject.Find("Choices6");
         choicesObjects[6] = GameObject.Find("Choices7");
+        choicesObjects[7] = GameObject.Find("Choices8");
         choicesText[0] = GameObject.Find("ChoicesText1").GetComponent<Text>();
         choicesText[1] = GameObject.Find("ChoicesText2").GetComponent<Text>();
         choicesText[2] = GameObject.Find("ChoicesText3").GetComponent<Text>();
@@ -193,6 +195,7 @@ public class GameController : MonoBehaviour
         choicesText[4] = GameObject.Find("ChoicesText5").GetComponent<Text>();
         choicesText[5] = GameObject.Find("ChoicesText6").GetComponent<Text>();
         choicesText[6] = GameObject.Find("ChoicesText7").GetComponent<Text>();
+        choicesText[7] = GameObject.Find("ChoicesText8").GetComponent<Text>();
 
         noteBookObject.SetActive(false);
         choiceObject.SetActive(false);
@@ -215,6 +218,7 @@ public class GameController : MonoBehaviour
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
         takagiObject = GameObject.Find("Takagi");
+        takagi2Object = GameObject.Find("Takagi2");
         aritaObject = GameObject.Find("Arita");
         cousinFirstSonObject = GameObject.Find("CousinFirstSon");
         cousinSecondWifeObject = GameObject.Find("CousinSecondWife");
@@ -377,10 +381,32 @@ public class GameController : MonoBehaviour
 
                 int length = csvDatas[nowId].choices.Length;
                 choiceObject.SetActive(true);
-                choiceObject.transform.localPosition = new Vector3(0, (length - 1) * 50, 0);
 
-                string[] targetFlags = csvDatas[nowId].target_flag.Split('/');
-                for (int i = 0; i < 7; i++)
+                if (length == 8)
+                {
+                    choiceObject.transform.localPosition = new Vector3(0, 320, 0);
+                    choiceObject.transform.localScale = new Vector3(0.9f, 0.9f, 1.0f);
+                }
+                else
+                {
+                    choiceObject.transform.localPosition = new Vector3(0, (length - 1) * 50, 0);
+                    choiceObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                }
+
+
+
+                string[] targetFlags;
+                if (csvDatas[nowId].target_flag == "")
+                {
+                    targetFlags = new string[] { };
+                }
+                else
+                {
+                    targetFlags = csvDatas[nowId].target_flag.Split('/');
+                }
+
+                Debug.Log(targetFlags.Length);
+                for (int i = 0; i < 8; i++)
                 {
                     if (i < length)
                     {
@@ -594,6 +620,8 @@ public class GameController : MonoBehaviour
                 return butlerObject;
             case "T":
                 return takagiObject;
+            case "T2":
+                return takagi2Object;
             case "arita":
                 return aritaObject;
             case "Y":
@@ -623,6 +651,7 @@ public class GameController : MonoBehaviour
         maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        takagi2Object.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         aritaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         cousinFirstSonObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         cousinSecondWifeObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
@@ -688,6 +717,23 @@ public class GameController : MonoBehaviour
     public void DebugResetButton(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    public void DebugItemButton()
+    {
+        string[] itemFlags = new string[] { "tsuru", "tabako", "oreta_kasa", "kawagutsu", "key", "clip", "notification_adoption", "isho", "kusuri", "memo_wet", "memo_blood", "memo_key", "memo_hari" };
+        foreach (string itemFlag in itemFlags)
+        {
+            if (FlagCheck(itemFlag))
+            {
+                flags[itemFlag] = true;
+            }
+            else
+            {
+                flags.Add(itemFlag, true);
+            }
+
+        }
     }
 
     public void DebugJumpButton(int id)
