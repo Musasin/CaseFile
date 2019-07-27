@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_TARGET_FLAG = 19;
     const int SCENARIO_INDEX_JUMP_IDS = 20;
 
-    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook };
+    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, GoToTitle };
     State state;
 
 
@@ -91,7 +91,10 @@ public class GameController : MonoBehaviour
     const float DEFAULT_VOLUME = 1.0f;
     const int DEFAULT_FONT_SIZE = 30;
     private bool isFading = false;
-    private bool isVoiceOn = true;
+    private bool isVoiceOn;
+    private bool isSEOn;
+    private bool isBGMOn;
+    private string nowBGM = "";
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
     string lastUpdateFlag = "";
@@ -164,6 +167,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        isSEOn = StaticController.isSEOn;
+        isBGMOn = StaticController.isBGMOn;
+        isVoiceOn = StaticController.isVoiceOn;
         state = State.Playing;
         yukariOverObject = GameObject.Find("YukariOver");
         eyeController = GameObject.Find("Eye").GetComponent<GraphicController>();
@@ -177,7 +183,7 @@ public class GameController : MonoBehaviour
         windowText = GameObject.Find("WindowText").GetComponent<Text>();
         nameText = GameObject.Find("NameText").GetComponent<Text>();
         backLogText = GameObject.Find("BackLogText").GetComponent<Text>();
-        debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
+        //debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
         skipDialogObject.SetActive(false);
         skipDialogObject.name = "SkipDialog";
         choicesObjects[0] = GameObject.Find("Choices1");
@@ -312,6 +318,7 @@ public class GameController : MonoBehaviour
                     CloseBackLog();
                     break;
                 case State.Config:
+                default:
                     break;
             }
         }
@@ -326,16 +333,20 @@ public class GameController : MonoBehaviour
 
     public void PlayScenario(bool isSkip = false)
     {
-        Debug.Log("ID: " + csvDatas[nowId].id);
-        debugFlagText.text = "last_update_flag : " + lastUpdateFlag + "\n";
-        foreach (KeyValuePair<string, bool> flag in flags)
+        if (state == State.GoToTitle)
         {
-            debugFlagText.text += flag.Key + ",";
+            return;
         }
+
+        Debug.Log("ID: " + csvDatas[nowId].id);
+        //debugFlagText.text = "last_update_flag : " + lastUpdateFlag + "\n";
+        //foreach (KeyValuePair<string, bool> flag in flags)
+        //{
+        //    debugFlagText.text += flag.Key + ",";
+        //}
 
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);
-        AudioManager.Instance.StopSE();
         switch (csvDatas[nowId].type)
         {
             case "appear":
@@ -362,6 +373,7 @@ public class GameController : MonoBehaviour
             case "talk":
                 if (windowTextController.IsDrawn())
                 {
+                    AudioManager.Instance.StopSE();
                     ChangeFacial();
                     Talk(isSkip);
                     nowId++;
@@ -516,10 +528,11 @@ public class GameController : MonoBehaviour
                 {
                     AudioManager.Instance.StopBGM();
                 }
-                else
+                else if (isBGMOn)
                 {
                     AudioManager.Instance.FadeInBGM(csvDatas[nowId].voice, 0.05f, true);
                 }
+                nowBGM = csvDatas[nowId].voice;
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
@@ -544,6 +557,7 @@ public class GameController : MonoBehaviour
                 OpenItemList(true);
                 break;
             case "go_to_title":
+                state = State.GoToTitle;
                 overFadePanelController.FadeOut("TitleScene");
                 break;
             case "place_change":
@@ -573,7 +587,7 @@ public class GameController : MonoBehaviour
             Debug.Log("SE: " + csvDatas[nowId].voice + ", VOLUME: " + csvDatas[nowId].volume);
             AudioManager.Instance.StopSE();
 
-            if (isVoiceOn || csvDatas[nowId].character != "Y")
+            if ((isVoiceOn && csvDatas[nowId].character == "Y") || (isSEOn && csvDatas[nowId].character != "Y"))
             {
                 AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume);
             }
@@ -752,7 +766,10 @@ public class GameController : MonoBehaviour
     {
         state = State.NoteBook;
         noteBookObject.SetActive(true);
-        AudioManager.Instance.PlaySE("page1");
+        if (isSEOn)
+        {
+            AudioManager.Instance.PlaySE("page1");
+        }
     }
 
     public void CloseNoteBook()
@@ -790,7 +807,10 @@ public class GameController : MonoBehaviour
         {
             state = State.ItemList;
         }
-        AudioManager.Instance.PlaySE("page1");
+        if (isSEOn)
+        {
+            AudioManager.Instance.PlaySE("page1");
+        }
 
         itemListObject.SetActive(true);
     }
@@ -836,10 +856,33 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void SetVoiceOnOff(bool isOn)
+
+    public void SetVoiceOnOff()
     {
-        isVoiceOn = isOn;
+        bool isOn = GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().isOn;
+        StaticController.SetVoiceOnOff(isOn);
     }
+    public void SetSEOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleSEOn").GetComponent<Toggle>().isOn;
+        StaticController.SetSEOnOff(isOn);
+    }
+    public void SetBGMOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleBGMOn").GetComponent<Toggle>().isOn;
+        isBGMOn = isOn;
+        StaticController.SetBGMOnOff(isOn);
+
+        if (isOn && nowBGM != "")
+        {
+            AudioManager.Instance.FadeInBGM(nowBGM, 0.05f, true);
+        }
+        else
+        {
+            AudioManager.Instance.StopBGM();
+        }
+    }
+
 
     public bool FlagCheck(string targetFlag)
     {

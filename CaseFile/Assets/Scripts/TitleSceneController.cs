@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleSceneController : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class TitleSceneController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
+        if (StaticController.isBGMOn)
+        {
+            AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
+        }
         yukariObject = GameObject.Find("Yukari");
 
         canvasAnimator = GameObject.Find("Canvas").GetComponent<Animator>();
@@ -23,6 +27,7 @@ public class TitleSceneController : MonoBehaviour
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
 
         state = State.Init;
+
     }
 
     // Update is called once per frame
@@ -32,7 +37,10 @@ public class TitleSceneController : MonoBehaviour
 
         if (yukariObject.transform.position.x > 80 && state == State.FadeIn)
         {
-            AudioManager.Instance.PlaySE("title-coal-4", 1.0f);
+            if (StaticController.isVoiceOn)
+            {
+                AudioManager.Instance.PlaySE("title-coal-4", 1.0f);
+            }
             state = State.TitleCoal;
         }
 
@@ -49,7 +57,81 @@ public class TitleSceneController : MonoBehaviour
 
     public void PlayGame()
     {
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision27", 0.5f);
+        }
         AudioManager.Instance.FadeOutBGM();
         fadePanelController.FadeOut("MainScene");
+    }
+
+    public void OpenOption()
+    {
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
+    }
+
+    public void CloseOption()
+    {
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
+    }
+
+    public void OpenCredit()
+    {
+
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
+    }
+    public void CloseCredit()
+    {
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
+    }
+
+    public void CloseGame()
+    {
+
+    }
+
+
+
+
+    public void SetHighSpeedText()
+    {
+        bool isHigh = GameObject.Find("ToggleHighSpeed").GetComponent<Toggle>().isOn;
+        StaticController.SetHighSpeedText(isHigh);
+    }
+    public void SetVoiceOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().isOn;
+        StaticController.SetVoiceOnOff(isOn);
+    }
+    public void SetSEOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleSEOn").GetComponent<Toggle>().isOn;
+        StaticController.SetSEOnOff(isOn);
+    }
+    public void SetBGMOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleBGMOn").GetComponent<Toggle>().isOn;
+        Debug.Log("title" + isOn);
+        StaticController.SetBGMOnOff(isOn);
+        if (isOn)
+        {
+            AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
+        }
+        else
+        {
+            AudioManager.Instance.StopBGM();
+        }
     }
 }

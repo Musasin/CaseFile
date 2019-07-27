@@ -14,6 +14,7 @@ public class WindowTextController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        isHighSpeedText = StaticController.isHighSpeed;
         windowText = this.GetComponent<Text>();
     }
 
@@ -54,8 +55,10 @@ public class WindowTextController : MonoBehaviour
         windowText.text = nowText;
     }
 
-    public void SetHighSpeedText(bool isHighSpeed)
+    public void SetHighSpeedText()
     {
-        isHighSpeedText = isHighSpeed;
+        bool isHigh = GameObject.Find("ToggleHighSpeed").GetComponent<Toggle>().isOn;
+        StaticController.SetHighSpeedText(isHigh);
+        isHighSpeedText = isHigh;
     }
 }
