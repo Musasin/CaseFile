@@ -1791,7 +1791,8 @@ MonoBehaviour:
     [\u304B\u3089\u3044\u69D8]\nhttp://seiga.nicovideo.jp/seiga/im6232152\n\u3044\u3089\u3059\u3068\u5C4B\u6577\u306E\u4EBA\u305F\u3061
     [\u3044\u3089\u3059\u3068\u3084\u69D8]\nhttps://www.irasutoya.com/\n\n\u3010UI\u3011\n\u30E1\u30C3\u30BB\u30FC\u30B8\u30A6\u30A3\u30F3\u30C9\u30A6
     [\u7A7A\u60F3\u66F2\u7DDA\u69D8]\nhttps://kopacurve.blog.fc2.com/blog-entry-407.html\n\u958B\u3044\u305F\u624B\u5E33
-    [\u30D1\u30D6\u30EA\u30C3\u30AF\u30C9\u30E1\u30A4\u30F3Q\u69D8]\nhttps://publicdomainq.net/pocket-diary-0005610/\n\n\u3010BGM\u3011\n\u9B54\u738B\u9B42\u69D8\nhttps://maoudamashii.jokersounds.com/\n\n\u3010SE\u3011\n\u52B9\u679C\u97F3\u30E9\u30DC\u69D8\nhttps://soundeffect-lab.info/\n\n"
+    [\u30D1\u30D6\u30EA\u30C3\u30AF\u30C9\u30E1\u30A4\u30F3Q\u69D8]\nhttps://publicdomainq.net/pocket-diary-0005610/\neasy
+    UI emerald - default[ASTR999\u69D8]\nhttps://assetstore.unity.com/packages/2d/gui/icons/easy-ui-emerald-default-112796\n\n\u3010BGM\u3011\n\u9B54\u738B\u9B42\u69D8\nhttps://maoudamashii.jokersounds.com/\n\n\u3010SE\u3011\n\u52B9\u679C\u97F3\u30E9\u30DC\u69D8\nhttps://soundeffect-lab.info/\n\n"
 --- !u!222 &692373774
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4283,12 +4284,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3010\u80CC\u666F\u3011\n\u898B\u958B\u304D\u306E\u30CE\u30FC\u30C8\u3068\u30DA\u30F3
-    [\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09 photo by \u3059\u3057\u3071\u304F\u69D8]\nhttps://www.pakutaso.com/20130646170post-2942.html\n\u4E0D\u6C17\u5473\u306A\u5EC3\u7DDA\u306E\u30C8\u30F3\u30CD\u30EB
-    [\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09 photo by \u3059\u3057\u3071\u304F\u69D8]\nhttps://www.pakutaso.com/20120836230post-1830.html\n\u8ECA\u7A93\u306E\u4E2D\u306E\u5357\u30A2\u30EB\u30D7\u30B9
+  m_Text: "\u3010\u80CC\u666F\u3011\n\u898B\u958B\u304D\u306E\u30CE\u30FC\u30C8\u3068\u30DA\u30F3\n
+    [\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09 photo by \u3059\u3057\u3071\u304F\u69D8]\nhttps://www.pakutaso.com/20130646170post-2942.html\n\u4E0D\u6C17\u5473\u306A\u5EC3\u7DDA\u306E\u30C8\u30F3\u30CD\u30EB\n
+    [\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09 photo by \u3059\u3057\u3071\u304F\u69D8]\nhttps://www.pakutaso.com/20120836230post-1830.html\n\u8ECA\u7A93\u306E\u4E2D\u306E\u5357\u30A2\u30EB\u30D7\u30B9\n
     [\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09 photo by \u30AF\u30DE\u30AD\u30C1\u69D8]\nhttps://www.pakutaso.com/20180616158post-16421.html\n\u30B0\u30E9\u30D0\u30FC\u5712
-    [\u5199\u771FAC (www.photo-ac.com) photo by \u306F\u306A\u305F\u308C\u541B\u69D8]\nhttps://www.photo-ac.com/main/detail/103738\n\u30BB\u30EC\u30D6\u306A\u30C0\u30A4\u30CB\u30F3\u30B0\u30EB\u30FC\u30E0
-    [\u5199\u771FAC (www.photo-ac.com) photo by \u304F\u307D\u4E38\u69D8]\nhttps://www.photo-ac.com/main/detail/216086\n"
+    \n[\u5199\u771FAC (www.photo-ac.com) photo by \u306F\u306A\u305F\u308C\u541B\u69D8]\nhttps://www.photo-ac.com/main/detail/103738\n\u30BB\u30EC\u30D6\u306A\u30C0\u30A4\u30CB\u30F3\u30B0\u30EB\u30FC\u30E0
+    \n[\u5199\u771FAC (www.photo-ac.com) photo by \u304F\u307D\u4E38\u69D8]\nhttps://www.photo-ac.com/main/detail/216086\n"
 --- !u!222 &1283952539
 CanvasRenderer:
   m_ObjectHideFlags: 0

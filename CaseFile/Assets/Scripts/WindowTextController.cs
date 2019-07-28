@@ -10,12 +10,14 @@ public class WindowTextController : MonoBehaviour
     string drawText = "";
     int wordCount = 0;
     bool isHighSpeedText = false;
+    GameObject pointerCircleObject;
 
     // Use this for initialization
     void Start()
     {
         isHighSpeedText = StaticController.isHighSpeed;
         windowText = this.GetComponent<Text>();
+        pointerCircleObject = GameObject.Find("PointerCircle");
     }
 
     // Update is called once per frame
@@ -26,6 +28,14 @@ public class WindowTextController : MonoBehaviour
         {
             drawText = nowText.Substring(0, wordCount);
             windowText.text = drawText;
+        }
+        if (wordCount > nowText.Length && !isHighSpeedText)
+        {
+            pointerCircleObject.SetActive(true);
+        }
+        else
+        {
+            pointerCircleObject.SetActive(false);
         }
     }
 

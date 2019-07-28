@@ -291,7 +291,7 @@ public class GameController : MonoBehaviour
             PlayScenario();
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) && state == State.Playing)
         {
             PlayScenario();
         }
@@ -530,7 +530,7 @@ public class GameController : MonoBehaviour
                 }
                 else if (isBGMOn)
                 {
-                    AudioManager.Instance.FadeInBGM(csvDatas[nowId].voice, 0.05f, true);
+                    AudioManager.Instance.FadeInBGM(csvDatas[nowId].voice, csvDatas[nowId].volume, true);
                 }
                 nowBGM = csvDatas[nowId].voice;
                 nowId++;
