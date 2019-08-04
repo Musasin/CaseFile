@@ -900,5 +900,7 @@ public class GameController : MonoBehaviour
     {
         state = State.Ending;
         canvasAnimator.SetBool("isEnding", true);
+        StaticController.SetClear(true);
     }
+
 }

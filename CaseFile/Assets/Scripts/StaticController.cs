@@ -9,6 +9,7 @@ public class StaticController : MonoBehaviour
     public static bool isSEOn = true;
     public static bool isBGMOn = true;
     public static string nowBGM = "";
+    public static bool isCleared = false;
 
     // Use this for initialization
     void Start()
@@ -39,6 +40,10 @@ public class StaticController : MonoBehaviour
     {
         isBGMOn = isOn;
         Debug.Log("set:" + isBGMOn);
+    }
+    public static void SetClear(bool isClear)
+    {
+        isCleared = isClear;
     }
 
 }

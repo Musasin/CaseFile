@@ -26,6 +26,13 @@ public class TitleSceneController : MonoBehaviour
         stateLoopHash = Animator.StringToHash("Base Layer.TitleLoopAnimation");
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
 
+        if (StaticController.isCleared)
+        {
+            Button afterWardButton = GameObject.Find("MenuText4").GetComponent<Button>();
+            afterWardButton.interactable = true;
+        }
+
+
         state = State.Init;
 
     }
@@ -96,14 +103,23 @@ public class TitleSceneController : MonoBehaviour
             AudioManager.Instance.PlaySE("decision22", 0.5f);
         }
     }
-
-    public void CloseGame()
+    public void OpenAfterword()
     {
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
 
     }
 
+    public void CloseAfterword()
+    {
 
-
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("decision22", 0.5f);
+        }
+    }
 
     public void SetHighSpeedText()
     {
