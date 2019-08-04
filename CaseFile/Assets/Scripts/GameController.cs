@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    Animator canvasAnimator;
+
     const int SCENARIO_INDEX_ID = 0;
     const int SCENARIO_INDEX_TYPE = 1;
     const int SCENARIO_INDEX_CHARACTER = 2;
@@ -30,7 +32,7 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_TARGET_FLAG = 19;
     const int SCENARIO_INDEX_JUMP_IDS = 20;
 
-    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, GoToTitle };
+    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, GoToTitle, Ending };
     State state;
 
 
@@ -153,6 +155,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         GameObject canvas = GameObject.Find("Canvas");
+        canvasAnimator = canvas.GetComponent<Animator>();
         choiceObject = Instantiate(choicesPrefab, canvas.transform.position, Quaternion.identity);
         choiceObject.transform.parent = canvas.transform;
         skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
@@ -167,6 +170,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        canvasAnimator.SetBool("isEnding", false);
         isSEOn = StaticController.isSEOn;
         isBGMOn = StaticController.isBGMOn;
         isVoiceOn = StaticController.isVoiceOn;
@@ -333,7 +337,7 @@ public class GameController : MonoBehaviour
 
     public void PlayScenario(bool isSkip = false)
     {
-        if (state == State.GoToTitle)
+        if (state == State.GoToTitle || state == State.Ending)
         {
             return;
         }
@@ -559,6 +563,9 @@ public class GameController : MonoBehaviour
             case "go_to_title":
                 state = State.GoToTitle;
                 overFadePanelController.FadeOut("TitleScene");
+                break;
+            case "go_to_ending":
+                StartEnding();
                 break;
             case "place_change":
                 placeNameController.ChangePlaceName(csvDatas[nowId].words);
@@ -887,5 +894,11 @@ public class GameController : MonoBehaviour
     public bool FlagCheck(string targetFlag)
     {
         return flags.ContainsKey(targetFlag) && flags[targetFlag];
+    }
+
+    public void StartEnding()
+    {
+        state = State.Ending;
+        canvasAnimator.SetBool("isEnding", true);
     }
 }

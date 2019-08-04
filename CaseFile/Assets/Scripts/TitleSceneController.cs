@@ -21,7 +21,7 @@ public class TitleSceneController : MonoBehaviour
         }
         yukariObject = GameObject.Find("Yukari");
 
-        canvasAnimator = GameObject.Find("Canvas").GetComponent<Animator>();
+        canvasAnimator = GameObject.Find("TitleCanvas").GetComponent<Animator>();
         stateOpeningHash = Animator.StringToHash("Base Layer.TitleAnimation");
         stateLoopHash = Animator.StringToHash("Base Layer.TitleLoopAnimation");
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
