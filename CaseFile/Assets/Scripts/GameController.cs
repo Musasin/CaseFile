@@ -634,9 +634,9 @@ public class GameController : MonoBehaviour
         }
 
         nameText.text = csvDatas[nowId].name;
-        windowText.fontSize = csvDatas[nowId].font_size;
         string text = csvDatas[nowId].words.Replace("\\n", lf.ToString());
         windowTextController.UpdateText(text, isSkip);
+        windowTextController.SetFontSize(csvDatas[nowId].font_size);
 
         backLogText.text += lf.ToString() + lf.ToString() + nameText.text;
         backLogText.text += lf.ToString() + text;

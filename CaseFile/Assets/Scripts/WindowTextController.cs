@@ -53,6 +53,7 @@ public class WindowTextController : MonoBehaviour
         else
         {
             wordCount = 0;
+            windowText.text = "";
         }
 
         nowText = text;
@@ -86,5 +87,10 @@ public class WindowTextController : MonoBehaviour
         // 全部描画し終わったあとに、文字数/20 + 1秒待つ
         Debug.Log(drawnTime + "/" + drawText.Length);
         return IsDrawnAllText() && (drawnTime >= (float)drawText.Length / 20 + 1.0f);
+    }
+
+    public void SetFontSize(int fontSize)
+    {
+        windowText.fontSize = fontSize;
     }
 }
