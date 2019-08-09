@@ -868,11 +868,13 @@ public class GameController : MonoBehaviour
     {
         bool isOn = GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().isOn;
         StaticController.SetVoiceOnOff(isOn);
+        isVoiceOn = isOn;
     }
     public void SetSEOnOff()
     {
         bool isOn = GameObject.Find("ToggleSEOn").GetComponent<Toggle>().isOn;
         StaticController.SetSEOnOff(isOn);
+        isSEOn = isOn;
     }
     public void SetBGMOnOff()
     {
@@ -890,6 +892,12 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SetFullScreenOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleFullScreenOn").GetComponent<Toggle>().isOn;
+        StaticController.SetFullScreenOnOff(isOn);
+        Screen.SetResolution(1024, 768, isOn);
+    }
 
     public bool FlagCheck(string targetFlag)
     {

@@ -25,7 +25,10 @@ public class EndingController : MonoBehaviour
 
     public void FadeInEndingBGM()
     {
-        AudioManager.Instance.FadeInBGM("bgm_maoudamashii_healing03", 0.1f, false);
+        if (StaticController.isBGMOn)
+        {
+            AudioManager.Instance.FadeInBGM("bgm_maoudamashii_healing03", 0.1f, false);
+        }
     }
 
     public void GoToTitle()

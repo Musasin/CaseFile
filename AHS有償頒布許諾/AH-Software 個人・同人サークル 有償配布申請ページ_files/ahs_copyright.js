@@ -1,0 +1,1 @@
+document.write('Copyrights &copy; 2005-2016 AHS Co. Ltd. All rights reserved.');

@@ -43,7 +43,6 @@ public class FadePanelController : MonoBehaviour
     void Update()
     {
         fadeTime += Time.deltaTime;
-
         if (fadeType == FadeType.FadeOut)
         {
             fadePanelImage.color = new Color(red, green, blue, fadeTime);

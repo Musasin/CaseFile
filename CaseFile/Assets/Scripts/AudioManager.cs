@@ -180,12 +180,4 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             }
         }
     }
-
-
-    public void FadeInEndingBGM()
-    {
-        PlayBGM("bgm_maoudamashii_healing03", 0.0f, false);
-        fadeToVolume = 0.1f;
-        isFadeIn = true;
-    }
 }

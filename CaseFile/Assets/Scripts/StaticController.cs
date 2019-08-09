@@ -10,6 +10,12 @@ public class StaticController : MonoBehaviour
     public static bool isBGMOn = true;
     public static string nowBGM = "";
     public static bool isCleared = false;
+    public static bool isFullScreenOn = false;
+
+    private void Awake()
+    {
+
+    }
 
     // Use this for initialization
     void Start()
@@ -39,7 +45,10 @@ public class StaticController : MonoBehaviour
     public static void SetBGMOnOff(bool isOn)
     {
         isBGMOn = isOn;
-        Debug.Log("set:" + isBGMOn);
+    }
+    public static void SetFullScreenOnOff(bool isOn)
+    {
+        isFullScreenOn = isOn;
     }
     public static void SetClear(bool isClear)
     {

@@ -15,6 +15,9 @@ public class TitleSceneController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Screen.SetResolution(1024, 768, Screen.fullScreen);
+        StaticController.SetFullScreenOnOff(Screen.fullScreen);
+
         if (StaticController.isBGMOn)
         {
             AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
@@ -121,6 +124,15 @@ public class TitleSceneController : MonoBehaviour
         }
     }
 
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+        UnityEngine.Application.Quit();
+#endif
+    }
+
     public void SetHighSpeedText()
     {
         bool isHigh = GameObject.Find("ToggleHighSpeed").GetComponent<Toggle>().isOn;
@@ -149,5 +161,11 @@ public class TitleSceneController : MonoBehaviour
         {
             AudioManager.Instance.StopBGM();
         }
+    }
+    public void SetFullScreenOnOff()
+    {
+        bool isOn = GameObject.Find("ToggleFullScreenOn").GetComponent<Toggle>().isOn;
+        StaticController.SetFullScreenOnOff(isOn);
+        Screen.SetResolution(1024, 768, isOn);
     }
 }

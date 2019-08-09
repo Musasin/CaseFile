@@ -28,6 +28,8 @@ public class OptionController : MonoBehaviour
         GameObject.Find("ToggleSEOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isSEOn);
         GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isVoiceOn);
         GameObject.Find("ToggleVoiceOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isVoiceOn);
+        GameObject.Find("ToggleFullScreenOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isFullScreenOn);
+        GameObject.Find("ToggleFullScreenOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isFullScreenOn);
     }
 
     // Update is called once per frame
