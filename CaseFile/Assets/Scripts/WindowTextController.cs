@@ -11,6 +11,7 @@ public class WindowTextController : MonoBehaviour
     int wordCount = 0;
     bool isHighSpeedText = false;
     GameObject pointerCircleObject;
+    float drawnTime = 0;
 
     // Use this for initialization
     void Start()
@@ -29,14 +30,17 @@ public class WindowTextController : MonoBehaviour
             drawText = nowText.Substring(0, wordCount);
             windowText.text = drawText;
         }
-        if (wordCount > nowText.Length && !isHighSpeedText)
+        if (IsDrawnAllText())
         {
-            pointerCircleObject.SetActive(true);
+            drawnTime += Time.deltaTime;
+            pointerCircleObject.SetActive(!isHighSpeedText);
         }
         else
         {
+            drawnTime = 0;
             pointerCircleObject.SetActive(false);
         }
+        Debug.Log(drawnTime);
     }
 
     public void UpdateText(string text, bool isAllDraw)
@@ -70,5 +74,17 @@ public class WindowTextController : MonoBehaviour
         bool isHigh = GameObject.Find("ToggleHighSpeed").GetComponent<Toggle>().isOn;
         StaticController.SetHighSpeedText(isHigh);
         isHighSpeedText = isHigh;
+    }
+
+    public bool IsDrawnAllText()
+    {
+        return (wordCount > nowText.Length);
+    }
+
+    public bool IsEnoughDrawnTime()
+    {
+        // 全部描画し終わったあとに、文字数/20 + 1秒待つ
+        Debug.Log(drawnTime + "/" + drawText.Length);
+        return IsDrawnAllText() && (drawnTime >= (float)drawText.Length / 20 + 1.0f);
     }
 }

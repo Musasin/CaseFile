@@ -85,8 +85,10 @@ public class GameController : MonoBehaviour
     GameObject cousinSecondHusObject;
     GameObject cousinSecondDaughterObject;
     GameObject sectetChildObject;
+    GameObject autoTextObject;
     public string csvFileName;
     public int firstId;
+    int previousId;
     int nowId;
 
     const float DEFAULT_CHARACTER_SCALE = 0.7f;
@@ -97,6 +99,7 @@ public class GameController : MonoBehaviour
     private bool isSEOn;
     private bool isBGMOn;
     private string nowBGM = "";
+    private bool isAuto;
 
     Dictionary<string, bool> flags = new Dictionary<string, bool>();
     string lastUpdateFlag = "";
@@ -174,6 +177,7 @@ public class GameController : MonoBehaviour
         isSEOn = StaticController.isSEOn;
         isBGMOn = StaticController.isBGMOn;
         isVoiceOn = StaticController.isVoiceOn;
+        isAuto = false;
         state = State.Playing;
         yukariOverObject = GameObject.Find("YukariOver");
         eyeController = GameObject.Find("Eye").GetComponent<GraphicController>();
@@ -237,6 +241,8 @@ public class GameController : MonoBehaviour
         cousinSecondHusObject = GameObject.Find("CousinSecondHus");
         cousinSecondDaughterObject = GameObject.Find("CousinSecondDaughter");
         sectetChildObject = GameObject.Find("SectetChild");
+        autoTextObject = GameObject.Find("AutoText");
+        autoTextObject.SetActive(isAuto);
 
         csvFile = Resources.Load(csvFileName) as TextAsset;
 
@@ -284,6 +290,7 @@ public class GameController : MonoBehaviour
         overFadePanelController.FadeIn();
 
         isFading = true;
+        previousId = firstId;
         nowId = firstId;
     }
 
@@ -296,6 +303,18 @@ public class GameController : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.LeftControl) && state == State.Playing)
+        {
+            PlayScenario();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            Debug.Log("ALT");
+            isAuto = !isAuto;
+            autoTextObject.SetActive(isAuto);
+        }
+
+        if (csvDatas[previousId].type == "talk" && isAuto && windowTextController.IsEnoughDrawnTime() && !AudioManager.Instance.IsPlayingSE())
         {
             PlayScenario();
         }
@@ -337,6 +356,7 @@ public class GameController : MonoBehaviour
 
     public void PlayScenario(bool isSkip = false)
     {
+        previousId = nowId;
         if (state == State.GoToTitle || state == State.Ending)
         {
             return;

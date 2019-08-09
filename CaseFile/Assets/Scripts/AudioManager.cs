@@ -180,4 +180,16 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             }
         }
     }
+
+    public bool IsPlayingSE()
+    {
+        foreach (var source in this.seSources)
+        {
+            if (source.isPlaying)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
