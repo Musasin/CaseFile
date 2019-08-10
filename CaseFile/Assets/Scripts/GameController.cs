@@ -762,7 +762,7 @@ public class GameController : MonoBehaviour
 
     public void DebugItemButton()
     {
-        string[] itemFlags = new string[] { "tsuru", "tabako", "oreta_kasa", "kawagutsu", "key", "clip", "notification_adoption", "isho", "kusuri", "memo_wet", "memo_blood", "memo_key", "memo_hari" };
+        string[] itemFlags = new string[] { "tsuru", "tabako", "oreta_kasa", "kawagutsu", "key", "clip", "notification_adoption", "isho", "kusuri", "memo_wet", "memo_blood", "memo_key", "memo_hari", "ashiato", "mitsudan" };
         foreach (string itemFlag in itemFlags)
         {
             if (FlagCheck(itemFlag))

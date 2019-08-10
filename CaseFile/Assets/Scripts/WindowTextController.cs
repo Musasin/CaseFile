@@ -40,7 +40,6 @@ public class WindowTextController : MonoBehaviour
             drawnTime = 0;
             pointerCircleObject.SetActive(false);
         }
-        Debug.Log(drawnTime);
     }
 
     public void UpdateText(string text, bool isAllDraw)
@@ -85,7 +84,6 @@ public class WindowTextController : MonoBehaviour
     public bool IsEnoughDrawnTime()
     {
         // 全部描画し終わったあとに、文字数/20 + 1秒待つ
-        Debug.Log(drawnTime + "/" + drawText.Length);
         return IsDrawnAllText() && (drawnTime >= (float)drawText.Length / 20 + 1.0f);
     }
 
