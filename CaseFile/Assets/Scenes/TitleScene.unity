@@ -363,8 +363,7 @@ Prefab:
     - target: {fileID: 114100760500005018, guid: 613fa7229f7ef49798674fb66989f2ed,
         type: 2}
       propertyPath: m_Text
-      value: "\u3010\u97F3\u58F0\u3011\nVOICEROID2 \u7D50\u6708\u3086\u304B\u308A\u3010AH-Software\u69D8\u3011\r\nhttps://www.ah-soft.com/voiceroid/yukari/\n\n\u3010\u7ACB\u3061\u7D75\u3011\n\u7D50\u6708\u3086\u304B\u308A\u3055\u3093\u7ACB\u3061\u7D75
-        [\u304B\u3089\u3044\u69D8]\nhttp://seiga.nicovideo.jp/seiga/im6232152\n\u3044\u3089\u3059\u3068\u5C4B\u6577\u306E\u4EBA\u305F\u3061
+      value: "\u3010\u97F3\u58F0\u3011\nVOICEROID2 \u7D50\u6708\u3086\u304B\u308A\u3010AH-Software\u69D8\u3011\r\nhttps://www.ah-soft.com/voiceroid/yukari/\n\n\u3010\u7ACB\u3061\u7D75\u3011\n\u3044\u3089\u3059\u3068\u5C4B\u6577\u306E\u4EBA\u305F\u3061
         [\u3044\u3089\u3059\u3068\u3084\u69D8]\nhttps://www.irasutoya.com/\n\n\u3010UI\u3011\n\u30E1\u30C3\u30BB\u30FC\u30B8\u30A6\u30A3\u30F3\u30C9\u30A6
         [\u7A7A\u60F3\u66F2\u7DDA\u69D8]\nhttps://kopacurve.blog.fc2.com/blog-entry-407.html\n\u958B\u3044\u305F\u624B\u5E33
         [\u30D1\u30D6\u30EA\u30C3\u30AF\u30C9\u30E1\u30A4\u30F3Q\u69D8]\nhttps://publicdomainq.net/pocket-diary-0005610/\neasy
@@ -573,6 +572,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114937017502490666, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613fa7229f7ef49798674fb66989f2ed, type: 2}
   m_IsPrefabAsset: 0

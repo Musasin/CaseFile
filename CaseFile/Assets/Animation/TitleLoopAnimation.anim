@@ -215,9 +215,9 @@ AnimationClip:
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: b80278a5e5165466f9b3e29fead08ee6, type: 3}
+      value: {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1, type: 3}
     - time: 8.9
-      value: {fileID: 21300000, guid: b80278a5e5165466f9b3e29fead08ee6, type: 3}
+      value: {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1, type: 3}
     attribute: m_Sprite
     path: Yukari/Option1
     classID: 114
@@ -301,8 +301,8 @@ AnimationClip:
     - {fileID: 21300000, guid: ca79f1bd44b694a8c8769f5b045f0b14, type: 3}
     - {fileID: 21300000, guid: 92ac6276628a84063ae87e643197dd9b, type: 3}
     - {fileID: 21300000, guid: ca79f1bd44b694a8c8769f5b045f0b14, type: 3}
-    - {fileID: 21300000, guid: b80278a5e5165466f9b3e29fead08ee6, type: 3}
-    - {fileID: 21300000, guid: b80278a5e5165466f9b3e29fead08ee6, type: 3}
+    - {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1, type: 3}
+    - {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -58,8 +58,6 @@ VOICEROID2 結月ゆかり【AH-Software様】
 				https://www.ah-soft.com/licensee/id/0001001.html
 
 【立ち絵】
-  結月ゆかりさん立ち絵 [からい様]
-    http://seiga.nicovideo.jp/seiga/im6232152
   いらすと屋敷の人たち [いらすとや様]
     https://www.irasutoya.com/
 
