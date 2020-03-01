@@ -539,6 +539,40 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114003695642826222, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 00f55c583a87b41e58b9e9b25e94a40f,
+        type: 3}
+    - target: {fileID: 224157702262613592, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114071951915928298, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a900c0da2b6f041e3b1e5dc3e584c427,
+        type: 3}
+    - target: {fileID: 114752357353893406, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8749a8f5f1aa6440f80a1a821641ac2d,
+        type: 3}
+    - target: {fileID: 114685860639187114, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 01f4337f8a5ef49f98103498b6ae9f03,
+        type: 3}
+    - target: {fileID: 114685860639187114, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613fa7229f7ef49798674fb66989f2ed, type: 2}
   m_IsPrefabAsset: 0
