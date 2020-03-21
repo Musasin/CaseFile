@@ -578,6 +578,21 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 4bfe052fab2244781bf654ee0761f0d1,
         type: 3}
+    - target: {fileID: 114096378544227806, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224307544880758056, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -59
+      objectReference: {fileID: 0}
+    - target: {fileID: 114096378544227806, guid: 613fa7229f7ef49798674fb66989f2ed,
+        type: 2}
+      propertyPath: m_Text
+      value: "\uFF5E\u305D\u3057\u3066\u8AB0\u3082\u304C\u3044\u3089\u3059\u3068\u3084\uFF5E"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613fa7229f7ef49798674fb66989f2ed, type: 2}
   m_IsPrefabAsset: 0
