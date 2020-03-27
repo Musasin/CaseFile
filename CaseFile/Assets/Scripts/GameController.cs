@@ -70,6 +70,16 @@ public class GameController : MonoBehaviour
     GameObject backLogObject;
     GameObject[] choicesObjects = new GameObject[8];
     Text[] choicesText = new Text[8];
+
+    GameObject dobashiObject;
+    GameObject fudoObject;
+    GameObject houdoObject;
+    GameObject itakuraObject;
+    GameObject karinoObject;
+    GameObject kounoObject;
+    GameObject ondaObject;
+    GameObject urenaiObject;
+
     GameObject masterObject;
     GameObject maidObject;
     GameObject butlerObject;
@@ -228,6 +238,16 @@ public class GameController : MonoBehaviour
         sepiaPanelObject.SetActive(false);
         hidePanelObject = GameObject.Find("HidePanel");
         hidePanelObject.SetActive(false);
+
+        dobashiObject= GameObject.Find("dobashi");
+        fudoObject= GameObject.Find("fudo");
+        houdoObject= GameObject.Find("houdo");
+        itakuraObject= GameObject.Find("itakura");
+        karinoObject= GameObject.Find("karino");
+        kounoObject= GameObject.Find("kouno");
+        ondaObject= GameObject.Find("onda");
+        urenaiObject= GameObject.Find("urenai");
+
         masterObject = GameObject.Find("Master");
         maidObject = GameObject.Find("Maid");
         butlerObject = GameObject.Find("Butler");
@@ -653,12 +673,6 @@ public class GameController : MonoBehaviour
     {
         switch (character)
         {
-            case "S":
-                return masterObject;
-            case "M":
-                return maidObject;
-            case "B":
-                return butlerObject;
             case "T":
                 return takagiObject;
             case "T2":
@@ -667,20 +681,22 @@ public class GameController : MonoBehaviour
                 return aritaObject;
             case "Y":
                 return yukariOverObject;
-            case "R":
-                return cousinFirstSonObject;
-            case "E":
-                return cousinSecondWifeObject;
-            case "O":
-                return cousinFirstWifeObject;
-            case "H":
-                return cousinFirstHusObject;
-            case "K":
-                return cousinSecondHusObject;
-            case "A":
-                return cousinSecondDaughterObject;
+            case "D":
+                return dobashiObject;
             case "F":
-                return sectetChildObject;
+                return fudoObject;
+            case "H":
+                return houdoObject;
+            case "I":
+                return itakuraObject;
+            case "R":
+                return karinoObject;
+            case "K":
+                return kounoObject;
+            case "O":
+                return ondaObject;
+            case "U":
+                return urenaiObject;
             default:
                 return null;
         }
@@ -688,6 +704,15 @@ public class GameController : MonoBehaviour
 
     void SetAllCharacterDarken()
     {
+        dobashiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        fudoObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        houdoObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        itakuraObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        karinoObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        kounoObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        ondaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        urenaiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+
         masterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
