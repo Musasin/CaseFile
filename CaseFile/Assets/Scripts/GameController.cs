@@ -79,10 +79,8 @@ public class GameController : MonoBehaviour
     GameObject kounoObject;
     GameObject ondaObject;
     GameObject urenaiObject;
+    GameObject kaitouObject;
 
-    GameObject masterObject;
-    GameObject maidObject;
-    GameObject butlerObject;
     GameObject takagiObject;
     GameObject takagi2Object;
     GameObject aritaObject;
@@ -247,10 +245,8 @@ public class GameController : MonoBehaviour
         kounoObject= GameObject.Find("kouno");
         ondaObject= GameObject.Find("onda");
         urenaiObject= GameObject.Find("urenai");
+        kaitouObject= GameObject.Find("kaitou");
 
-        masterObject = GameObject.Find("Master");
-        maidObject = GameObject.Find("Maid");
-        butlerObject = GameObject.Find("Butler");
         takagiObject = GameObject.Find("Takagi");
         takagi2Object = GameObject.Find("Takagi2");
         aritaObject = GameObject.Find("Arita");
@@ -697,6 +693,8 @@ public class GameController : MonoBehaviour
                 return ondaObject;
             case "U":
                 return urenaiObject;
+            case "kaitou":
+                return kaitouObject;
             default:
                 return null;
         }
@@ -712,20 +710,11 @@ public class GameController : MonoBehaviour
         kounoObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         ondaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         urenaiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-
-        masterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        maidObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        butlerObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        kaitouObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagi2Object.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         aritaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinFirstSonObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinSecondWifeObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinFirstWifeObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinFirstHusObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinSecondHusObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        cousinSecondDaughterObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        sectetChildObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
     }
 
@@ -804,7 +793,7 @@ public class GameController : MonoBehaviour
 
     public void DebugJumpButton(int id)
     {
-        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F" };
+        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F", "kaitou" };
         foreach (string character in characters)
         {
             GameObject targetObject = GetTargetObject(character);
