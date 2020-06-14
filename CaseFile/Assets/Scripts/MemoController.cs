@@ -41,6 +41,7 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 			return;
 
 		mouseOverPanelObject = Instantiate(mouseOverPanel);
+		mouseOverPanelObject.name = "MouseOverPanel";
 		mouseOverPanelObject.transform.SetParent(transform.parent);
 		mouseOverPanelObject.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 200);
 		float correctionValueY = (transform.position.y < 300) ? 125 : -125;

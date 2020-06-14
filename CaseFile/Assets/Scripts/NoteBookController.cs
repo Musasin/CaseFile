@@ -39,6 +39,9 @@ public class NoteBookController : MonoBehaviour
             float dis = Mathf.Abs(Mathf.Abs(noteBookOverallObject.transform.localPosition.y) - Mathf.Abs(fisrtPosY));
             if (dis < 0.1f)
             {
+		        GameObject panel = GameObject.Find("MouseOverPanel");
+		        if (panel != null)
+			        Destroy(panel);
                 gameController.CloseNoteBook();
             }
         }
