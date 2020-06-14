@@ -347,7 +347,7 @@ public class GameController : MonoBehaviour
                     CloseSkipDialog();
                     break;
                 case State.NoteBook:
-                    CloseNoteBook();
+                    noteBookController.CloseNoteBook();
                     break;
                 case State.ItemList:
                     CloseItemList();

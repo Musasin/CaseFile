@@ -5,17 +5,20 @@ using UnityEngine;
 public class NoteBookController : MonoBehaviour
 {
     GameController gameController;
-    GameObject noteBookOverallObject, upButton, downButton;
+    GameObject noteBookOverallObject, closeButton, upButton, downButton;
     float fisrtPosY;
 
     // 下段ページフラグ
     bool isLowerPage;
+
+    bool isClose;
 
     // Use this for initialization
     void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         noteBookOverallObject = GameObject.Find("NoteBookOverall");
+        closeButton = GameObject.Find("Close");
         upButton = GameObject.Find("UpButton");
         downButton = GameObject.Find("DownButton");
         fisrtPosY = noteBookOverallObject.transform.localPosition.y;
@@ -28,20 +31,38 @@ public class NoteBookController : MonoBehaviour
     {
         float step = Time.deltaTime * 2000;
 
-        if (isLowerPage)
+        if (isClose)
+            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, fisrtPosY), step);
+        else if (isLowerPage)
             noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 620), step);
         else
             noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 0), step);
+
+        if (isClose)
+        {
+            float dis = Mathf.Abs(Mathf.Abs(noteBookOverallObject.transform.localPosition.y) - Mathf.Abs(fisrtPosY));
+            if (dis < 0.1f)
+            {
+                gameController.CloseNoteBook();
+            }
+        }
     }
 
     public void CloseNoteBook()
     {
-        gameController.CloseNoteBook();
+        isClose = true;
+        closeButton.SetActive(false);
+        upButton.SetActive(false);
+        downButton.SetActive(false);
     }
 
     public void ResetScale()
     {
+        isClose = false;
         isLowerPage = false;
+        closeButton.SetActive(true);
+        upButton.SetActive(false);
+        downButton.SetActive(true);
         noteBookOverallObject.transform.localPosition = new Vector2(0, fisrtPosY);
     }
     
