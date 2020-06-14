@@ -35,6 +35,9 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 	public void OnPointerEnter(PointerEventData eventData)
     {
+		if (memoText == "")
+			return;
+
 		mouseOverPanelObject = Instantiate(mouseOverPanel);
 		mouseOverPanelObject.transform.SetParent(transform.parent);
 		mouseOverPanelObject.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 200);
@@ -44,6 +47,12 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        Destroy(mouseOverPanelObject);
+		if (mouseOverPanelObject != null)
+			Destroy(mouseOverPanelObject);
+    }
+    public void OnDisable()
+    {
+		if (mouseOverPanelObject != null)
+			Destroy(mouseOverPanelObject);
     }
 }
