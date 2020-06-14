@@ -11,6 +11,7 @@ public class StaticController : MonoBehaviour
     public static string nowBGM = "";
     public static bool isCleared = false;
     public static bool isFullScreenOn = false;
+    public static bool isWritingMemo = false;
 
     private void Awake()
     {
@@ -54,5 +55,8 @@ public class StaticController : MonoBehaviour
     {
         isCleared = isClear;
     }
-
+    public static void SetWritingMemo(bool isWriting)
+    {
+        isWritingMemo = isWriting;
+    }
 }

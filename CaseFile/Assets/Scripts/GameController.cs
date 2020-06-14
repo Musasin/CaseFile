@@ -805,6 +805,10 @@ public class GameController : MonoBehaviour
 
     public void OpenNoteBook(bool isWrite = false)
     {
+        if (isWrite)
+        {
+            StaticController.SetWritingMemo(true);
+        }
         state = State.NoteBook;
         noteBookObject.SetActive(true);
         if (isSEOn)
@@ -815,6 +819,7 @@ public class GameController : MonoBehaviour
 
     public void CloseNoteBook()
     {
+        StaticController.SetWritingMemo(false);
         if (state == State.NoteBook)
         {
             state = State.Playing;

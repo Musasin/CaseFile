@@ -91,4 +91,9 @@ public class WindowTextController : MonoBehaviour
     {
         windowText.fontSize = fontSize;
     }
+
+    public string GetNowText()
+    {
+        return nowText;
+    }
 }
