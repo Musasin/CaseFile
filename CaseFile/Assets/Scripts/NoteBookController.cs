@@ -5,32 +5,33 @@ using UnityEngine;
 public class NoteBookController : MonoBehaviour
 {
     GameController gameController;
-    GameObject noteBookOverallObject;
-    GameObject mapObject;
-    GameObject familyObject;
-    float time;
+    GameObject noteBookOverallObject, upButton, downButton;
+    float fisrtPosY;
+
+    // 下段ページフラグ
+    bool isLowerPage;
 
     // Use this for initialization
     void Start()
     {
-        time = 0;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         noteBookOverallObject = GameObject.Find("NoteBookOverall");
-        familyObject = GameObject.Find("Family");
-        mapObject = GameObject.Find("MapImage");
-        familyObject.SetActive(gameController.FlagCheck("display_correlation_diagram"));
-        mapObject.SetActive(gameController.FlagCheck("display_map"));
+        upButton = GameObject.Find("UpButton");
+        downButton = GameObject.Find("DownButton");
+        fisrtPosY = noteBookOverallObject.transform.localPosition.y;
+        upButton.SetActive(false);
+        downButton.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        familyObject.SetActive(gameController.FlagCheck("display_correlation_diagram"));
-        mapObject.SetActive(gameController.FlagCheck("display_map"));
-        time += Time.deltaTime * 5;
-        float[] scales = new float[2] { time, 1.0f };
-        float scale = Mathf.Min(scales);
-        noteBookOverallObject.transform.localScale = new Vector3(scale, scale, scale);
+        float step = Time.deltaTime * 2000;
+
+        if (isLowerPage)
+            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 620), step);
+        else
+            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 0), step);
     }
 
     public void CloseNoteBook()
@@ -40,7 +41,20 @@ public class NoteBookController : MonoBehaviour
 
     public void ResetScale()
     {
-        time = 0;
-        noteBookOverallObject.transform.localScale = new Vector3(0, 0, 0);
+        isLowerPage = false;
+        noteBookOverallObject.transform.localPosition = new Vector2(0, fisrtPosY);
+    }
+    
+    public void UpPage()
+    {
+        isLowerPage = false;
+        upButton.SetActive(false);
+        downButton.SetActive(true);
+    }
+    public void DownPage()
+    {
+        isLowerPage = true;
+        upButton.SetActive(true);
+        downButton.SetActive(false);
     }
 }

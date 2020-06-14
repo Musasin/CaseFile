@@ -803,7 +803,7 @@ public class GameController : MonoBehaviour
         PlayScenario();
     }
 
-    public void OpenNoteBook()
+    public void OpenNoteBook(bool isWrite = false)
     {
         state = State.NoteBook;
         noteBookObject.SetActive(true);
@@ -880,7 +880,7 @@ public class GameController : MonoBehaviour
         }
         backLogObject.SetActive(false);
     }
-
+    
     public void SkipScenario()
     {
         for (int i = 0; i < 1000; i++)
