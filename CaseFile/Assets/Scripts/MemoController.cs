@@ -30,6 +30,7 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
 			memoText = windowTextController.GetNowText();
 			GetComponentInChildren<Text>().text = memoText.Replace( "\r", "" ).Replace( "\n", "" );
+			memoText = GameObject.Find("NameText").GetComponent<Text>().text + "\n" + memoText;
 			StaticController.SetWritingMemo(false);
         }
     }
