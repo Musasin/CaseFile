@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteBookController : MonoBehaviour
 {
     GameController gameController;
-    GameObject noteBookOverallObject, closeButton, upButton, downButton;
+    GameObject noteBookOverallObject, closeButton, upButton, downButton, explanationPanel;
     float fisrtPosY;
 
     // 下段ページフラグ
@@ -21,6 +21,7 @@ public class NoteBookController : MonoBehaviour
         closeButton = GameObject.Find("Close");
         upButton = GameObject.Find("UpButton");
         downButton = GameObject.Find("DownButton");
+        explanationPanel = GameObject.Find("ExplanationPanel");
         fisrtPosY = noteBookOverallObject.transform.localPosition.y;
         upButton.SetActive(false);
         downButton.SetActive(true);
@@ -32,19 +33,22 @@ public class NoteBookController : MonoBehaviour
         float step = Time.deltaTime * 2000;
 
         if (isClose)
-            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, fisrtPosY), step);
-        else if (isLowerPage)
-            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 620), step);
-        else
-            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 0), step);
-
-        if (isClose)
         {
+            noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, fisrtPosY), step);
+
             float dis = Mathf.Abs(Mathf.Abs(noteBookOverallObject.transform.localPosition.y) - Mathf.Abs(fisrtPosY));
             if (dis < 0.1f)
             {
                 gameController.CloseNoteBook();
             }
+        }
+        else
+        {
+            explanationPanel.SetActive(StaticController.isWritingMemo);
+            if (isLowerPage)
+                noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 620), step);
+            else
+                noteBookOverallObject.transform.localPosition = Vector2.MoveTowards(noteBookOverallObject.transform.localPosition, new Vector2(0, 0), step);
         }
     }
 
