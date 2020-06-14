@@ -29,7 +29,7 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		if (StaticController.isWritingMemo)
         {
 			memoText = windowTextController.GetNowText();
-			GetComponentInChildren<Text>().text = memoText;
+			GetComponentInChildren<Text>().text = memoText.Replace( "\r", "" ).Replace( "\n", "" );
 			StaticController.SetWritingMemo(false);
         }
     }
