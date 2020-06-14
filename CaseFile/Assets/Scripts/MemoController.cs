@@ -30,6 +30,7 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
 			memoText = windowTextController.GetNowText();
 			GetComponentInChildren<Text>().text = memoText;
+			StaticController.SetWritingMemo(false);
         }
     }
 
