@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour
     GameObject cousinSecondDaughterObject;
     GameObject sectetChildObject;
     GameObject autoTextObject;
+    GameObject memoButtonObject;
     public string csvFileName;
     public int firstId;
     int previousId;
@@ -259,6 +260,8 @@ public class GameController : MonoBehaviour
         sectetChildObject = GameObject.Find("SectetChild");
         autoTextObject = GameObject.Find("AutoText");
         autoTextObject.SetActive(isAuto);
+        memoButtonObject = GameObject.Find("memo_w");
+        memoButtonObject.SetActive(false);
 
         csvFile = Resources.Load(csvFileName) as TextAsset;
 
@@ -605,6 +608,16 @@ public class GameController : MonoBehaviour
                 break;
             case "place_change":
                 placeNameController.ChangePlaceName(csvDatas[nowId].words);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+            case "open_memo":
+                memoButtonObject.SetActive(true);
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
+            case "close_memo":
+                memoButtonObject.SetActive(false);
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
