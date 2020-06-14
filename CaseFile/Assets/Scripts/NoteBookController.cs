@@ -58,6 +58,10 @@ public class NoteBookController : MonoBehaviour
         closeButton.SetActive(false);
         upButton.SetActive(false);
         downButton.SetActive(false);
+        if (StaticController.isSEOn)
+        {
+            AudioManager.Instance.PlaySE("page1");
+        }
     }
 
     public void ResetScale()
