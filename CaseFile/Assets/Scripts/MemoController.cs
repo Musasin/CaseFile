@@ -5,17 +5,21 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-
+	
+    GameController gameController;
 	public GameObject mouseOverPanel;
 	GameObject mouseOverPanelObject;
 
     WindowTextController windowTextController;
 	string memoText;
+	int memoId;
 
 	// Use this for initialization
 	void Start () {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         windowTextController = GameObject.Find("Window").GetComponentInChildren<WindowTextController>();
 		memoText = "";
+		memoId = 0;
 		GetComponentInChildren<Text>().text = memoText;
 	}
 	
@@ -27,11 +31,16 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	public void PushMemo()
     {
 		if (StaticController.isWritingMemo)
-        {
+		{
 			memoText = windowTextController.GetNowText();
-			GetComponentInChildren<Text>().text = memoText.Replace( "\r", "" ).Replace( "\n", "" );
+			GetComponentInChildren<Text>().text = memoText.Replace("\r", "").Replace("\n", "");
 			memoText = GameObject.Find("NameText").GetComponent<Text>().text + "\n" + memoText;
+			memoId = gameController.GetMemoId();
 			StaticController.SetWritingMemo(false);
+		}
+		else if (memoId != 0)
+        {
+            gameController.SelectChoiceMemos(memoId);
         }
     }
 

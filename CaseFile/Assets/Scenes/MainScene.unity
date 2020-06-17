@@ -1213,8 +1213,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1936088904}
-        m_MethodName: OpenNoteBook
+      - m_Target: {fileID: 114083960604301736, guid: 5d4af635854624617bc0b776519536ee,
+          type: 2}
+        m_MethodName: OpenNotebookByButton
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3291,6 +3292,11 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: ITEM
+      objectReference: {fileID: 0}
+    - target: {fileID: 114442105601480092, guid: f0d8e8f6554cc45de8da19f9e16a129a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenNotebookByButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d8e8f6554cc45de8da19f9e16a129a, type: 2}

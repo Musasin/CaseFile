@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_TARGET_FLAG = 19;
     const int SCENARIO_INDEX_JUMP_IDS = 20;
 
-    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, GoToTitle, Ending };
+    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, ChoiceMemoList, GoToTitle, Ending };
     State state;
 
 
@@ -621,6 +621,9 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "choice_memo":
+                OpenNoteBook(false, true);
+                break;
             case "jump_random":
                 int idsLength = csvDatas[nowId].jump_ids.Length;
                 int rand = UnityEngine.Random.Range(0, idsLength);
@@ -788,6 +791,25 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SelectChoiceMemos(int choiceId)
+    {
+        if (state == State.ChoiceMemoList)
+        {
+            int nextId = nowId + 1;
+            int length = csvDatas[nowId].choices.Length;
+            for (int i = 0; i < csvDatas[nowId].choices.Length; i++)
+            {
+                if (int.Parse(csvDatas[nowId].choices[i]) == choiceId)
+                {
+                    nextId = int.Parse(csvDatas[nowId].jump_ids[i]);
+                }
+            }
+            nowId = nextId;
+            CloseNoteBook();
+            PlayScenario();
+        }
+    }
+
     public void DebugResetButton(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -822,13 +844,24 @@ public class GameController : MonoBehaviour
         PlayScenario();
     }
 
-    public void OpenNoteBook(bool isWrite = false)
+    public void OpenNotebookByButton(bool isWrite)
     {
+        OpenNoteBook(isWrite);
+    }
+    public void OpenNoteBook(bool isWrite = false, bool isChoice = false)
+    {
+        if (isChoice)
+        {
+            state = State.ChoiceMemoList;
+        }
+        else
+        {
+            state = State.NoteBook;
+        }
         if (isWrite)
         {
             StaticController.SetWritingMemo(true);
         }
-        state = State.NoteBook;
         noteBookObject.SetActive(true);
         if (isSEOn)
         {
@@ -909,7 +942,7 @@ public class GameController : MonoBehaviour
     {
         for (int i = 0; i < 1000; i++)
         {
-            if (csvDatas[nowId].type == "choice" || csvDatas[nowId].type == "choice_item")
+            if (csvDatas[nowId].type == "choice" || csvDatas[nowId].type == "choice_item" || csvDatas[nowId].type == "choice_memo")
             {
                 PlayScenario();
                 break;
@@ -969,4 +1002,8 @@ public class GameController : MonoBehaviour
         StaticController.SetClear(true);
     }
 
+    public int GetMemoId()
+    {
+        return (nowId - 1);
+    }
 }
