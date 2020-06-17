@@ -1213,8 +1213,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114083960604301736, guid: 5d4af635854624617bc0b776519536ee,
-          type: 2}
+      - m_Target: {fileID: 1936088904}
         m_MethodName: OpenNotebookByButton
         m_Mode: 6
         m_Arguments:
