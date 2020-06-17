@@ -621,6 +621,12 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "jump_random":
+                int idsLength = csvDatas[nowId].jump_ids.Length;
+                int rand = UnityEngine.Random.Range(0, idsLength);
+                nowId = int.Parse(csvDatas[nowId].jump_ids[rand]);
+                PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
+                break;
             default:
                 break;
         }
