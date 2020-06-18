@@ -527,6 +527,22 @@ public class GameController : MonoBehaviour
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "flag_update_false":
+                Debug.Log("flag update false: " + csvDatas[nowId].target_flag);
+
+                if (FlagCheck(csvDatas[nowId].target_flag))
+                {
+                    flags[csvDatas[nowId].target_flag] = false;
+                }
+                else
+                {
+                    flags.Add(csvDatas[nowId].target_flag, false);
+                }
+                lastUpdateFlag = csvDatas[nowId].target_flag;
+
+                nowId++;
+                PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
+                break;
             case "fade_out":
                 fadePanelController.FadeOut();
                 isFading = true;
