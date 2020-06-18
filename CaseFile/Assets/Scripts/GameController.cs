@@ -514,7 +514,7 @@ public class GameController : MonoBehaviour
             case "flag_update":
                 Debug.Log("flag update: " + csvDatas[nowId].target_flag);
 
-                if (FlagCheck(csvDatas[nowId].target_flag))
+                if (flags.ContainsKey(csvDatas[nowId].target_flag))
                 {
                     flags[csvDatas[nowId].target_flag] = true;
                 }
@@ -529,8 +529,8 @@ public class GameController : MonoBehaviour
                 break;
             case "flag_update_false":
                 Debug.Log("flag update false: " + csvDatas[nowId].target_flag);
-
-                if (FlagCheck(csvDatas[nowId].target_flag))
+                
+                if (flags.ContainsKey(csvDatas[nowId].target_flag))
                 {
                     flags[csvDatas[nowId].target_flag] = false;
                 }

@@ -7,6 +7,7 @@ id,type,character,name,pos_x,pos_y,scale,eye,eye_brows,mouse,option1,option2,opt
 3001002,flag_update_false,,,,,,,,,,,,,,,,0,,test,,,,
 3001003,talk,,,,,,,,,,,,,,,フラグflase,8,,,,,,
 3001004,flag_update,,,,,,,,,,,,,,,,0,,test,,,,
+3001005,talk,,,,,,,,,,,,,,,ok,8,,,,,,
 ,,,,,,,,,,,,,,,,,0,,,,,,
 ,,,,,,,,,,,,,,,,,0,,,,,,
 ,,,,,,,,,,,,,,,,,0,,,,,,
