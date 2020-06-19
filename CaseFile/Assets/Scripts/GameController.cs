@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     const int SCENARIO_INDEX_TARGET_FLAG = 19;
     const int SCENARIO_INDEX_JUMP_IDS = 20;
 
-    public enum State { Playing, SkipDialog, ItemList, ChoiceItemList, BackLog, Config, NoteBook, ChoiceMemoList, GoToTitle, Ending };
+    public enum State { Playing, SkipDialog, KeyBoardInput, ItemList, ChoiceItemList, BackLog, Config, NoteBook, ChoiceMemoList, GoToTitle, Ending };
     State state;
 
 
@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
     public GameObject choicesPrefab;
     public GameObject itemListPrefab;
     public GameObject backLogPrefab;
+    public GameObject keyBoardInputPrefab;
 
     private char lf = (char)10;
     GameObject yukariOverObject;
@@ -64,6 +65,7 @@ public class GameController : MonoBehaviour
     GameObject sepiaPanelObject;
     GameObject hidePanelObject;
     GameObject skipDialogObject;
+    GameObject keyBoardInputObject;
     GameObject noteBookObject;
     GameObject choiceObject;
     GameObject itemListObject;
@@ -173,6 +175,8 @@ public class GameController : MonoBehaviour
         choiceObject.transform.parent = canvas.transform;
         skipDialogObject = Instantiate(skipDialogPrefab, canvas.transform.position, Quaternion.identity);
         skipDialogObject.transform.parent = canvas.transform;
+        keyBoardInputObject = Instantiate(keyBoardInputPrefab, canvas.transform.position, Quaternion.identity);
+        keyBoardInputObject.transform.parent = canvas.transform;
         noteBookObject = Instantiate(noteBookPrefab, canvas.transform.position, Quaternion.identity);
         noteBookObject.transform.parent = canvas.transform;
         itemListObject = Instantiate(itemListPrefab, canvas.transform.position, Quaternion.identity);
@@ -204,6 +208,8 @@ public class GameController : MonoBehaviour
         //debugFlagText = GameObject.Find("DebugFlagText").GetComponent<Text>();
         skipDialogObject.SetActive(false);
         skipDialogObject.name = "SkipDialog";
+        keyBoardInputObject.SetActive(false);
+        keyBoardInputObject.name = "InputPanel";
         choicesObjects[0] = GameObject.Find("Choices1");
         choicesObjects[1] = GameObject.Find("Choices2");
         choicesObjects[2] = GameObject.Find("Choices3");
@@ -651,6 +657,9 @@ public class GameController : MonoBehaviour
                 nowId = int.Parse(csvDatas[nowId].jump_ids[rand]);
                 PlayScenario(); // jump_idの先に進めて、もう一度PlayScenarioを実行する
                 break;
+            case "keyboard_input":
+                OpenKeyBoardInput();
+                break;
             default:
                 break;
         }
@@ -927,6 +936,42 @@ public class GameController : MonoBehaviour
             state = State.Playing;
         }
         skipDialogObject.SetActive(false);
+    }
+
+    public void OpenKeyBoardInput()
+    {
+        state = State.KeyBoardInput;
+        keyBoardInputObject.SetActive(true);
+    }
+
+    public void CloseKeyBoardInput()
+    {
+        if (state == State.KeyBoardInput)
+        {
+            state = State.Playing;
+        }
+        keyBoardInputObject.SetActive(false);
+    }
+
+    public void ConfirmKeyBoardInput(string inputText)
+    {
+        Debug.Log("入力されたテキスト: " + inputText);
+
+        if (state == State.KeyBoardInput)
+        {
+            int nextId = nowId + 1;
+            int length = csvDatas[nowId].choices.Length;
+            for (int i = 0; i < csvDatas[nowId].choices.Length; i++)
+            {
+                if (csvDatas[nowId].choices[i] == inputText)
+                {
+                    nextId = int.Parse(csvDatas[nowId].jump_ids[i]);
+                }
+            }
+            nowId = nextId;
+            CloseKeyBoardInput();
+            PlayScenario();
+        }
     }
 
     public void OpenItemList(bool isChoice = false)
