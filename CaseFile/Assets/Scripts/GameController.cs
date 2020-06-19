@@ -85,6 +85,7 @@ public class GameController : MonoBehaviour
     GameObject takagi2Object;
     GameObject aritaObject;
     GameObject imageObject;
+    GameObject backImageObject;
     GameObject backGroundObject;
     GameObject cousinFirstSonObject;
     GameObject cousinSecondWifeObject;
@@ -225,8 +226,10 @@ public class GameController : MonoBehaviour
         itemListObject.SetActive(false);
         backLogObject.SetActive(false);
         imageObject = GameObject.Find("Image");
-        backGroundObject = GameObject.Find("BackGround");
         imageObject.SetActive(false);
+        backImageObject = GameObject.Find("BackImage");
+        backImageObject.SetActive(false);
+        backGroundObject = GameObject.Find("BackGround");
 
         windowTextController = windowText.GetComponent<WindowTextController>();
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
@@ -567,6 +570,7 @@ public class GameController : MonoBehaviour
                 if (csvDatas[nowId].character == "")
                 {
                     imageObject.SetActive(false);
+                    backImageObject.SetActive(false);
                 }
                 else
                 {
@@ -576,6 +580,7 @@ public class GameController : MonoBehaviour
                     imageObject.transform.position = new Vector2(csvDatas[nowId].pos_x, csvDatas[nowId].pos_y);
                     imageObject.transform.localScale = new Vector2(csvDatas[nowId].scale, csvDatas[nowId].scale);
                     imageObject.SetActive(true);
+                    backImageObject.SetActive(true);
                 }
                 nowId++;
                 PlayScenario(); // 次の行に進めて、もう一度PlayScenarioを実行する
