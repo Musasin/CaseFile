@@ -754,11 +754,23 @@ public class GameController : MonoBehaviour
         ondaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         urenaiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         kaitouObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
-        
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagi2Object.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         aritaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         yukariOverObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f, 0.7f);
+
+        dobashiObject.GetComponent<Canvas>().sortingOrder = 1;
+        fudoObject.GetComponent<Canvas>().sortingOrder = 1;
+        houdoObject.GetComponent<Canvas>().sortingOrder = 1;
+        itakuraObject.GetComponent<Canvas>().sortingOrder = 1;
+        karinoObject.GetComponent<Canvas>().sortingOrder = 1;
+        kounoObject.GetComponent<Canvas>().sortingOrder = 1;
+        ondaObject.GetComponent<Canvas>().sortingOrder = 1;
+        urenaiObject.GetComponent<Canvas>().sortingOrder = 1;
+        kaitouObject.GetComponent<Canvas>().sortingOrder = 1;
+        takagiObject.GetComponent<Canvas>().sortingOrder = 1;
+        takagi2Object.GetComponent<Canvas>().sortingOrder = 1;
+        aritaObject.GetComponent<Canvas>().sortingOrder = 1;
     }
 
     void SetClearCharacter(GameObject characterObject)
@@ -770,6 +782,7 @@ public class GameController : MonoBehaviour
         else
         {
             characterObject.GetComponent<Image>().color = new Color(100, 100, 100);
+            characterObject.GetComponent<Canvas>().sortingOrder = 2;
         }
     }
 

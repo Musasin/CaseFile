@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224867789336518540}
   - component: {fileID: 222300883289881652}
   - component: {fileID: 114237322737480678}
+  - component: {fileID: 223292189341805570}
   m_Layer: 5
   m_Name: MouseOverPanel
   m_TagString: Untagged
@@ -119,6 +120,26 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574305851535890}
   m_CullTransparentMesh: 0
+--- !u!223 &223292189341805570
+Canvas:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143568544792776}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 50
+  m_TargetDisplay: 0
 --- !u!224 &224295510915620184
 RectTransform:
   m_ObjectHideFlags: 1
