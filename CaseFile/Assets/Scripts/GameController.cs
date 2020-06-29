@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour
     GameObject ondaObject;
     GameObject urenaiObject;
     GameObject kaitouObject;
+    GameObject akariObject;
 
     GameObject takagiObject;
     GameObject takagi2Object;
@@ -256,6 +257,7 @@ public class GameController : MonoBehaviour
         ondaObject= GameObject.Find("onda");
         urenaiObject= GameObject.Find("urenai");
         kaitouObject= GameObject.Find("kaitou");
+        akariObject= GameObject.Find("akari");
 
         takagiObject = GameObject.Find("Takagi");
         takagi2Object = GameObject.Find("Takagi2");
@@ -747,6 +749,8 @@ public class GameController : MonoBehaviour
                 return urenaiObject;
             case "kaitou":
                 return kaitouObject;
+            case "A":
+                return akariObject;
             default:
                 return null;
         }
@@ -763,6 +767,7 @@ public class GameController : MonoBehaviour
         ondaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         urenaiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         kaitouObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
+        akariObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagiObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         takagi2Object.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
         aritaObject.GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
@@ -777,6 +782,7 @@ public class GameController : MonoBehaviour
         ondaObject.GetComponent<Canvas>().sortingOrder = 1;
         urenaiObject.GetComponent<Canvas>().sortingOrder = 1;
         kaitouObject.GetComponent<Canvas>().sortingOrder = 1;
+        akariObject.GetComponent<Canvas>().sortingOrder = 1;
         takagiObject.GetComponent<Canvas>().sortingOrder = 1;
         takagi2Object.GetComponent<Canvas>().sortingOrder = 1;
         aritaObject.GetComponent<Canvas>().sortingOrder = 1;
@@ -877,7 +883,7 @@ public class GameController : MonoBehaviour
 
     public void DebugJumpButton(int id)
     {
-        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F", "kaitou" };
+        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F", "kaitou", "A" };
         foreach (string character in characters)
         {
             GameObject targetObject = GetTargetObject(character);
