@@ -24,8 +24,8 @@ public class TitleSceneController : MonoBehaviour
         }
         yukariObject = GameObject.Find("Yukari");
 
-        canvasAnimator = GameObject.Find("TitleCanvas").GetComponent<Animator>();
-        stateOpeningHash = Animator.StringToHash("Base Layer.TitleAnimation");
+        canvasAnimator = GameObject.Find("TitleCanvas2").GetComponent<Animator>();
+        stateOpeningHash = Animator.StringToHash("Base Layer.TitleAnimation2");
         stateLoopHash = Animator.StringToHash("Base Layer.TitleLoopAnimation");
         fadePanelController = GameObject.Find("FadePanel").GetComponent<FadePanelController>();
 
@@ -49,7 +49,7 @@ public class TitleSceneController : MonoBehaviour
         {
             if (StaticController.isVoiceOn)
             {
-                AudioManager.Instance.PlaySE("title-coal-4", 1.0f);
+                AudioManager.Instance.PlaySE("title-coal-0", 0.8f);
             }
             state = State.TitleCoal;
         }
