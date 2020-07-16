@@ -883,7 +883,7 @@ public class GameController : MonoBehaviour
 
     public void DebugJumpButton(int id)
     {
-        string[] characters = new string[] { "S", "M", "B", "T", "arita", "Y", "R", "E", "O", "H", "K", "A", "F", "kaitou", "A" };
+        string[] characters = new string[] { "T", "T2", "arita", "Y", "D", "F", "H", "I", "R", "K", "O", "U", "kaitou", "A" };
         foreach (string character in characters)
         {
             GameObject targetObject = GetTargetObject(character);
