@@ -22,12 +22,12 @@ public class OptionController : MonoBehaviour
     {
         GameObject.Find("ToggleNormalSpeed").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isHighSpeed);
         GameObject.Find("ToggleHighSpeed").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isHighSpeed);
-        GameObject.Find("ToggleBGMOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isBGMOn);
-        GameObject.Find("ToggleBGMOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isBGMOn);
-        GameObject.Find("ToggleSEOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isSEOn);
-        GameObject.Find("ToggleSEOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isSEOn);
-        GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isVoiceOn);
-        GameObject.Find("ToggleVoiceOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isVoiceOn);
+        //GameObject.Find("ToggleBGMOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isBGMOn);
+        //GameObject.Find("ToggleBGMOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isBGMOn);
+        //GameObject.Find("ToggleSEOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isSEOn);
+        //GameObject.Find("ToggleSEOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isSEOn);
+        //GameObject.Find("ToggleVoiceOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isVoiceOn);
+        //GameObject.Find("ToggleVoiceOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isVoiceOn);
         GameObject.Find("ToggleFullScreenOn").GetComponent<Toggle>().SetIsOnWithoutCallback(StaticController.isFullScreenOn);
         GameObject.Find("ToggleFullScreenOff").GetComponent<Toggle>().SetIsOnWithoutCallback(!StaticController.isFullScreenOn);
     }

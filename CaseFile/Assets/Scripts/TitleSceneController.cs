@@ -12,16 +12,15 @@ public class TitleSceneController : MonoBehaviour
     State state;
     int stateOpeningHash, stateLoopHash;
 
+    Slider bgmSlider, seSlider, voiceSlider;
+
     // Use this for initialization
     void Start()
     {
         Screen.SetResolution(1024, 768, Screen.fullScreen);
         StaticController.SetFullScreenOnOff(Screen.fullScreen);
 
-        if (StaticController.isBGMOn)
-        {
-            AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
-        }
+        AudioManager.Instance.PlayBGM("bgm_maoudamashii_acoustic32", 0.1f, true);
         yukariObject = GameObject.Find("Yukari");
 
         canvasAnimator = GameObject.Find("TitleCanvas2").GetComponent<Animator>();
@@ -34,7 +33,16 @@ public class TitleSceneController : MonoBehaviour
             Button afterWardButton = GameObject.Find("MenuText4").GetComponent<Button>();
             afterWardButton.interactable = true;
         }
-
+        
+        bgmSlider = GameObject.Find("BGMVolumeSlider").GetComponent<Slider>();
+        seSlider = GameObject.Find("SEVolumeSlider").GetComponent<Slider>();
+        voiceSlider = GameObject.Find("VoiceVolumeSlider").GetComponent<Slider>();
+        bgmSlider.value = StaticController.bgmVolume * 10;
+        seSlider.value = StaticController.seVolume * 10;
+        voiceSlider.value = StaticController.voiceVolume * 10;
+        seSlider.onValueChanged.AddListener(delegate { SetSEVolume(); });
+        voiceSlider.onValueChanged.AddListener(delegate { SetVoiceVolume(); });
+        GameObject.Find("Option").SetActive(false);
 
         state = State.Init;
 
@@ -49,7 +57,7 @@ public class TitleSceneController : MonoBehaviour
         {
             if (StaticController.isVoiceOn)
             {
-                AudioManager.Instance.PlaySE("title-coal-0", 0.8f);
+                AudioManager.Instance.PlaySE("title-coal-0", 0.8f, false, true);
             }
             state = State.TitleCoal;
         }
@@ -63,6 +71,9 @@ public class TitleSceneController : MonoBehaviour
         {
             state = State.Idle;
         }
+
+        StaticController.SetBGMVolume((float)bgmSlider.value / 10);
+        AudioManager.Instance.SetBGMVolume(0.1f * StaticController.bgmVolume);
     }
 
     public void PlayGame()
@@ -167,5 +178,26 @@ public class TitleSceneController : MonoBehaviour
         bool isOn = GameObject.Find("ToggleFullScreenOn").GetComponent<Toggle>().isOn;
         StaticController.SetFullScreenOnOff(isOn);
         Screen.SetResolution(1024, 768, isOn);
+    }
+    public void SetSEVolume()
+    {
+        StaticController.SetSEVolume((float)seSlider.value / 10);
+        AudioManager.Instance.PlaySE("decision22", 0.5f);
+    }
+    public void SetVoiceVolume()
+    {
+        StaticController.SetVoiceVolume((float)voiceSlider.value / 10);
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                AudioManager.Instance.PlaySE("TitleVoice-0", 0.5f, false, true);
+                break;
+            case 1:
+                AudioManager.Instance.PlaySE("TitleVoice-1", 0.5f, false, true);
+                break;
+            case 2:
+                AudioManager.Instance.PlaySE("TitleVoice-2", 0.5f, false, true);
+                break;
+        }
     }
 }

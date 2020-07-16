@@ -683,11 +683,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("SE: " + csvDatas[nowId].voice + ", VOLUME: " + csvDatas[nowId].volume);
             AudioManager.Instance.StopSE();
-
-            if ((isVoiceOn && csvDatas[nowId].character == "Y") || (isSEOn && csvDatas[nowId].character != "Y"))
-            {
-                AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume);
-            }
+            AudioManager.Instance.PlaySE(csvDatas[nowId].voice, csvDatas[nowId].volume, false, (csvDatas[nowId].character == "Y"));
         }
 
         GameObject targetObject = GetTargetObject(csvDatas[nowId].character);

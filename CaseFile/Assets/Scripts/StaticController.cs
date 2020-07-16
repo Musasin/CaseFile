@@ -12,6 +12,9 @@ public class StaticController : MonoBehaviour
     public static bool isCleared = false;
     public static bool isFullScreenOn = false;
     public static bool isWritingMemo = false;
+    public static float bgmVolume = 1.0f;
+    public static float seVolume = 0.5f;
+    public static float voiceVolume = 0.7f;
 
     private void Awake()
     {
@@ -27,7 +30,6 @@ public class StaticController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
 
@@ -58,5 +60,17 @@ public class StaticController : MonoBehaviour
     public static void SetWritingMemo(bool isWriting)
     {
         isWritingMemo = isWriting;
+    }
+    public static void SetBGMVolume(float vol)
+    {
+        bgmVolume = vol;
+    }
+    public static void SetSEVolume(float vol)
+    {
+        seVolume = vol;
+    }
+    public static void SetVoiceVolume(float vol)
+    {
+        voiceVolume = vol;
     }
 }

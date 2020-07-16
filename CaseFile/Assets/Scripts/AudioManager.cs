@@ -85,8 +85,13 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         }
     }
 
-    public void PlaySE(string seName, float volume = 1.0f, bool loop = false)
+    public void PlaySE(string seName, float volume = 1.0f, bool loop = false, bool isVoice = false)
     {
+        if (isVoice)
+            volume *= StaticController.voiceVolume;
+        else
+            volume *= StaticController.seVolume;
+
         if (!this.seDict.ContainsKey(seName))
             throw new ArgumentException(seName + " not found", "seName");
 
@@ -133,6 +138,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
     public void PlayBGM(string bgmName, float volume = 1.0f, bool loop = true)
     {
+        volume *= StaticController.bgmVolume;
+
         if (!this.bgmDict.ContainsKey(bgmName))
             throw new ArgumentException(bgmName + " not found", "bgmName");
         if (this.bgmSource.clip == this.bgmDict[bgmName])
@@ -149,7 +156,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     public void FadeInBGM(string bgmName, float volume = 1.0f, bool loop = true)
     {
         PlayBGM(bgmName, 0.0f, loop);
-        fadeToVolume = volume;
+        fadeToVolume = volume * StaticController.bgmVolume;
         isFadeIn = true;
     }
 
@@ -191,5 +198,10 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             }
         }
         return false;
+    }
+
+    public void SetBGMVolume(float vol)
+    {
+        this.bgmSource.volume = vol;
     }
 }
