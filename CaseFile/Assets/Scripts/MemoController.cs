@@ -21,6 +21,14 @@ public class MemoController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		memoText = "";
 		memoId = 0;
 		GetComponentInChildren<Text>().text = memoText;
+
+		// 一個だけデフォルトを設定しとく
+		if (this.name == "TextPanel1")
+        {
+			memoText = "8月7日　今日も先生のいびきはうるさかった。時たまいう、茜とはいったい誰なのか。後で問い詰めようと思う。おわり";
+			GetComponentInChildren<Text>().text = memoText;
+			memoId = 1;
+        }
 	}
 	
 	// Update is called once per frame
