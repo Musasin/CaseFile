@@ -59,7 +59,7 @@ public class ItemPanelController : MonoBehaviour, IPointerEnterHandler, IPointer
         }
         if (itemName != "")
         {
-            gameController.SelectChoiceItems(itemName);
+            gameController.SelectChoiceItems(targetFlag);
         }
     }
 

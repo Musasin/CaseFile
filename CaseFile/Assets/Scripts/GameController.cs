@@ -829,6 +829,8 @@ public class GameController : MonoBehaviour
             int length = csvDatas[nowId].choices.Length;
             for (int i = 0; i < csvDatas[nowId].choices.Length; i++)
             {
+                Debug.Log("target: " + csvDatas[nowId].choices[i]);
+                Debug.Log("select: " + choiceItem);
                 if (csvDatas[nowId].choices[i] == choiceItem)
                 {
                     nextId = int.Parse(csvDatas[nowId].jump_ids[i]);
