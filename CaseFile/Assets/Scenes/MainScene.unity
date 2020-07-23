@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 233388871}
   - component: {fileID: 233388873}
   - component: {fileID: 233388872}
+  - component: {fileID: 233388874}
   m_Layer: 5
   m_Name: EndingBackGround
   m_TagString: Untagged
@@ -823,6 +824,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233388870}
   m_CullTransparentMesh: 0
+--- !u!223 &233388874
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233388870}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 40
+  m_TargetDisplay: 0
 --- !u!1 &259503333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1352911133862922, guid: ab7c57ca67f7f4e57874814317c11c1e,
@@ -2201,6 +2223,7 @@ GameObject:
   - component: {fileID: 605350346}
   - component: {fileID: 605350348}
   - component: {fileID: 605350347}
+  - component: {fileID: 605350349}
   m_Layer: 5
   m_Name: EndRollPanel
   m_TagString: Untagged
@@ -2263,6 +2286,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605350345}
   m_CullTransparentMesh: 0
+--- !u!223 &605350349
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605350345}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 45
+  m_TargetDisplay: 0
 --- !u!224 &606281005 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224237424935541722, guid: 5cb5edb110d574918b31349e030681b3,
@@ -3214,12 +3258,12 @@ PrefabInstance:
     - target: {fileID: 224237424935541722, guid: 5cb5edb110d574918b31349e030681b3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 82
+      value: 48.1
       objectReference: {fileID: 0}
     - target: {fileID: 224237424935541722, guid: 5cb5edb110d574918b31349e030681b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 142
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 224237424935541722, guid: 5cb5edb110d574918b31349e030681b3,
         type: 3}
@@ -3607,12 +3651,12 @@ PrefabInstance:
     - target: {fileID: 224016945448591800, guid: 9df5e06f0ce0744c4a8978826d30a6a5,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 224016945448591800, guid: 9df5e06f0ce0744c4a8978826d30a6a5,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 400
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 224016945448591800, guid: 9df5e06f0ce0744c4a8978826d30a6a5,
         type: 3}
@@ -5913,6 +5957,33 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1601854470}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1602222929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1063967252218848, guid: 5cb5edb110d574918b31349e030681b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 694966694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1602222930
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602222929}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 41
+  m_TargetDisplay: 0
 --- !u!1001 &1604327211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6112,6 +6183,7 @@ GameObject:
   - component: {fileID: 1634401412}
   - component: {fileID: 1634401411}
   - component: {fileID: 1634401410}
+  - component: {fileID: 1634401413}
   m_Layer: 5
   m_Name: EndingSkipButton
   m_TagString: Untagged
@@ -6225,6 +6297,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634401408}
   m_CullTransparentMesh: 0
+--- !u!223 &1634401413
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634401408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 55
+  m_TargetDisplay: 0
 --- !u!224 &1651628560 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224775472667796348, guid: f070e7cbbd2f4af43ad3fa612f409d63,
