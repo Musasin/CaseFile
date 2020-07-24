@@ -1,8 +1,3 @@
-立ち絵
-【素材】結月ゆかりさん立ち絵 (からい様)
-http://seiga.nicovideo.jp/seiga/im6232152
-
-
 メッセージボックス
 和風フレーム
 びたちー素材館 
@@ -15,9 +10,6 @@ https://kopacurve.blog.fc2.com/blog-entry-407.html
 
 
 背景
-不気味な廃線のトンネル
-ぱくたそ（www.pakutaso.com） photo すしぱく
-https://www.pakutaso.com/20120836230post-1830.html
 見開きのノートとペン
 https://www.pakutaso.com/20130646170post-2942.html
 
@@ -39,9 +31,7 @@ https://maoudamashii.jokersounds.com/
 --
 
 【立ち絵】
-結月ゆかりさん立ち絵 [からい様]
-http://seiga.nicovideo.jp/seiga/im6232152
-いらすと屋敷の人たち [いらすとや様]
+本作の登場人物 [いらすとや様]
 https://www.irasutoya.com/
 
 【UI】
@@ -57,85 +47,39 @@ https://assetstore.unity.com/packages/2d/gui/icons/easy-ui-emerald-default-11279
 https://maoudamashii.jokersounds.com/
 
 【SE】
-効果音ラボ様
-https://soundeffect-lab.info/
+効果音辞典様
+https://sounddictionary.info/
 
-On-Jin ～音人～様
-https://on-jin.com/
+DOVA-SYNDROME様
+https://dova-s.jp/
 
-【背景】
-見開きのノートとペン [ぱくたそ（www.pakutaso.com） photo by すしぱく様]
-https://www.pakutaso.com/20130646170post-2942.html
-車窓の中の南アルプス [ぱくたそ（www.pakutaso.com） photo by クマキチ様]
-https://www.pakutaso.com/20180616158post-16421.html
-グラバー園 [写真AC (www.photo-ac.com) photo by はなたれ君様]
-https://www.photo-ac.com/main/detail/103738
-不気味な廃線のトンネル [ぱくたそ（www.pakutaso.com） photo by すしぱく様]
-https://www.pakutaso.com/20120836230post-1830.html
-
-客室 [pixabay (pixabay.com) photo by mattabattadatta様]
-https://pixabay.com/images/id-1038118/
-客室2 [pixabay (pixabay.com) photo by JamesDeMers様]
-https://pixabay.com/images/id-670237/
-廊下 [pixabay (pixabay.com) photo by JamesDeMers様]
-https://pixabay.com/images/id-382154/
-森小道 [pixabay (pixabay.com) photo by pixel2013様]
-https://pixabay.com/images/id-3410846/
-橋 [pixabay (pixabay.com) photo by Free-Photos様]
-https://pixabay.com/images/id-1246631/
-応接間 [pixabay (pixabay.com) photo by Free-Photos様]
-https://pixabay.com/images/id-3214911/
-談話室 [pixabay (pixabay.com) photo by VinnyCiro様]
-https://pixabay.com/images/id-581073/
-遊技場 [pixabay (pixabay.com) photo by Free-Photos様]
-https://pixabay.com/images/id-802017/
-玄関ホール [pixabay (pixabay.com) photo by todfrank様]
-https://pixabay.com/images/id-1715879/
-食堂 [pixabay (pixabay.com) photo by Printerzug様]
-https://pixabay.com/images/id-1787939/
-書斎 [pixabay (pixabay.com) photo by 12019様]
-https://pixabay.com/images/id-83538/
-
-山奥に流れる清水の小川 [BEIZ images (river.beiz.jp)]
-https://river.beiz.jp/download/river/00056.html
-緑の森の中を流れる清流の写真 [BEIZ images (river.beiz.jp)]
-https://river.beiz.jp/download/river/00006.html
-
---
-
-表記わけ案
+---
 
 【背景】
 [ぱくたそ（www.pakutaso.com） photo by すしぱく様]
-https://www.pakutaso.com/20130646170post-2942.html
-https://www.pakutaso.com/20120836230post-1830.html
-[ぱくたそ（www.pakutaso.com） photo by クマキチ様]
-https://www.pakutaso.com/20180616158post-16421.html
-[写真AC (www.photo-ac.com) photo by はなたれ君様]
-https://www.photo-ac.com/main/detail/103738
+https://www.pakutaso.com/20150335084post-5328.html
+https://www.pakutaso.com/20191038282post-23645.html
+[ぱくたそ（www.pakutaso.com） photo by 平湯温泉観光協会様]
+https://www.pakutaso.com/20170307088post-10789.html
+[ぱくたそ（www.pakutaso.com） photo by ぱくたそ運営事務局様]
+https://www.pakutaso.com/20181103312post-18462.html
+https://www.pakutaso.com/20181110312post-18461.html
 
-[pixabay (pixabay.com) photo by mattabattadatta様]
-https://pixabay.com/images/id-1038118/
-[pixabay (pixabay.com) photo by JamesDeMers様]
-https://pixabay.com/images/id-670237/
-https://pixabay.com/images/id-382154/
-[pixabay (pixabay.com) photo by pixel2013様]
-https://pixabay.com/images/id-3410846/
-[pixabay (pixabay.com) photo by Free-Photos様]
-https://pixabay.com/images/id-1246631/
-https://pixabay.com/images/id-3214911/
-https://pixabay.com/images/id-802017/
-[pixabay (pixabay.com) photo by VinnyCiro様]
-https://pixabay.com/images/id-581073/
-[pixabay (pixabay.com) photo by todfrank様]
-https://pixabay.com/images/id-1715879/
-[pixabay (pixabay.com) photo by Printerzug様]
-https://pixabay.com/images/id-1787939/
-
- [BEIZ images (river.beiz.jp)]
-https://river.beiz.jp/download/river/00056.html
-https://river.beiz.jp/download/river/00006.html
-
-
+[写真AC (www.photo-ac.com) photo by オイラ・モイカ様]
+https://www.photo-ac.com/main/detail/3182627
+[写真AC (www.photo-ac.com) photo by Dandelion3様]
+https://www.photo-ac.com/main/detail/3158222
+[写真AC (www.photo-ac.com) photo by オぃちゃん様]
+https://www.photo-ac.com/main/detail/3114696
+[写真AC (www.photo-ac.com) photo by さとう310様]
+https://www.photo-ac.com/main/detail/510358
+[写真AC (www.photo-ac.com) photo by とちぎ様]
+https://www.photo-ac.com/main/detail/932278
+[写真AC (www.photo-ac.com) photo by Linquedes様]
+https://www.photo-ac.com/main/detail/2297813
+[写真AC (www.photo-ac.com) photo by ぺたぽん様]
+https://www.photo-ac.com/main/detail/1849399
+[写真AC (www.photo-ac.com) photo by たは様]
+https://www.photo-ac.com/main/detail/3358034
 
 

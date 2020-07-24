@@ -652,6 +652,16 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2124935928}
+    - target: {fileID: 3978972823140477133, guid: 58e56fcd119354a888984f1914904eea,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u3010\u97F3\u58F0\u3011\r\nVOICEROID2 \u7D50\u6708\u3086\u304B\u308A\u3010AH-Software\u69D8\u3011\r\nhttps://www.ah-soft.com/voiceroid/yukari/\r\nVOICEROID2
+        \u7D32\u661F\u3042\u304B\u308A\u3010AH-Software\u69D8\u3011\r\nhttps://www.ah-soft.com/voiceroid/akari/\r\n\r\n\u3010\u7ACB\u3061\u7D75\u3011\r\n\u672C\u4F5C\u306E\u767B\u5834\u4EBA\u7269
+        [\u3044\u3089\u3059\u3068\u3084\u69D8]\r\nhttps://www.irasutoya.com/\r\n\r\n\u3010UI\u3011\r\n\u30E1\u30C3\u30BB\u30FC\u30B8\u30A6\u30A3\u30F3\u30C9\u30A6
+        [\u7A7A\u60F3\u66F2\u7DDA\u69D8]\r\nhttps://kopacurve.blog.fc2.com/blog-entry-407.html\r\n\u958B\u3044\u305F\u624B\u5E33
+        [\u30D1\u30D6\u30EA\u30C3\u30AF\u30C9\u30E1\u30A4\u30F3Q\u69D8]\r\nhttps://publicdomainq.net/pocket-diary-0005610/\r\neasy
+        UI emerald - default[ASTR999\u69D8]\r\nhttps://assetstore.unity.com/packages/2d/gui/icons/easy-ui-emerald-default-112796\r\n\r\n\u3010BGM\u3011\r\n\u9B54\u738B\u9B42\u69D8\r\nhttps://maoudamashii.jokersounds.com/\r\n\r\n\u3010SE\u3011\r\n\u52B9\u679C\u97F3\u8F9E\u5178\u69D8\r\nhttps://sounddictionary.info/\r\n\r\nDOVA-SYNDROME\u69D8\r\nhttps://dova-s.jp/"
+      objectReference: {fileID: 0}
     - target: {fileID: 3978983330958971497, guid: 58e56fcd119354a888984f1914904eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -692,5 +702,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2124935928}
+    - target: {fileID: 3979963850843207395, guid: 58e56fcd119354a888984f1914904eea,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u3010\u80CC\u666F\u3011\r\n[\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09
+        photo by \u3059\u3057\u3071\u304F\u69D8]\r\nhttps://www.pakutaso.com/20150335084post-5328.html\r\nhttps://www.pakutaso.com/20191038282post-23645.html\r\n[\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09
+        photo by \u5E73\u6E6F\u6E29\u6CC9\u89B3\u5149\u5354\u4F1A\u69D8]\r\nhttps://www.pakutaso.com/20170307088post-10789.html\r\n[\u3071\u304F\u305F\u305D\uFF08www.pakutaso.com\uFF09
+        photo by \u3071\u304F\u305F\u305D\u904B\u55B6\u4E8B\u52D9\u5C40\u69D8]\r\nhttps://www.pakutaso.com/20181103312post-18462.html\r\nhttps://www.pakutaso.com/20181110312post-18461.html\r\n\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u30AA\u30A4\u30E9\u30FB\u30E2\u30A4\u30AB\u69D8]\r\nhttps://www.photo-ac.com/main/detail/3182627\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by Dandelion3\u69D8]\r\nhttps://www.photo-ac.com/main/detail/3158222\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u30AA\u3043\u3061\u3083\u3093\u69D8]\r\nhttps://www.photo-ac.com/main/detail/3114696\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u3055\u3068\u3046310\u69D8]\r\nhttps://www.photo-ac.com/main/detail/510358\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u3068\u3061\u304E\u69D8]\r\nhttps://www.photo-ac.com/main/detail/932278\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by Linquedes\u69D8]\r\nhttps://www.photo-ac.com/main/detail/2297813\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u307A\u305F\u307D\u3093\u69D8]\r\nhttps://www.photo-ac.com/main/detail/1849399\r\n[\u5199\u771FAC
+        (www.photo-ac.com) photo by \u305F\u306F\u69D8]\r\nhttps://www.photo-ac.com/main/detail/3358034\r"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58e56fcd119354a888984f1914904eea, type: 3}
