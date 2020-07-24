@@ -919,7 +919,7 @@ public class GameController : MonoBehaviour
     public void CloseNoteBook()
     {
         StaticController.SetWritingMemo(false);
-        if (state == State.NoteBook)
+        if (state == State.NoteBook || state == State.ChoiceMemoList)
         {
             state = State.Playing;
         }
